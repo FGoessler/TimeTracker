@@ -180,9 +180,9 @@
                                 <action selector="cancelBtnClicked:" destination="rmQ-eP-Ear" id="5Yb-ft-vgA"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="dzS-nZ-oxv">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="dzS-nZ-oxv">
                             <connections>
-                                <action selector="doneBtnClicked:" destination="rmQ-eP-Ear" id="lkt-4B-DAt"/>
+                                <action selector="addBtnClicked:" destination="rmQ-eP-Ear" id="Zl4-T1-4vx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -304,7 +304,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ggm-Ft-Vq2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="999" y="1080"/>
+            <point key="canvasLocation" x="999" y="1085"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="myN-8G-TVf">
@@ -493,59 +493,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             <point key="canvasLocation" x="1478" y="1799"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="TTChangeIssueVC" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TTChangeIssueVC.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelBtnClicked:"/>
-                <relationship kind="action" name="doneBtnClicked:"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="TTIssueDetailsVC" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TTIssueDetailsVC.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelBtnClicked:"/>
-                <relationship kind="action" name="doneBtnClicked:"/>
-                <relationship kind="outlet" name="commentTextField" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="endTimeTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="startTimeTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="timePicker" candidateClass="UIDatePicker"/>
-            </relationships>
-        </class>
-        <class className="TTLinksVC" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TTLinksVC.h"/>
-        </class>
-        <class className="TTProjectSettingsVC" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TTProjectSettingsVC.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelBtnClicked:"/>
-                <relationship kind="action" name="doneBtnClicked:"/>
-                <relationship kind="outlet" name="projectNameTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="TTProjectsVC" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TTProjectsVC.h"/>
-            <relationships>
-                <relationship kind="action" name="newProjectBtnClicked:"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="TTTrackingVC" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TTTrackingVC.h"/>
-            <relationships>
-                <relationship kind="action" name="changeIssueBtnClicked:"/>
-                <relationship kind="action" name="moreInfoBtnClicked:"/>
-                <relationship kind="action" name="trackingBtnClicked:"/>
-                <relationship kind="outlet" name="currentIssueLbl" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="timeLbl" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

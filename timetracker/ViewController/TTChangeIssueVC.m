@@ -14,7 +14,7 @@
 @end
 
 @implementation TTChangeIssueVC
-- (IBAction)doneBtnClicked:(id)sender {
+- (IBAction)addBtnClicked:(id)sender {
 }
 - (IBAction)cancelBtnClicked:(id)sender {
 }
