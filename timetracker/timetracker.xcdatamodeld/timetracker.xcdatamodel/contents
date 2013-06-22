@@ -1,9 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Event">
-        <attribute name="timeStamp" optional="YES" attributeType="Date"/>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12E55" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="TTExternalSystemLink" representedClassName="TTExternalSystemLink" syncable="YES">
+        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" attributeType="String" syncable="YES"/>
+        <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="childProjects" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TTProject" inverseName="parentSystemLink" inverseEntity="TTProject" syncable="YES"/>
+    </entity>
+    <entity name="TTIssue" representedClassName="TTIssue" syncable="YES">
+        <attribute name="externalSystemUID" optional="YES" attributeType="String" minValueString="1" syncable="YES"/>
+        <attribute name="name" attributeType="String" minValueString="1" syncable="YES"/>
+        <attribute name="shortText" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="childLogEntries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TTLogEntries" inverseName="parentIssue" inverseEntity="TTLogEntries" syncable="YES"/>
+        <relationship name="parentProject" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="TTProject" inverseName="childIssues" inverseEntity="TTProject" syncable="YES"/>
+    </entity>
+    <entity name="TTLogEntries" representedClassName="TTLogEntries" syncable="YES">
+        <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="startDate" attributeType="Date" syncable="YES"/>
+        <attribute name="synced" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <relationship name="parentIssue" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="TTIssue" inverseName="childLogEntries" inverseEntity="TTIssue" syncable="YES"/>
+    </entity>
+    <entity name="TTProject" representedClassName="TTProject" syncable="YES">
+        <attribute name="name" attributeType="String" minValueString="1" syncable="YES"/>
+        <relationship name="childIssues" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TTIssue" inverseName="parentProject" inverseEntity="TTIssue" syncable="YES"/>
+        <relationship name="defaultIssue" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="TTIssue" syncable="YES"/>
+        <relationship name="parentSystemLink" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TTExternalSystemLink" inverseName="childProjects" inverseEntity="TTExternalSystemLink" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Event" positionX="261" positionY="189" width="128" height="60"/>
+        <element name="TTExternalSystemLink" positionX="-407" positionY="-324" width="128" height="103"/>
+        <element name="TTIssue" positionX="-56" positionY="-27" width="128" height="118"/>
+        <element name="TTLogEntries" positionX="187" positionY="-18" width="128" height="118"/>
+        <element name="TTProject" positionX="-378" positionY="-18" width="128" height="103"/>
     </elements>
 </model>
