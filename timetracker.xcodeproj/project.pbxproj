@@ -1,0 +1,498 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		174DAB34177597AB006057C0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 174DAB33177597AB006057C0 /* UIKit.framework */; };
+		174DAB36177597AB006057C0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 174DAB35177597AB006057C0 /* Foundation.framework */; };
+		174DAB38177597AB006057C0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 174DAB37177597AB006057C0 /* CoreGraphics.framework */; };
+		174DAB3A177597AB006057C0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 174DAB39177597AB006057C0 /* CoreData.framework */; };
+		174DAB40177597AB006057C0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 174DAB3E177597AB006057C0 /* InfoPlist.strings */; };
+		174DAB42177597AB006057C0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 174DAB41177597AB006057C0 /* main.m */; };
+		174DAB46177597AB006057C0 /* TTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 174DAB45177597AB006057C0 /* TTAppDelegate.m */; };
+		174DAB48177597AB006057C0 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 174DAB47177597AB006057C0 /* Default.png */; };
+		174DAB4A177597AB006057C0 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 174DAB49177597AB006057C0 /* Default@2x.png */; };
+		174DAB4C177597AB006057C0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 174DAB4B177597AB006057C0 /* Default-568h@2x.png */; };
+		174DAB4F177597AB006057C0 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 174DAB4D177597AB006057C0 /* MainStoryboard.storyboard */; };
+		174DAB52177597AB006057C0 /* timetracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 174DAB50177597AB006057C0 /* timetracker.xcdatamodeld */; };
+		174DAB55177597AB006057C0 /* TTMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 174DAB54177597AB006057C0 /* TTMasterViewController.m */; };
+		174DAB58177597AB006057C0 /* TTDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 174DAB57177597AB006057C0 /* TTDetailViewController.m */; };
+		174DAB60177597AB006057C0 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 174DAB5F177597AB006057C0 /* SenTestingKit.framework */; };
+		174DAB61177597AB006057C0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 174DAB33177597AB006057C0 /* UIKit.framework */; };
+		174DAB62177597AB006057C0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 174DAB35177597AB006057C0 /* Foundation.framework */; };
+		174DAB63177597AB006057C0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 174DAB39177597AB006057C0 /* CoreData.framework */; };
+		174DAB6B177597AB006057C0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 174DAB69177597AB006057C0 /* InfoPlist.strings */; };
+		174DAB6E177597AB006057C0 /* timetrackerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 174DAB6D177597AB006057C0 /* timetrackerTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		174DAB64177597AB006057C0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 174DAB28177597AB006057C0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 174DAB2F177597AB006057C0;
+			remoteInfo = timetracker;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		174DAB30177597AB006057C0 /* timetracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = timetracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		174DAB33177597AB006057C0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		174DAB35177597AB006057C0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		174DAB37177597AB006057C0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		174DAB39177597AB006057C0 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		174DAB3D177597AB006057C0 /* timetracker-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "timetracker-Info.plist"; sourceTree = "<group>"; };
+		174DAB3F177597AB006057C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		174DAB41177597AB006057C0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		174DAB43177597AB006057C0 /* timetracker-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "timetracker-Prefix.pch"; sourceTree = "<group>"; };
+		174DAB44177597AB006057C0 /* TTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTAppDelegate.h; sourceTree = "<group>"; };
+		174DAB45177597AB006057C0 /* TTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTAppDelegate.m; sourceTree = "<group>"; };
+		174DAB47177597AB006057C0 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		174DAB49177597AB006057C0 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		174DAB4B177597AB006057C0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		174DAB4E177597AB006057C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		174DAB51177597AB006057C0 /* timetracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = timetracker.xcdatamodel; sourceTree = "<group>"; };
+		174DAB53177597AB006057C0 /* TTMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTMasterViewController.h; sourceTree = "<group>"; };
+		174DAB54177597AB006057C0 /* TTMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTMasterViewController.m; sourceTree = "<group>"; };
+		174DAB56177597AB006057C0 /* TTDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTDetailViewController.h; sourceTree = "<group>"; };
+		174DAB57177597AB006057C0 /* TTDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTDetailViewController.m; sourceTree = "<group>"; };
+		174DAB5E177597AB006057C0 /* timetrackerTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = timetrackerTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		174DAB5F177597AB006057C0 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		174DAB68177597AB006057C0 /* timetrackerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "timetrackerTests-Info.plist"; sourceTree = "<group>"; };
+		174DAB6A177597AB006057C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		174DAB6C177597AB006057C0 /* timetrackerTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = timetrackerTests.h; sourceTree = "<group>"; };
+		174DAB6D177597AB006057C0 /* timetrackerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = timetrackerTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		174DAB2D177597AB006057C0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				174DAB34177597AB006057C0 /* UIKit.framework in Frameworks */,
+				174DAB36177597AB006057C0 /* Foundation.framework in Frameworks */,
+				174DAB38177597AB006057C0 /* CoreGraphics.framework in Frameworks */,
+				174DAB3A177597AB006057C0 /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		174DAB5A177597AB006057C0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				174DAB60177597AB006057C0 /* SenTestingKit.framework in Frameworks */,
+				174DAB61177597AB006057C0 /* UIKit.framework in Frameworks */,
+				174DAB62177597AB006057C0 /* Foundation.framework in Frameworks */,
+				174DAB63177597AB006057C0 /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		174DAB27177597AB006057C0 = {
+			isa = PBXGroup;
+			children = (
+				174DAB3B177597AB006057C0 /* timetracker */,
+				174DAB66177597AB006057C0 /* timetrackerTests */,
+				174DAB32177597AB006057C0 /* Frameworks */,
+				174DAB31177597AB006057C0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		174DAB31177597AB006057C0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				174DAB30177597AB006057C0 /* timetracker.app */,
+				174DAB5E177597AB006057C0 /* timetrackerTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		174DAB32177597AB006057C0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				174DAB33177597AB006057C0 /* UIKit.framework */,
+				174DAB35177597AB006057C0 /* Foundation.framework */,
+				174DAB37177597AB006057C0 /* CoreGraphics.framework */,
+				174DAB39177597AB006057C0 /* CoreData.framework */,
+				174DAB5F177597AB006057C0 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		174DAB3B177597AB006057C0 /* timetracker */ = {
+			isa = PBXGroup;
+			children = (
+				174DAB44177597AB006057C0 /* TTAppDelegate.h */,
+				174DAB45177597AB006057C0 /* TTAppDelegate.m */,
+				174DAB4D177597AB006057C0 /* MainStoryboard.storyboard */,
+				174DAB53177597AB006057C0 /* TTMasterViewController.h */,
+				174DAB54177597AB006057C0 /* TTMasterViewController.m */,
+				174DAB56177597AB006057C0 /* TTDetailViewController.h */,
+				174DAB57177597AB006057C0 /* TTDetailViewController.m */,
+				174DAB50177597AB006057C0 /* timetracker.xcdatamodeld */,
+				174DAB3C177597AB006057C0 /* Supporting Files */,
+			);
+			path = timetracker;
+			sourceTree = "<group>";
+		};
+		174DAB3C177597AB006057C0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				174DAB3D177597AB006057C0 /* timetracker-Info.plist */,
+				174DAB3E177597AB006057C0 /* InfoPlist.strings */,
+				174DAB41177597AB006057C0 /* main.m */,
+				174DAB43177597AB006057C0 /* timetracker-Prefix.pch */,
+				174DAB47177597AB006057C0 /* Default.png */,
+				174DAB49177597AB006057C0 /* Default@2x.png */,
+				174DAB4B177597AB006057C0 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		174DAB66177597AB006057C0 /* timetrackerTests */ = {
+			isa = PBXGroup;
+			children = (
+				174DAB6C177597AB006057C0 /* timetrackerTests.h */,
+				174DAB6D177597AB006057C0 /* timetrackerTests.m */,
+				174DAB67177597AB006057C0 /* Supporting Files */,
+			);
+			path = timetrackerTests;
+			sourceTree = "<group>";
+		};
+		174DAB67177597AB006057C0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				174DAB68177597AB006057C0 /* timetrackerTests-Info.plist */,
+				174DAB69177597AB006057C0 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		174DAB2F177597AB006057C0 /* timetracker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 174DAB71177597AB006057C0 /* Build configuration list for PBXNativeTarget "timetracker" */;
+			buildPhases = (
+				174DAB2C177597AB006057C0 /* Sources */,
+				174DAB2D177597AB006057C0 /* Frameworks */,
+				174DAB2E177597AB006057C0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = timetracker;
+			productName = timetracker;
+			productReference = 174DAB30177597AB006057C0 /* timetracker.app */;
+			productType = "com.apple.product-type.application";
+		};
+		174DAB5D177597AB006057C0 /* timetrackerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 174DAB74177597AB006057C0 /* Build configuration list for PBXNativeTarget "timetrackerTests" */;
+			buildPhases = (
+				174DAB59177597AB006057C0 /* Sources */,
+				174DAB5A177597AB006057C0 /* Frameworks */,
+				174DAB5B177597AB006057C0 /* Resources */,
+				174DAB5C177597AB006057C0 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				174DAB65177597AB006057C0 /* PBXTargetDependency */,
+			);
+			name = timetrackerTests;
+			productName = timetrackerTests;
+			productReference = 174DAB5E177597AB006057C0 /* timetrackerTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		174DAB28177597AB006057C0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = TT;
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Florian Goessler";
+			};
+			buildConfigurationList = 174DAB2B177597AB006057C0 /* Build configuration list for PBXProject "timetracker" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 174DAB27177597AB006057C0;
+			productRefGroup = 174DAB31177597AB006057C0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				174DAB2F177597AB006057C0 /* timetracker */,
+				174DAB5D177597AB006057C0 /* timetrackerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		174DAB2E177597AB006057C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				174DAB40177597AB006057C0 /* InfoPlist.strings in Resources */,
+				174DAB48177597AB006057C0 /* Default.png in Resources */,
+				174DAB4A177597AB006057C0 /* Default@2x.png in Resources */,
+				174DAB4C177597AB006057C0 /* Default-568h@2x.png in Resources */,
+				174DAB4F177597AB006057C0 /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		174DAB5B177597AB006057C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				174DAB6B177597AB006057C0 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		174DAB5C177597AB006057C0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		174DAB2C177597AB006057C0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				174DAB42177597AB006057C0 /* main.m in Sources */,
+				174DAB46177597AB006057C0 /* TTAppDelegate.m in Sources */,
+				174DAB52177597AB006057C0 /* timetracker.xcdatamodeld in Sources */,
+				174DAB55177597AB006057C0 /* TTMasterViewController.m in Sources */,
+				174DAB58177597AB006057C0 /* TTDetailViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		174DAB59177597AB006057C0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				174DAB6E177597AB006057C0 /* timetrackerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		174DAB65177597AB006057C0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 174DAB2F177597AB006057C0 /* timetracker */;
+			targetProxy = 174DAB64177597AB006057C0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		174DAB3E177597AB006057C0 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				174DAB3F177597AB006057C0 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		174DAB4D177597AB006057C0 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				174DAB4E177597AB006057C0 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+		174DAB69177597AB006057C0 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				174DAB6A177597AB006057C0 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		174DAB6F177597AB006057C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		174DAB70177597AB006057C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		174DAB72177597AB006057C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "timetracker/timetracker-Prefix.pch";
+				INFOPLIST_FILE = "timetracker/timetracker-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		174DAB73177597AB006057C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "timetracker/timetracker-Prefix.pch";
+				INFOPLIST_FILE = "timetracker/timetracker-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		174DAB75177597AB006057C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/timetracker.app/timetracker";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "timetracker/timetracker-Prefix.pch";
+				INFOPLIST_FILE = "timetrackerTests/timetrackerTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		174DAB76177597AB006057C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/timetracker.app/timetracker";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "timetracker/timetracker-Prefix.pch";
+				INFOPLIST_FILE = "timetrackerTests/timetrackerTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		174DAB2B177597AB006057C0 /* Build configuration list for PBXProject "timetracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				174DAB6F177597AB006057C0 /* Debug */,
+				174DAB70177597AB006057C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		174DAB71177597AB006057C0 /* Build configuration list for PBXNativeTarget "timetracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				174DAB72177597AB006057C0 /* Debug */,
+				174DAB73177597AB006057C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		174DAB74177597AB006057C0 /* Build configuration list for PBXNativeTarget "timetrackerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				174DAB75177597AB006057C0 /* Debug */,
+				174DAB76177597AB006057C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		174DAB50177597AB006057C0 /* timetracker.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				174DAB51177597AB006057C0 /* timetracker.xcdatamodel */,
+			);
+			currentVersion = 174DAB51177597AB006057C0 /* timetracker.xcdatamodel */;
+			path = timetracker.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 174DAB28177597AB006057C0 /* Project object */;
+}
