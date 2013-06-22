@@ -8,6 +8,8 @@
 
 #import "TTProject.h"
 
+#define MOBJ_TTProject @"TTProject"
+
 @interface TTProject (TTExtension)
 
 @end

@@ -9,11 +9,13 @@
 #import "TTProjectsVC.h"
 #import "TTProject+TTExtension.h"
 #import "TTAppDelegate.h"
+#import "TTProjectDataManager.h"
 
-@interface TTProjectsVC () <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
+
+@interface TTProjectsVC () <UITableViewDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (strong, nonatomic) NSArray *projects;
+@property (strong, nonatomic) TTProjectDataManager *projectManager;
 
 @end
 
@@ -31,53 +33,18 @@
 	
 	if(buttonIndex != 1) return;
 	
-	NSManagedObjectContext *context = ((TTAppDelegate*)[[UIApplication sharedApplication] delegate]).managedObjectContext;
-    TTProject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:@"TTProject" inManagedObjectContext:context];
-    
-    newManagedObject.name = [alertView textFieldAtIndex:0].text;
-	
-	[((TTAppDelegate*)[[UIApplication sharedApplication] delegate]) saveContext];
-	
-	[self updateProjectList];
-	[self.tableView reloadData];
+	[self.projectManager createNewProjectWithName:[alertView textFieldAtIndex:0].text];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
+	
 	self.tableView.delegate = self;
-	self.tableView.dataSource = self;
-}
-
-- (void)updateProjectList {
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"TTProject"];
+	self.projectManager = [[TTProjectDataManager alloc] initAsDataSourceOfTableView:self.tableView];
 	
-	self.projects = [((TTAppDelegate*)[[UIApplication sharedApplication] delegate]).managedObjectContext executeFetchRequest:request error:nil];
 }
 
--(void)viewWillAppear:(BOOL)animated {
-	[self updateProjectList];
-}
-
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return self.projects.count;
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	NSString* requesIdentifier = @"ProjectsCell";
-	
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:requesIdentifier];
-	
-	if(cell == nil) {
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:requesIdentifier];
-	}
-	
-	TTProject *project = [self.projects objectAtIndex:indexPath.row];
-	cell.textLabel.text = project.name;
-		
-	return cell;
-}
 
 @end
