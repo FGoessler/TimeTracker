@@ -134,16 +134,10 @@
 	return [sectionInfo numberOfObjects];
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	NSString* requesIdentifier = @"ProjectsCell";
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {	
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProjectCell"];
 	
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:requesIdentifier];
-	
-	if(cell == nil) {
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:requesIdentifier];
-	}
-	
-	[self configureCell:cell atIndexPath:indexPath];
+	cell = [self configureCell:cell atIndexPath:indexPath];
 	
 	return cell;
 }
