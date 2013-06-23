@@ -50,19 +50,27 @@
 	[self saveContext];
 }
 
-- (void)saveContext
+- (BOOL)saveContext
 {
+    return [self saveContextWithErrorHandler:nil];
+}
+- (BOOL)saveContextWithErrorHandler:(TTErrorHandler)handler {
     NSError *error = nil;
     NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
     if (managedObjectContext != nil) {
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
-             // Replace this implementation with code to handle the error appropriately.
-             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
+			if(handler != nil) {
+				if(handler(error)) {
+					return false;	//return false to indicate that an error happend
+				}
+			}
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
-        } 
+            abort();	 //kill the app if the error could not been handled
+        }
     }
+	return true;	//return true to indicate that no error happend
 }
+
 
 #pragma mark - Core Data stack
 
@@ -104,9 +112,11 @@
     
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"timetracker.sqlite"];
     
+	NSDictionary *options = @{NSMigratePersistentStoresAutomaticallyOption:@YES, NSInferMappingModelAutomaticallyOption:@YES};
+	
     NSError *error = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error]) {
         /*
          Replace this implementation with code to handle the error appropriately.
          
