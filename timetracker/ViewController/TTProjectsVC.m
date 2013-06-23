@@ -11,6 +11,7 @@
 #import "TTAppDelegate.h"
 #import "TTProjectDataManager.h"
 #import "TTTrackingVC.h"
+#import "TTProjectSettingsVC.h"
 
 
 @interface TTProjectsVC () <UITableViewDelegate, UIAlertViewDelegate>
@@ -18,6 +19,7 @@
 
 @property (strong, nonatomic) TTProjectDataManager *projectManager;
 
+@property (nonatomic, strong) TTProject* selectedProject;
 @end
 
 @implementation TTProjectsVC
@@ -41,11 +43,20 @@
 	[self performSegueWithIdentifier:@"Show TTTrackingVC" sender:self];		//show TrackingVC
 }
 
+-(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+	self.selectedProject = [self.projectManager projectAtIndexPath:indexPath];
+	[self performSegueWithIdentifier:@"Show TTProjectSettingsVC" sender:self];		//show ProjectSettingsVC
+}
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	if([segue.identifier isEqualToString:@"Show TTTrackingVC"]) {
 		TTTrackingVC *destVC = segue.destinationViewController;
 		//pass the selected project to the TrackingVC
 		destVC.project = [self.projectManager projectAtIndexPath:[self.tableView indexPathForSelectedRow]];
+	} else if([segue.identifier isEqualToString:@"Show TTProjectSettingsVC"]) {
+		TTProjectSettingsVC *destVC = (TTProjectSettingsVC*)[segue.destinationViewController topViewController];
+		//pass the selected project to the ProjectSettingsVC
+		destVC.project = self.selectedProject;
 	}
 }
 
