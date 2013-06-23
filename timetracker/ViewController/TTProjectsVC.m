@@ -19,6 +19,7 @@
 
 @property (strong, nonatomic) TTProjectDataManager *projectManager;
 
+@property (nonatomic, strong) TTProject* selectedProject;
 @end
 
 @implementation TTProjectsVC
@@ -43,6 +44,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+	self.selectedProject = [self.projectManager projectAtIndexPath:indexPath];
 	[self performSegueWithIdentifier:@"Show TTProjectSettingsVC" sender:self];		//show ProjectSettingsVC
 }
 
@@ -52,9 +54,9 @@
 		//pass the selected project to the TrackingVC
 		destVC.project = [self.projectManager projectAtIndexPath:[self.tableView indexPathForSelectedRow]];
 	} else if([segue.identifier isEqualToString:@"Show TTProjectSettingsVC"]) {
-		TTProjectSettingsVC *destVC = (TTProjectSettingsVC*)[segue.destinationViewController presentedViewController];
+		TTProjectSettingsVC *destVC = (TTProjectSettingsVC*)[segue.destinationViewController topViewController];
 		//pass the selected project to the ProjectSettingsVC
-		destVC.project = [self.projectManager projectAtIndexPath:[self.tableView indexPathForSelectedRow]];
+		destVC.project = self.selectedProject;
 	}
 }
 

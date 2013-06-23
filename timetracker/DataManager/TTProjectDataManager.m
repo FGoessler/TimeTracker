@@ -59,7 +59,10 @@
 
 
 -(void)deleteProjectAtIndexPath:(NSIndexPath*)indexPath {
+	
+	
 	[[self appDelegate].managedObjectContext deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+	
 	[[self appDelegate] saveContext];
 }
 
@@ -158,6 +161,7 @@
 -(UITableViewCell*)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath {
 	TTProject *project = [self.fetchedResultsController objectAtIndexPath:indexPath];
 	cell.textLabel.text = project.name;
+	[cell setNeedsLayout];
 	
 	return cell;
 }
