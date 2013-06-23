@@ -59,8 +59,6 @@
 /* Begin PBXFileReference section */
 		171A0ABC1776F0DE00A3D721 /* TTCoreDataTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTCoreDataTest.h; sourceTree = "<group>"; };
 		171A0ABD1776F0DE00A3D721 /* TTCoreDataTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTCoreDataTest.m; sourceTree = "<group>"; };
-		171A0ABF1776F1CB00A3D721 /* TTAppDelegate+UnitTestMod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TTAppDelegate+UnitTestMod.h"; sourceTree = "<group>"; };
-		171A0AC01776F1CB00A3D721 /* TTAppDelegate+UnitTestMod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TTAppDelegate+UnitTestMod.m"; sourceTree = "<group>"; };
 		1732A171177611B8007BDFE5 /* TTExternalSystemLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTExternalSystemLink.h; sourceTree = "<group>"; };
 		1732A172177611B8007BDFE5 /* TTExternalSystemLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTExternalSystemLink.m; sourceTree = "<group>"; };
 		1732A174177611B8007BDFE5 /* TTLogEntries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTLogEntries.h; sourceTree = "<group>"; };
@@ -270,8 +268,6 @@
 				174DAB69177597AB006057C0 /* InfoPlist.strings */,
 				171A0ABC1776F0DE00A3D721 /* TTCoreDataTest.h */,
 				171A0ABD1776F0DE00A3D721 /* TTCoreDataTest.m */,
-				171A0ABF1776F1CB00A3D721 /* TTAppDelegate+UnitTestMod.h */,
-				171A0AC01776F1CB00A3D721 /* TTAppDelegate+UnitTestMod.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
