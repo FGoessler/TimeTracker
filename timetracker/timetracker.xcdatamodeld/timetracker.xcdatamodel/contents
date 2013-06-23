@@ -11,7 +11,7 @@
         <attribute name="name" attributeType="String" minValueString="1" syncable="YES"/>
         <attribute name="shortText" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="childLogEntries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TTLogEntries" inverseName="parentIssue" inverseEntity="TTLogEntries" syncable="YES"/>
-        <relationship name="parentProject" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="TTProject" inverseName="childIssues" inverseEntity="TTProject" syncable="YES"/>
+        <relationship name="parentProject" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="TTProject" inverseName="defaultIssue" inverseEntity="TTProject" syncable="YES"/>
     </entity>
     <entity name="TTLogEntries" representedClassName="TTLogEntries" syncable="YES">
         <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
@@ -23,13 +23,13 @@
     <entity name="TTProject" representedClassName="TTProject" syncable="YES">
         <attribute name="name" attributeType="String" minValueString="1" syncable="YES"/>
         <relationship name="childIssues" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TTIssue" inverseName="parentProject" inverseEntity="TTIssue" syncable="YES"/>
-        <relationship name="defaultIssue" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="TTIssue" syncable="YES"/>
+        <relationship name="defaultIssue" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="TTIssue" inverseName="parentProject" inverseEntity="TTIssue" syncable="YES"/>
         <relationship name="parentSystemLink" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TTExternalSystemLink" inverseName="childProjects" inverseEntity="TTExternalSystemLink" syncable="YES"/>
     </entity>
     <elements>
         <element name="TTExternalSystemLink" positionX="-407" positionY="-324" width="128" height="103"/>
-        <element name="TTIssue" positionX="-56" positionY="-27" width="128" height="118"/>
+        <element name="TTIssue" positionX="-56" positionY="-27" width="128" height="120"/>
         <element name="TTLogEntries" positionX="187" positionY="-18" width="128" height="118"/>
-        <element name="TTProject" positionX="-378" positionY="-18" width="128" height="103"/>
+        <element name="TTProject" positionX="-378" positionY="-18" width="128" height="105"/>
     </elements>
 </model>
