@@ -8,7 +8,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-//This test class which sets up a local ManagedObjectContext and its dependencies for each test. This ManagedObjectContext is injected into the TTAppDelegate by a category, so that every time some class under test asks the AppDelegate for a ManagedObjectContext it will get this prepared local ManagedObjectContext.  
+//This test class sets up a in memory ManagedObjectContext and its dependencies for each test. This ManagedObjectContext is injected into the TTAppDelegate so that every time some class under test asks the AppDelegate for a ManagedObjectContext it will get this prepared in memory ManagedObjectContext.  
 @interface TTCoreDataTest : SenTestCase
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @end

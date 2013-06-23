@@ -39,6 +39,7 @@
 	STAssertNil(err, @"Error while perfoming a fetch request!");
 	STAssertTrue(projects.count == 1, @"There should be exactly one project after creating one!");
 	STAssertEqualObjects(((TTProject*)projects[0]).name, @"Testproject", @"Project should have the right name");
+	STAssertNotNil(((TTProject*)projects[0]).defaultIssue, @"Project should have a default issue");
 }
 
 

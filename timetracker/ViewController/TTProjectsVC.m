@@ -10,6 +10,7 @@
 #import "TTProject+TTExtension.h"
 #import "TTAppDelegate.h"
 #import "TTProjectDataManager.h"
+#import "TTTrackingVC.h"
 
 
 @interface TTProjectsVC () <UITableViewDelegate, UIAlertViewDelegate>
@@ -22,6 +23,7 @@
 @implementation TTProjectsVC
 
 - (IBAction)newProjectBtnClicked:(id)sender {
+	//show an AlertView to let the user enter a name for the project.
 	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"New Project" message:@"Please enter a name for your awesome new project!" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Create", nil];
 	alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
 	
@@ -30,17 +32,28 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-	
-	if(buttonIndex != 1) return;
+	if(buttonIndex != 1) return;	//do nothing if cancel button clicked
 	
 	[self.projectManager createNewProjectWithName:[alertView textFieldAtIndex:0].text];
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	[self performSegueWithIdentifier:@"Show TTTrackingVC" sender:self];		//show TrackingVC
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+	if([segue.identifier isEqualToString:@"Show TTTrackingVC"]) {
+		TTTrackingVC *destVC = segue.destinationViewController;
+		//pass the selected project to the TrackingVC
+		destVC.project = [self.projectManager projectAtIndexPath:[self.tableView indexPathForSelectedRow]];
+	}
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
 	
+	//configure TableView
 	self.tableView.delegate = self;
 	self.projectManager = [[TTProjectDataManager alloc] initAsDataSourceOfTableView:self.tableView];
 	

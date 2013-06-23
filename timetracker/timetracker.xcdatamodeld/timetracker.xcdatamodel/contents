@@ -23,7 +23,7 @@
     <entity name="TTProject" representedClassName="TTProject" syncable="YES">
         <attribute name="name" attributeType="String" minValueString="1" syncable="YES"/>
         <relationship name="childIssues" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TTIssue" inverseName="parentProject" inverseEntity="TTIssue" syncable="YES"/>
-        <relationship name="defaultIssue" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="TTIssue" inverseName="parentProject" inverseEntity="TTIssue" syncable="YES"/>
+        <relationship name="defaultIssue" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="TTIssue" inverseName="parentProject" inverseEntity="TTIssue" syncable="YES"/>
         <relationship name="parentSystemLink" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TTExternalSystemLink" inverseName="childProjects" inverseEntity="TTExternalSystemLink" syncable="YES"/>
     </entity>
     <elements>

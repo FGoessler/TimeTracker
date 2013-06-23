@@ -7,8 +7,9 @@
 //
 
 #import "TTProjectDataManager.h"
-#import "TTProject+TTExtension.h"
 #import "TTAppDelegate.h"
+#import "TTIssue+TTExtension.h"
+
 
 @interface TTProjectDataManager() <NSFetchedResultsControllerDelegate>
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
@@ -23,9 +24,16 @@
 
 -(void)createNewProjectWithName:(NSString*)name {
 	NSManagedObjectContext *context = [self appDelegate].managedObjectContext;
-    TTProject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:MOBJ_TTProject inManagedObjectContext:context];
-    
-    newManagedObject.name = name;
+	
+	//create new project
+    TTProject *newProject = [NSEntityDescription insertNewObjectForEntityForName:MOBJ_TTProject inManagedObjectContext:context];
+    newProject.name = name;
+	
+	//create a new issue as the default issue
+	TTIssue *defaultIssue = [NSEntityDescription insertNewObjectForEntityForName:MOBJ_TTIssue inManagedObjectContext:context];
+	defaultIssue.name = @"Default Issue";
+	
+	newProject.defaultIssue = defaultIssue;
 	
 	[[self appDelegate] saveContext];
 }
@@ -44,6 +52,11 @@
 	
 	return self;
 }
+
+-(TTProject*)projectAtIndexPath:(NSIndexPath*)indexPath {
+	return [self.fetchedResultsController objectAtIndexPath:indexPath];
+}
+
 
 -(void)deleteProjectAtIndexPath:(NSIndexPath*)indexPath {
 	[[self appDelegate].managedObjectContext deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
@@ -135,10 +148,11 @@
 	return cell;
 }
 
+//Allow swipe to delte for all rows.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }
-
+//Handle deletions.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
 		[self deleteProjectAtIndexPath:indexPath];

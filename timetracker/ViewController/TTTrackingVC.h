@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TTProject+TTExtension.h"
 
 @interface TTTrackingVC : UIViewController
-
+@property (nonatomic, strong) TTProject* project;
 @end
