@@ -8,6 +8,8 @@
 
 #import "TTIssue.h"
 
+#define MOBJ_TTIssue @"TTIssue"
+
 @interface TTIssue (TTExtension)
 
 @end
