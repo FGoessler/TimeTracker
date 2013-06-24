@@ -45,6 +45,7 @@
 		1781DE661775CDC000603ED1 /* TTProjectSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1781DE651775CDC000603ED1 /* TTProjectSettingsVC.m */; };
 		1781DE691775CDDC00603ED1 /* TTLinksVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1781DE681775CDDC00603ED1 /* TTLinksVC.m */; };
 		17B642CE1778A30000EB3B4D /* NSString+TTExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B642CD1778A30000EB3B4D /* NSString+TTExtensions.m */; };
+		17B642D11778B96000EB3B4D /* TTLogEntryDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B642D01778B96000EB3B4D /* TTLogEntryDataManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +121,8 @@
 		1781DE681775CDDC00603ED1 /* TTLinksVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTLinksVC.m; sourceTree = "<group>"; };
 		17B642CC1778A30000EB3B4D /* NSString+TTExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TTExtensions.h"; sourceTree = "<group>"; };
 		17B642CD1778A30000EB3B4D /* NSString+TTExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TTExtensions.m"; sourceTree = "<group>"; };
+		17B642CF1778B96000EB3B4D /* TTLogEntryDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTLogEntryDataManager.h; sourceTree = "<group>"; };
+		17B642D01778B96000EB3B4D /* TTLogEntryDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTLogEntryDataManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +171,8 @@
 			children = (
 				1732A18F17762DEE007BDFE5 /* TTProjectDataManager.h */,
 				1732A19017762DEE007BDFE5 /* TTProjectDataManager.m */,
+				17B642CF1778B96000EB3B4D /* TTLogEntryDataManager.h */,
+				17B642D01778B96000EB3B4D /* TTLogEntryDataManager.m */,
 			);
 			path = DataManager;
 			sourceTree = "<group>";
@@ -452,6 +457,7 @@
 				1732A18C177613FF007BDFE5 /* TTExternalSystemLink+TTExtension.m in Sources */,
 				1732A19117762DEE007BDFE5 /* TTProjectDataManager.m in Sources */,
 				17B642CE1778A30000EB3B4D /* NSString+TTExtensions.m in Sources */,
+				17B642D11778B96000EB3B4D /* TTLogEntryDataManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

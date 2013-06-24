@@ -9,6 +9,7 @@
 #import "TTTrackingVC.h"
 #import "TTIssue+TTExtension.h"
 #import "TTLogEntries+TTExtension.h"
+#import "TTLogEntryDataManager.h"
 
 
 @interface TTTrackingVC ()
@@ -18,11 +19,15 @@
 @property (weak, nonatomic) IBOutlet UIButton *trackingBtn;
 
 @property (strong, nonatomic) NSTimer *pollingTimer;
+
+@property (strong, nonatomic) TTLogEntryDataManager *dataManager;
 @end
 
 @implementation TTTrackingVC
 
 - (IBAction)changeIssueBtnClicked:(id)sender {
+}
+- (IBAction)moreInfoBtnClicked:(id)sender {
 }
 
 - (IBAction)trackingBtnClicked:(id)sender {
@@ -42,9 +47,6 @@
 	[self updateViews];
 }
 
-- (IBAction)moreInfoBtnClicked:(id)sender {
-}
-
 -(void)updateViews {
 	TTIssue *currentIssue = self.project.currentIssue;
 	
@@ -60,8 +62,16 @@
 		[self.trackingBtn setTitle:@"Start Tracking" forState:UIControlStateNormal];
 		self.timeLbl.text = @"00:00:00";
 	}
+	
+	[self.tableView reloadData];
 }
 
+-(void)viewDidLoad {
+	[super viewDidLoad];
+	
+	self.tableView.delegate = self;
+	self.dataManager = [[TTLogEntryDataManager alloc] initWithIssue:self.project.currentIssue asDataSourceOfTableView:self.tableView];
+}
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
