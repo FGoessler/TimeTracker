@@ -44,6 +44,7 @@
 		1781DE631775CDA000603ED1 /* TTIssueDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1781DE621775CDA000603ED1 /* TTIssueDetailsVC.m */; };
 		1781DE661775CDC000603ED1 /* TTProjectSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1781DE651775CDC000603ED1 /* TTProjectSettingsVC.m */; };
 		1781DE691775CDDC00603ED1 /* TTLinksVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1781DE681775CDDC00603ED1 /* TTLinksVC.m */; };
+		17B642CE1778A30000EB3B4D /* NSString+TTExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B642CD1778A30000EB3B4D /* NSString+TTExtensions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +118,8 @@
 		1781DE651775CDC000603ED1 /* TTProjectSettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTProjectSettingsVC.m; sourceTree = "<group>"; };
 		1781DE671775CDDC00603ED1 /* TTLinksVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTLinksVC.h; sourceTree = "<group>"; };
 		1781DE681775CDDC00603ED1 /* TTLinksVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTLinksVC.m; sourceTree = "<group>"; };
+		17B642CC1778A30000EB3B4D /* NSString+TTExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TTExtensions.h"; sourceTree = "<group>"; };
+		17B642CD1778A30000EB3B4D /* NSString+TTExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TTExtensions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +224,7 @@
 		174DAB3B177597AB006057C0 /* timetracker */ = {
 			isa = PBXGroup;
 			children = (
+				17B642C01778A2B600EB3B4D /* Helper */,
 				1732A18E17762D00007BDFE5 /* DataManager */,
 				174DAB7C1775CC39006057C0 /* Model */,
 				174DAB7B1775CC32006057C0 /* ViewController */,
@@ -305,6 +309,15 @@
 				1732A18B177613FF007BDFE5 /* TTExternalSystemLink+TTExtension.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		17B642C01778A2B600EB3B4D /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				17B642CC1778A30000EB3B4D /* NSString+TTExtensions.h */,
+				17B642CD1778A30000EB3B4D /* NSString+TTExtensions.m */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -438,6 +451,7 @@
 				1732A189177613F1007BDFE5 /* TTLogEntries+TTExtension.m in Sources */,
 				1732A18C177613FF007BDFE5 /* TTExternalSystemLink+TTExtension.m in Sources */,
 				1732A19117762DEE007BDFE5 /* TTProjectDataManager.m in Sources */,
+				17B642CE1778A30000EB3B4D /* NSString+TTExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
