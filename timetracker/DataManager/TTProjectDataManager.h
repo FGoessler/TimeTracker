@@ -17,13 +17,13 @@
 
 @interface TTProjectDataManager (DataSource) <UITableViewDataSource>
 
-//Returns the project, which is dispalyed at the given IndexPath.
+//Returns the project, which is displayed at the given IndexPath.
 -(TTProject*)projectAtIndexPath:(NSIndexPath*)indexPath;
 //Deletes the project, which is displayed at the given IndexPath.
 -(void)deleteProjectAtIndexPath:(NSIndexPath*)indexPath;
 
 
-//Initialzes this DataManger as a DataSource for a TableView. The TableView will be updated when the data changes.
+//Initializes this DataManger as a DataSource for a TableView. The TableView will be updated when the data changes.
 -(id)initAsDataSourceOfTableView:(UITableView*)tableView;
 
 @end

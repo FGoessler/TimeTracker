@@ -7,9 +7,16 @@
 //
 
 #import "TTChangeIssueVC.h"
+#import "TTProjectsVC.h"
+#import "TTProject+TTExtension.h"
+#import "TTAppDelegate.h"
+#import "TTProjectDataManager.h"
+#import "TTTrackingVC.h"
+#import "TTProjectSettingsVC.h"
 
-@interface TTChangeIssueVC ()
+@interface TTChangeIssueVC () <UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 
 @end
 
@@ -17,6 +24,7 @@
 - (IBAction)addBtnClicked:(id)sender {
 }
 - (IBAction)cancelBtnClicked:(id)sender {
+	[self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -32,12 +40,17 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+	
+	self.tableView.delegate = self;
+	//self.tableView.dataSource = self.project.childIssues;
+	
+	
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
 }
 
 @end

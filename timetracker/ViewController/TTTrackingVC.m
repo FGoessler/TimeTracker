@@ -7,11 +7,20 @@
 //
 
 #import "TTTrackingVC.h"
+#import "TTProject+TTExtension.h"
+#import "TTAppDelegate.h"
+#import "TTProjectDataManager.h"
+#import "TTTrackingVC.h"
+#import "TTProjectSettingsVC.h"
+#import "TTChangeIssueVC.h"
+
+
 
 @interface TTTrackingVC ()
 @property (weak, nonatomic) IBOutlet UILabel *timeLbl;
 @property (weak, nonatomic) IBOutlet UILabel *currentIssueLbl;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 
 @end
 
@@ -43,6 +52,14 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+	if([segue.identifier isEqualToString:@"Show TTProjectSettingsVC"]) {
+		TTChangeIssueVC *destVC = (TTChangeIssueVC*)[segue.destinationViewController topViewController];
+		//pass the selected project to the ProjectSettingsVC
+		destVC.project = self.project;
+	}
 }
 
 @end
