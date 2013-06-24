@@ -38,6 +38,10 @@
 	return self;
 }
 
+-(TTLogEntries*)logEntryAtIndexPath:(NSIndexPath*)indexPath {
+	return self.sortedChildLogEntries[indexPath.row];
+}
+
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {	
 	//handle changes of the childLogEntries property of the issue
 	if([keyPath isEqualToString:@"childLogEntries"] && object == self.issue) {
@@ -66,7 +70,7 @@
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TrackingCell"];
 	
 	//configure cell
-	TTLogEntries *logEntry = self.sortedChildLogEntries[indexPath.row];
+	TTLogEntries *logEntry = [self logEntryAtIndexPath:indexPath];
 	cell.textLabel.text = [NSString stringWithNSTimeInterval:logEntry.timeInterval];
 	if(logEntry.endDate == nil) {
 		cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - now",logEntry.startDate];
@@ -84,7 +88,7 @@
 //Handle deletions.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-		TTLogEntries *logEntry = self.sortedChildLogEntries[indexPath.row];
+		TTLogEntries *logEntry = [self logEntryAtIndexPath:indexPath];
 		[[self appDelegate].managedObjectContext deleteObject:logEntry];
 		[[self appDelegate] saveContext];
     }

@@ -41,7 +41,7 @@
 		1781DE5A1775CCF100603ED1 /* TTProjectsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1781DE591775CCF100603ED1 /* TTProjectsVC.m */; };
 		1781DE5D1775CD1300603ED1 /* TTTrackingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1781DE5C1775CD1300603ED1 /* TTTrackingVC.m */; };
 		1781DE601775CD3900603ED1 /* TTChangeIssueVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1781DE5F1775CD3900603ED1 /* TTChangeIssueVC.m */; };
-		1781DE631775CDA000603ED1 /* TTIssueDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1781DE621775CDA000603ED1 /* TTIssueDetailsVC.m */; };
+		1781DE631775CDA000603ED1 /* TTLogEntryDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1781DE621775CDA000603ED1 /* TTLogEntryDetailsVC.m */; };
 		1781DE661775CDC000603ED1 /* TTProjectSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1781DE651775CDC000603ED1 /* TTProjectSettingsVC.m */; };
 		1781DE691775CDDC00603ED1 /* TTLinksVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1781DE681775CDDC00603ED1 /* TTLinksVC.m */; };
 		17B642CE1778A30000EB3B4D /* NSString+TTExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B642CD1778A30000EB3B4D /* NSString+TTExtensions.m */; };
@@ -113,8 +113,8 @@
 		1781DE5C1775CD1300603ED1 /* TTTrackingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTrackingVC.m; sourceTree = "<group>"; };
 		1781DE5E1775CD3900603ED1 /* TTChangeIssueVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTChangeIssueVC.h; sourceTree = "<group>"; };
 		1781DE5F1775CD3900603ED1 /* TTChangeIssueVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTChangeIssueVC.m; sourceTree = "<group>"; };
-		1781DE611775CDA000603ED1 /* TTIssueDetailsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTIssueDetailsVC.h; sourceTree = "<group>"; };
-		1781DE621775CDA000603ED1 /* TTIssueDetailsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTIssueDetailsVC.m; sourceTree = "<group>"; };
+		1781DE611775CDA000603ED1 /* TTLogEntryDetailsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTLogEntryDetailsVC.h; sourceTree = "<group>"; };
+		1781DE621775CDA000603ED1 /* TTLogEntryDetailsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTLogEntryDetailsVC.m; sourceTree = "<group>"; };
 		1781DE641775CDC000603ED1 /* TTProjectSettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTProjectSettingsVC.h; sourceTree = "<group>"; };
 		1781DE651775CDC000603ED1 /* TTProjectSettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTProjectSettingsVC.m; sourceTree = "<group>"; };
 		1781DE671775CDDC00603ED1 /* TTLinksVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTLinksVC.h; sourceTree = "<group>"; };
@@ -290,8 +290,8 @@
 				1781DE5C1775CD1300603ED1 /* TTTrackingVC.m */,
 				1781DE5E1775CD3900603ED1 /* TTChangeIssueVC.h */,
 				1781DE5F1775CD3900603ED1 /* TTChangeIssueVC.m */,
-				1781DE611775CDA000603ED1 /* TTIssueDetailsVC.h */,
-				1781DE621775CDA000603ED1 /* TTIssueDetailsVC.m */,
+				1781DE611775CDA000603ED1 /* TTLogEntryDetailsVC.h */,
+				1781DE621775CDA000603ED1 /* TTLogEntryDetailsVC.m */,
 				1781DE641775CDC000603ED1 /* TTProjectSettingsVC.h */,
 				1781DE651775CDC000603ED1 /* TTProjectSettingsVC.m */,
 				1781DE671775CDDC00603ED1 /* TTLinksVC.h */,
@@ -444,7 +444,7 @@
 				1781DE5A1775CCF100603ED1 /* TTProjectsVC.m in Sources */,
 				1781DE5D1775CD1300603ED1 /* TTTrackingVC.m in Sources */,
 				1781DE601775CD3900603ED1 /* TTChangeIssueVC.m in Sources */,
-				1781DE631775CDA000603ED1 /* TTIssueDetailsVC.m in Sources */,
+				1781DE631775CDA000603ED1 /* TTLogEntryDetailsVC.m in Sources */,
 				1781DE661775CDC000603ED1 /* TTProjectSettingsVC.m in Sources */,
 				1781DE691775CDDC00603ED1 /* TTLinksVC.m in Sources */,
 				1732A173177611B8007BDFE5 /* TTExternalSystemLink.m in Sources */,

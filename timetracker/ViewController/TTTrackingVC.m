@@ -10,6 +10,7 @@
 #import "TTIssue+TTExtension.h"
 #import "TTLogEntries+TTExtension.h"
 #import "TTLogEntryDataManager.h"
+#import "TTLogEntryDetailsVC.h"
 
 
 @interface TTTrackingVC ()
@@ -47,13 +48,15 @@
 	[self updateViews];
 }
 
+//This method updates all views.
 -(void)updateViews {
 	TTIssue *currentIssue = self.project.currentIssue;
 	
-	self.currentIssueLbl.text = [NSString stringWithFormat:@"Current Issue: %@", currentIssue.name];
+	self.currentIssueLbl.text = [NSString stringWithFormat:@"Current Issue: %@", currentIssue.name];	//Show the name of the current issue
 		
-	self.timeLbl.text = [NSString stringWithNSTimeInterval:currentIssue.latestLogEntry.timeInterval];
+	self.timeLbl.text = [NSString stringWithNSTimeInterval:currentIssue.latestLogEntry.timeInterval];	//Show the elapsed time
 		
+	//configure the trackingBtn and start/stop view update timer
 	if(currentIssue.latestLogEntry != nil && currentIssue.latestLogEntry.endDate == nil) {
 		[self.trackingBtn setTitle:@"Stop Tracking" forState:UIControlStateNormal];
 		self.pollingTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateViews) userInfo:nil repeats:YES];
@@ -63,12 +66,24 @@
 		self.timeLbl.text = @"00:00:00";
 	}
 	
-	[self.tableView reloadData];
+	[self.tableView reloadData];	//update the tableView
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	[self performSegueWithIdentifier:@"Show TTLogEntryDetailsVC" sender:self];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+	if([segue.identifier isEqualToString:@"Show TTLogEntryDetailsVC"]) {
+		TTLogEntryDetailsVC *destVC = (TTLogEntryDetailsVC*)[segue.destinationViewController topViewController];
+		destVC.logEntry = [self.dataManager logEntryAtIndexPath:[self.tableView indexPathForSelectedRow]];
+	}
 }
 
 -(void)viewDidLoad {
 	[super viewDidLoad];
 	
+	//configure the tableView
 	self.tableView.delegate = self;
 	self.dataManager = [[TTLogEntryDataManager alloc] initWithIssue:self.project.currentIssue asDataSourceOfTableView:self.tableView];
 }
@@ -80,7 +95,7 @@
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
-	[self.pollingTimer invalidate];
+	[self.pollingTimer invalidate];		//stop the timer when view disappears - don't waste computation time! 
 }
 
 @end
