@@ -11,5 +11,5 @@
 #define MOBJ_TTProject @"TTProject"
 
 @interface TTProject (TTExtension)
-
+@property (nonatomic, strong, readonly) TTIssue* currentIssue;
 @end

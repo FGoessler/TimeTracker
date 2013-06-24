@@ -38,10 +38,6 @@
 	[[self appDelegate] saveContext];
 }
 
-@end
-
-@implementation TTProjectDataManager (DataSource)
-
 -(id)initAsDataSourceOfTableView:(UITableView*)tableView {
 	self = [super init];
 	
