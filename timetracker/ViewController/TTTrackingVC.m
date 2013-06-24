@@ -11,6 +11,7 @@
 #import "TTLogEntries+TTExtension.h"
 #import "TTLogEntryDataManager.h"
 #import "TTLogEntryDetailsVC.h"
+#import "TTIssueDetailsVC.h"
 
 
 @interface TTTrackingVC ()
@@ -77,6 +78,9 @@
 	if([segue.identifier isEqualToString:@"Show TTLogEntryDetailsVC"]) {
 		TTLogEntryDetailsVC *destVC = (TTLogEntryDetailsVC*)[segue.destinationViewController topViewController];
 		destVC.logEntry = [self.dataManager logEntryAtIndexPath:[self.tableView indexPathForSelectedRow]];
+	} else if([segue.identifier isEqualToString:@"Show TTIssueDetailsVC"]) {
+		TTIssueDetailsVC *destVC = (TTIssueDetailsVC*)[segue.destinationViewController topViewController];
+		destVC.issue = self.project.currentIssue;
 	}
 }
 
