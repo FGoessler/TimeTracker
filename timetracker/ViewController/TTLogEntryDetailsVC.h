@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TTLogEntries+TTExtension.h"
 
 @interface TTLogEntryDetailsVC : UIViewController
 @property (nonatomic, strong) TTLogEntries *logEntry;

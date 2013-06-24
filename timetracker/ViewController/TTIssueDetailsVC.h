@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TTIssue+TTExtension.h"
 
 @interface TTIssueDetailsVC : UIViewController
 @property (nonatomic, strong) TTIssue *issue;

@@ -7,7 +7,6 @@
 //
 
 #import "TTLogEntryDataManager.h"
-#import "TTLogEntries+TTExtension.h"
 #import "TTAppDelegate.h"
 
 

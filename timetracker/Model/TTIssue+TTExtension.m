@@ -7,7 +7,6 @@
 //
 
 #import "TTIssue+TTExtension.h"
-#import "TTLogEntries+TTExtension.h"
 
 @implementation TTIssue (TTExtension)
 

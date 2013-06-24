@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TTIssue+TTExtension.h"
 
 @interface TTLogEntryDataManager : NSObject <UITableViewDataSource>
 @property (nonatomic, strong) TTIssue *issue;

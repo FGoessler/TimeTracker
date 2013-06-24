@@ -14,4 +14,9 @@
 	#import <CoreData/CoreData.h>
 
 	#import "NSString+TTExtensions.h"
+
+	#import "TTLogEntries+TTExtension.h"
+	#import "TTIssue+TTExtension.h"
+	#import "TTProject+TTExtension.h"
+	#import "TTExternalSystemLink+TTExtension.h"
 #endif

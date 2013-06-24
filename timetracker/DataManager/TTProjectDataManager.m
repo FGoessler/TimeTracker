@@ -8,7 +8,6 @@
 
 #import "TTProjectDataManager.h"
 #import "TTAppDelegate.h"
-#import "TTIssue+TTExtension.h"
 
 
 @interface TTProjectDataManager() <NSFetchedResultsControllerDelegate>

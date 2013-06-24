@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TTProject+TTExtension.h"
 
 @interface TTProjectDataManager : NSObject <UITableViewDataSource>
 //Creates a new TTProject object with the given name and saves with the default ManagedObjectContext.

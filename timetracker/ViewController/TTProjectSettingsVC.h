@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TTProject+TTExtension.h"
 
 @interface TTProjectSettingsVC : UIViewController
 @property (nonatomic, strong) TTProject* project;
