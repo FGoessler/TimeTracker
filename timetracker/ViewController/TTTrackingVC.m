@@ -13,6 +13,12 @@
 #import "TTTrackingVC.h"
 #import "TTProjectSettingsVC.h"
 #import "TTChangeIssueVC.h"
+#import "TTLogEntryDataManager.h"
+#import "TTLogEntryDetailsVC.h"
+#import "TTIssueDetailsVC.h"
+
+
+
 
 @interface TTTrackingVC ()
 @property (weak, nonatomic) IBOutlet UILabel *timeLbl;
@@ -81,6 +87,10 @@
 	} else if([segue.identifier isEqualToString:@"Show TTIssueDetailsVC"]) {
 		TTIssueDetailsVC *destVC = (TTIssueDetailsVC*)[segue.destinationViewController topViewController];
 		destVC.issue = self.project.currentIssue;
+	} else if([segue.identifier isEqualToString:@"Show TTProjectSettingsVC"]) {
+		TTChangeIssueVC *destVC = (TTChangeIssueVC*)[segue.destinationViewController topViewController];
+		//pass the selected project to the ChangeIssueVC
+		destVC.project = self.project;
 	}
 }
 
@@ -100,14 +110,6 @@
 
 -(void)viewWillDisappear:(BOOL)animated {
 	[self.pollingTimer invalidate];		//stop the timer when view disappears - don't waste computation time! 
-}
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-	if([segue.identifier isEqualToString:@"Show TTProjectSettingsVC"]) {
-		TTChangeIssueVC *destVC = (TTChangeIssueVC*)[segue.destinationViewController topViewController];
-		//pass the selected project to the ProjectSettingsVC
-		destVC.project = self.project;
-	}
 }
 
 @end
