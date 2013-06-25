@@ -94,10 +94,10 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	if([keyPath isEqualToString:@"startDate"] && object == self.logEntry) {
-		self.startTimeTextField.text = [self.logEntry.startDate description];
-	} else if([keyPath isEqualToString:@"startDate"] && object == self.logEntry) {
+		self.startTimeTextField.text = [NSString stringWithNSDate: self.logEntry.startDate];
+	} else if([keyPath isEqualToString:@"endDate"] && object == self.logEntry) {
 		if(self.logEntry.endDate) {
-			self.endTimeTextField.text = [self.logEntry.endDate description];
+			self.endTimeTextField.text = [NSString stringWithNSDate:self.logEntry.endDate];
 		} else {
 			self.endTimeTextField.text = @"now";
 		}
@@ -109,9 +109,9 @@
 -(void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	
-	self.startTimeTextField.text = [self.logEntry.startDate description];
+	self.startTimeTextField.text = [NSString stringWithNSDate: self.logEntry.startDate];
 	if(self.logEntry.endDate) {
-		self.endTimeTextField.text = [self.logEntry.endDate description];
+		self.endTimeTextField.text = [NSString stringWithNSDate:self.logEntry.endDate];
 	} else {
 		self.endTimeTextField.text = @"now";
 	}

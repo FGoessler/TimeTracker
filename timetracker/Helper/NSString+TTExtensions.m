@@ -23,4 +23,12 @@
 	}
 }
 
++ (NSString*)stringWithNSDate:(NSDate*)date {
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	[dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+	[dateFormatter setDateStyle:NSDateFormatterShortStyle];
+	
+	return [dateFormatter stringFromDate:date];
+}
+
 @end

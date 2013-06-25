@@ -10,4 +10,5 @@
 
 @interface NSString (TTExtensions)
 + (NSString *)stringWithNSTimeInterval:(NSTimeInterval)timeInterval;
++ (NSString*)stringWithNSDate:(NSDate*)date;
 @end

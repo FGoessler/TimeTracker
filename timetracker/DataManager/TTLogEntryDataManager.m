@@ -74,7 +74,7 @@
 	if(logEntry.endDate == nil) {
 		cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - now",logEntry.startDate];
 	} else {
-		cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@",logEntry.startDate, logEntry.endDate];
+		cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@",[NSString stringWithNSDate:logEntry.startDate], [NSString stringWithNSDate:logEntry.endDate]];
 	}
 	
 	return cell;
