@@ -8,6 +8,8 @@
 
 #import "TTLogEntries.h"
 
-@interface TTLogEntries (TTExtension)
+#define MOBJ_TTLogEntry @"TTLogEntries"
 
+@interface TTLogEntries (TTExtension)
+@property (readonly, nonatomic) NSTimeInterval timeInterval;
 @end

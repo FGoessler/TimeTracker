@@ -1,5 +1,5 @@
 //
-//  TTProjectSettingsVC.h
+//  TTLogEntryDetailsVC.h
 //  timetracker
 //
 //  Created by Florian Goessler on 22.06.13.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TTProjectSettingsVC : UIViewController
-@property (nonatomic, strong) TTProject* project;
+@interface TTLogEntryDetailsVC : UIViewController
+@property (nonatomic, strong) TTLogEntries *logEntry;
 @end

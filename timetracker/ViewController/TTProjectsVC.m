@@ -7,7 +7,6 @@
 //
 
 #import "TTProjectsVC.h"
-#import "TTProject+TTExtension.h"
 #import "TTAppDelegate.h"
 #import "TTProjectDataManager.h"
 #import "TTTrackingVC.h"

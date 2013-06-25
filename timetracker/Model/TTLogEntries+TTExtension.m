@@ -10,4 +10,11 @@
 
 @implementation TTLogEntries (TTExtension)
 
+-(NSTimeInterval)timeInterval {
+	if(self.endDate != nil)
+		return [self.endDate timeIntervalSinceDate:self.startDate];
+	else
+		return [[NSDate date] timeIntervalSinceDate:self.startDate];
+}
+
 @end

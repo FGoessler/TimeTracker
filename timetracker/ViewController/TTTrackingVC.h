@@ -14,8 +14,7 @@
 #import "TTTrackingVC.h"
 #import "TTProjectSettingsVC.h"
 
-
-@interface TTTrackingVC : UIViewController
+@interface TTTrackingVC : UIViewController <UITableViewDelegate>
 @property (nonatomic, strong) TTProject* project;
 
 @end

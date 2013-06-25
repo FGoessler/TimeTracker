@@ -8,6 +8,18 @@
 
 #import "TTProject+TTExtension.h"
 
+
 @implementation TTProject (TTExtension)
+
+-(TTIssue*)currentIssue {
+	TTIssue *mostCurrentIssue = self.defaultIssue;
+	for (TTIssue *issue in self.childIssues) {
+		if([mostCurrentIssue.latestLogEntry.startDate compare:issue.latestLogEntry.startDate] == NSOrderedAscending) {
+			mostCurrentIssue = issue;
+		}
+	}
+	
+	return mostCurrentIssue;
+}
 
 @end

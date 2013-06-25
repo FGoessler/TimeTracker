@@ -10,6 +10,13 @@
 
 #define MOBJ_TTIssue @"TTIssue"
 
+#define TTLOG_ENTRY_STILL_ACTIVE 9001
+#define TTLOG_ENTRY_NOT_ACTIVE 9002
+
 @interface TTIssue (TTExtension)
+@property (readonly, nonatomic, strong) TTLogEntries *latestLogEntry;
+
+-(BOOL)startTracking:(NSError**)err;
+-(BOOL)stopTracking:(NSError**)err;
 
 @end

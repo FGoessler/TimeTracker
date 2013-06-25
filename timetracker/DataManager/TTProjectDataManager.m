@@ -8,7 +8,6 @@
 
 #import "TTProjectDataManager.h"
 #import "TTAppDelegate.h"
-#import "TTIssue+TTExtension.h"
 
 
 @interface TTProjectDataManager() <NSFetchedResultsControllerDelegate>
@@ -37,10 +36,6 @@
 	
 	[[self appDelegate] saveContext];
 }
-
-@end
-
-@implementation TTProjectDataManager (DataSource)
 
 -(id)initAsDataSourceOfTableView:(UITableView*)tableView {
 	self = [super init];
