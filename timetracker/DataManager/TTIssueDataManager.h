@@ -9,19 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface TTIssueDataManager : NSObject <UITableViewDataSource>
-//
--(void)createNewIssueWithName:(NSString*)name;
-
 
 //Returns the project, which is displayed at the given IndexPath.
--(TTProject*)IssueAtIndexPath:(NSIndexPath*)indexPath;
-//Deletes the project, which is displayed at the given IndexPath.
--(void)deleteIssueAtIndexPath:(NSIndexPath*)indexPath;
-
+-(TTIssue*)issueAtIndexPath:(NSIndexPath*)indexPath;
 
 //Initializes this DataManger as a DataSource for a TableView. The TableView will be updated when the data changes.
--(id)initAsDataSourceOfTableView:(UITableView*)tableView;
-
-
+-(id)initWithProject:(TTProject*)project AsDataSourceOfTableView:(UITableView*)tableView;
 
 @end

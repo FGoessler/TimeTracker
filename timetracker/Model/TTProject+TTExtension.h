@@ -12,4 +12,6 @@
 
 @interface TTProject (TTExtension)
 @property (nonatomic, strong, readonly) TTIssue* currentIssue;
+
+-(BOOL)addIssueWithName:(NSString *)name andError:(NSError**)err;
 @end

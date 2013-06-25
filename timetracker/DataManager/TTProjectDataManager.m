@@ -33,6 +33,7 @@
 	defaultIssue.name = @"Default Issue";
 	
 	newProject.defaultIssue = defaultIssue;
+	[newProject addChildIssuesObject:defaultIssue];
 	
 	[[self appDelegate] saveContext];
 }

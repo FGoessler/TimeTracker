@@ -87,7 +87,7 @@
 	} else if([segue.identifier isEqualToString:@"Show TTIssueDetailsVC"]) {
 		TTIssueDetailsVC *destVC = (TTIssueDetailsVC*)[segue.destinationViewController topViewController];
 		destVC.issue = self.project.currentIssue;
-	} else if([segue.identifier isEqualToString:@"Show TTProjectSettingsVC"]) {
+	} else if([segue.identifier isEqualToString:@"Show TTChangeIssueVC"]) {
 		TTChangeIssueVC *destVC = (TTChangeIssueVC*)[segue.destinationViewController topViewController];
 		//pass the selected project to the ChangeIssueVC
 		destVC.project = self.project;
