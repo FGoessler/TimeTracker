@@ -12,6 +12,7 @@
 @interface TTIssueDataManager() 
 @property (nonatomic, weak) UITableView* tableView;
 @property (readonly, nonatomic, strong) TTProject* project;
+@property (nonatomic, strong) NSArray* sortedIssues;
 @end
 
 @implementation TTIssueDataManager
@@ -27,6 +28,8 @@
 		_project = project;
 		[_project addObserver:self forKeyPath:@"childIssues" options:0 context:nil];
 		
+		[self createSortedIssuesArray];
+		
 		_tableView = tableView;
 		_tableView.DataSource = self;
 	}
@@ -40,6 +43,7 @@
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	if([keyPath isEqualToString:@"childIssues"] && object == self.project) {
+		[self createSortedIssuesArray];
 		[self.tableView reloadData];
 		return;
 	}
@@ -48,13 +52,20 @@
 }
 
 -(TTIssue*)issueAtIndexPath:(NSIndexPath*)indexPath {
-	return self.project.childIssues.allObjects[indexPath.row];
+	return self.sortedIssues[indexPath.row];
+}
+
+//creates a sorted list of the log entries (sorted by startDate)
+- (void)createSortedIssuesArray {
+	self.sortedIssues = [[self.project.childIssues allObjects] sortedArrayUsingComparator:^NSComparisonResult(TTIssue *obj1, TTIssue *obj2){
+		return [obj2.latestLogEntry.startDate compare:obj1.latestLogEntry.startDate];
+	}];
 }
 
 #pragma mark TableViewDataSource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return self.project.childIssues.count;
+	return self.sortedIssues.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -63,16 +74,13 @@
 	//configure cell
 	TTIssue *currentIssue = [self issueAtIndexPath:indexPath];
 	cell.textLabel.text = currentIssue.name;
+	
 	return cell;
 }
 
 //Allow swipe to delte for all rows.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    if([self issueAtIndexPath:indexPath] == self.project.defaultIssue) {
-		return NO;
-	} else {
-		return YES;
-	}
+	return YES;
 }
 //Handle deletions.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
