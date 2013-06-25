@@ -55,7 +55,7 @@
 	return self.sortedIssues[indexPath.row];
 }
 
-//creates a sorted list of the log entries (sorted by startDate)
+//creates a sorted list of the issues
 - (void)createSortedIssuesArray {
 	self.sortedIssues = [[self.project.childIssues allObjects] sortedArrayUsingComparator:^NSComparisonResult(TTIssue *obj1, TTIssue *obj2){
 		return [obj2.latestLogEntry.startDate compare:obj1.latestLogEntry.startDate];
@@ -87,8 +87,25 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
 		TTIssue *issue = [self issueAtIndexPath:indexPath];
-		[[self appDelegate].managedObjectContext deleteObject:issue];
-		[[self appDelegate] saveContext];
+		[self.project removeChildIssuesObject:issue];
+		
+		if(issue == self.project.defaultIssue) {	//if the user deletes the DefaultIssue try to set a new DefaultIssue and display a error message when this cannot be done.
+			if(self.project.childIssues.count > 0) {
+				self.project.defaultIssue = [self.project.childIssues allObjects][0];
+			} else {
+				[[[UIAlertView alloc] initWithTitle:@"Action not allowed!" message:@"You cannot delete all issues!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+				[[self appDelegate].managedObjectContext rollback];
+				return;
+			}
+		}
+		
+		[[self appDelegate].managedObjectContext deleteObject:issue];		
+		[[self appDelegate] saveContextWithErrorHandler:^BOOL(NSError *err) {
+			//show a message to inform the user about a generic error
+			[[[UIAlertView alloc] initWithTitle:@"Action not allowed!" message:@"You are not allowed to delete this issue!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+			[[self appDelegate].managedObjectContext rollback];
+			return YES;
+		}];
     }
 }
 

@@ -17,7 +17,7 @@
 -(TTProject*)projectAtIndexPath:(NSIndexPath*)indexPath;
 
 
-//Initializes this DataManger as a DataSource for a TableView. The TableView will be updated when the data changes.
+//Initializes this object as a DataSource for a TableView. The TableView will be updated when the data changes.
 -(id)initAsDataSourceOfTableView:(UITableView*)tableView;
 
 @end

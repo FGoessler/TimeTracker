@@ -10,10 +10,10 @@
 
 @interface TTIssuesDataSource : NSObject <UITableViewDataSource>
 
-//Returns the project, which is displayed at the given IndexPath.
+//Returns the issue, which is displayed at the given IndexPath.
 -(TTIssue*)issueAtIndexPath:(NSIndexPath*)indexPath;
 
-//Initializes this DataManger as a DataSource for a TableView. The TableView will be updated when the data changes.
+//Initializes this object as a DataSource for a TableView. The TableView will be updated when the data changes.
 -(id)initWithProject:(TTProject*)project asDataSourceOfTableView:(UITableView*)tableView;
 
 @end
