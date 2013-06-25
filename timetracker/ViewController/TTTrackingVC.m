@@ -7,18 +7,11 @@
 //
 
 #import "TTTrackingVC.h"
-#import "TTProject+TTExtension.h"
 #import "TTAppDelegate.h"
-#import "TTProjectDataManager.h"
-#import "TTTrackingVC.h"
-#import "TTProjectSettingsVC.h"
 #import "TTChangeIssueVC.h"
-#import "TTLogEntryDataManager.h"
+#import "TTLogEntriesDataSource.h"
 #import "TTLogEntryDetailsVC.h"
 #import "TTIssueDetailsVC.h"
-
-
-
 
 @interface TTTrackingVC ()
 @property (weak, nonatomic) IBOutlet UILabel *timeLbl;
@@ -28,7 +21,7 @@
 
 @property (strong, nonatomic) NSTimer *pollingTimer;
 
-@property (strong, nonatomic) TTLogEntryDataManager *dataManager;
+@property (strong, nonatomic) TTLogEntriesDataSource *dataSource;
 @end
 
 @implementation TTTrackingVC
@@ -39,7 +32,7 @@
 }
 -(void)setCurrentIssue:(TTIssue *)currentIssue {
 	_currentIssue = currentIssue;
-	self.dataManager = [[TTLogEntryDataManager alloc] initWithIssue:_currentIssue asDataSourceOfTableView:self.tableView];
+	self.dataSource = [[TTLogEntriesDataSource alloc] initWithIssue:_currentIssue asDataSourceOfTableView:self.tableView];
 }
 
 - (IBAction)trackingBtnClicked:(id)sender {
@@ -85,7 +78,7 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	if([segue.identifier isEqualToString:@"Show TTLogEntryDetailsVC"]) {
 		TTLogEntryDetailsVC *destVC = (TTLogEntryDetailsVC*)[segue.destinationViewController topViewController];
-		destVC.logEntry = [self.dataManager logEntryAtIndexPath:[self.tableView indexPathForSelectedRow]];
+		destVC.logEntry = [self.dataSource logEntryAtIndexPath:[self.tableView indexPathForSelectedRow]];
 	} else if([segue.identifier isEqualToString:@"Show TTIssueDetailsVC"]) {
 		TTIssueDetailsVC *destVC = (TTIssueDetailsVC*)[segue.destinationViewController topViewController];
 		destVC.issue = self.currentIssue;
@@ -101,7 +94,7 @@
 	
 	//configure the tableView
 	self.tableView.delegate = self;
-	self.dataManager = [[TTLogEntryDataManager alloc] initWithIssue:self.currentIssue asDataSourceOfTableView:self.tableView];
+	self.dataSource = [[TTLogEntriesDataSource alloc] initWithIssue:self.currentIssue asDataSourceOfTableView:self.tableView];
 }
 - (void)viewWillAppear:(BOOL)animated
 {

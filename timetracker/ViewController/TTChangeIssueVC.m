@@ -7,11 +7,11 @@
 //
 
 #import "TTChangeIssueVC.h"
-#import "TTIssueDataManager.h"
+#import "TTIssuesDataSource.h"
 
 @interface TTChangeIssueVC () <UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) TTIssueDataManager *dataManager;
+@property (strong, nonatomic) TTIssuesDataSource *dataSource;
 @end
 
 @implementation TTChangeIssueVC
@@ -33,7 +33,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	TTIssue *issue = [self.dataManager issueAtIndexPath:indexPath];
+	TTIssue *issue = [self.dataSource issueAtIndexPath:indexPath];
 	self.parentVC.currentIssue = issue;
 	
 	[self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
@@ -47,7 +47,7 @@
 
 	//setup tableView
 	self.tableView.delegate = self;
-	self.dataManager = [[TTIssueDataManager alloc] initWithProject:self.parentVC.project asDataSourceOfTableView:self.tableView];
+	self.dataSource = [[TTIssuesDataSource alloc] initWithProject:self.parentVC.project asDataSourceOfTableView:self.tableView];
 }
 
 @end

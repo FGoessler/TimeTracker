@@ -6,16 +6,16 @@
 //  Copyright (c) 2013 Florian Goessler. All rights reserved.
 //
 
-#import "TTIssueDataManager.h"
+#import "TTIssuesDataSource.h"
 #import "TTAppDelegate.h"
 
-@interface TTIssueDataManager() 
+@interface TTIssuesDataSource() 
 @property (nonatomic, weak) UITableView* tableView;
 @property (readonly, nonatomic, strong) TTProject* project;
 @property (nonatomic, strong) NSArray* sortedIssues;
 @end
 
-@implementation TTIssueDataManager
+@implementation TTIssuesDataSource
 
 - (TTAppDelegate*)appDelegate {
 	return [[UIApplication sharedApplication] delegate];
@@ -74,6 +74,7 @@
 	//configure cell
 	TTIssue *currentIssue = [self issueAtIndexPath:indexPath];
 	cell.textLabel.text = currentIssue.name;
+	cell.detailTextLabel.text = @"";
 	
 	return cell;
 }

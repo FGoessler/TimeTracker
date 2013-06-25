@@ -6,16 +6,16 @@
 //  Copyright (c) 2013 Florian Goessler. All rights reserved.
 //
 
-#import "TTProjectDataManager.h"
+#import "TTProjectsDataSource.h"
 #import "TTAppDelegate.h"
 
 
-@interface TTProjectDataManager() <NSFetchedResultsControllerDelegate>
+@interface TTProjectsDataSource() <NSFetchedResultsControllerDelegate>
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, weak) UITableView* tableView;
 @end
 
-@implementation TTProjectDataManager
+@implementation TTProjectsDataSource
 
 - (TTAppDelegate*)appDelegate {
 	return [[UIApplication sharedApplication] delegate];
@@ -51,15 +51,6 @@
 
 -(TTProject*)projectAtIndexPath:(NSIndexPath*)indexPath {
 	return [self.fetchedResultsController objectAtIndexPath:indexPath];
-}
-
-
--(void)deleteProjectAtIndexPath:(NSIndexPath*)indexPath {
-	
-	
-	[[self appDelegate].managedObjectContext deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
-	
-	[[self appDelegate] saveContext];
 }
 
 #pragma mark - FetchedResultsController
@@ -148,7 +139,8 @@
 //Handle deletions.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-		[self deleteProjectAtIndexPath:indexPath];
+		[[self appDelegate].managedObjectContext deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+		[[self appDelegate] saveContext];
     }
 }
 
@@ -157,6 +149,7 @@
 -(UITableViewCell*)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath {
 	TTProject *project = [self.fetchedResultsController objectAtIndexPath:indexPath];
 	cell.textLabel.text = project.name;
+	cell.detailTextLabel.text = @"";
 	[cell setNeedsLayout];
 	
 	return cell;

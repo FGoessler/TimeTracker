@@ -7,18 +7,18 @@
 //
 
 #import "TTProjectDataManagerTest.h"
-#import "TTProjectDataManager.h"
+#import "TTProjectsDataSource.h"
 #import "TTProject+TTExtension.h"
 
 @implementation TTProjectDataManagerTest {
-	TTProjectDataManager *projectManager;
+	TTProjectsDataSource *projectManager;
 }
 
 - (void)setUp
 {
     [super setUp];
     
-	projectManager = [[TTProjectDataManager alloc] init];
+	projectManager = [[TTProjectsDataSource alloc] init];
 }
 
 - (void)tearDown
@@ -45,15 +45,15 @@
 
 - (void)testThatItImplementsTheRightProtocols
 {
-    STAssertTrue([TTProjectDataManager conformsToProtocol:@protocol(UITableViewDataSource)], @"Should conform to UITableViewDataSource protocol!");
-	 STAssertTrue([TTProjectDataManager conformsToProtocol:@protocol(NSFetchedResultsControllerDelegate)], @"Should conform to NSFetchedResultsControllerDelegate protocol!");
+    STAssertTrue([TTProjectsDataSource conformsToProtocol:@protocol(UITableViewDataSource)], @"Should conform to UITableViewDataSource protocol!");
+	 STAssertTrue([TTProjectsDataSource conformsToProtocol:@protocol(NSFetchedResultsControllerDelegate)], @"Should conform to NSFetchedResultsControllerDelegate protocol!");
 }
 
 - (void)testToInitItWithATableView
 {
 	UITableView *tableView = [[UITableView alloc] init];
 	
-	projectManager = [[TTProjectDataManager alloc] initAsDataSourceOfTableView:tableView];
+	projectManager = [[TTProjectsDataSource alloc] initAsDataSourceOfTableView:tableView];
 	
 	STAssertEqualObjects(tableView.dataSource, projectManager, @"Should have set the DataSource on the TableView");
 }

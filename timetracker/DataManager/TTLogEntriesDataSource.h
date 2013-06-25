@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TTLogEntryDataManager : NSObject <UITableViewDataSource>
+@interface TTLogEntriesDataSource : NSObject <UITableViewDataSource>
 @property (nonatomic, strong) TTIssue *issue;
 
 //Initialzes this DataManger as a DataSource for a TableView. The TableView will be updated when the data changes.

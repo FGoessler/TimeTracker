@@ -302,7 +302,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Tracking" id="zAV-RF-KwD">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="p5j-Q4-aGV">
+                        <barButtonItem key="rightBarButtonItem" title="Change Issue" id="p5j-Q4-aGV">
                             <connections>
                                 <action selector="changeIssueBtnClicked:" destination="7p3-hy-eb7" id="CRJ-c9-a02"/>
                                 <segue destination="UBr-Zk-GZi" kind="modal" identifier="Show TTChangeIssueVC" id="D0L-zd-TA5"/>
@@ -609,7 +609,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <class className="TTIssueDetailsVC" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TTIssueDetailsVC.h"/>
             <relationships>
-                <relationship kind="action" name="doneBtnClicked:"/>
                 <relationship kind="outlet" name="descriptionTextField" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="nameTextField" candidateClass="UITextField"/>
             </relationships>
@@ -620,10 +619,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <class className="TTLogEntryDetailsVC" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TTLogEntryDetailsVC.h"/>
             <relationships>
-                <relationship kind="action" name="cancelBtnClicked:"/>
-                <relationship kind="action" name="doneBtnClicked:"/>
-                <relationship kind="action" name="pickerChanged:"/>
-                <relationship kind="action" name="timeTxtFieldTapped:"/>
                 <relationship kind="outlet" name="commentTextField" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="endTimeTextField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="startTimeTextField" candidateClass="UITextField"/>
@@ -645,6 +640,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <class className="TTTrackingVC" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TTTrackingVC.h"/>
             <relationships>
+                <relationship kind="action" name="trackingBtnClicked:"/>
                 <relationship kind="outlet" name="currentIssueLbl" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="timeLbl" candidateClass="UILabel"/>

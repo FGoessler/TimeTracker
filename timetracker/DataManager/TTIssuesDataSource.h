@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TTIssueDataManager : NSObject <UITableViewDataSource>
+@interface TTIssuesDataSource : NSObject <UITableViewDataSource>
 
 //Returns the project, which is displayed at the given IndexPath.
 -(TTIssue*)issueAtIndexPath:(NSIndexPath*)indexPath;
