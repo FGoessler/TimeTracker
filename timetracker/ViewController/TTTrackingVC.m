@@ -33,19 +33,23 @@
 
 @implementation TTTrackingVC
 
-- (IBAction)changeIssueBtnClicked:(id)sender {
+-(void)setProject:(TTProject *)project {
+	_project = project;
+	self.currentIssue = self.project.currentIssue;
 }
-- (IBAction)moreInfoBtnClicked:(id)sender {
+-(void)setCurrentIssue:(TTIssue *)currentIssue {
+	_currentIssue = currentIssue;
+	self.dataManager = [[TTLogEntryDataManager alloc] initWithIssue:_currentIssue asDataSourceOfTableView:self.tableView];
 }
 
 - (IBAction)trackingBtnClicked:(id)sender {
 	NSError *err = nil;
-	if(self.project.currentIssue.latestLogEntry != nil && self.project.currentIssue.latestLogEntry.endDate == nil) {
+	if(self.currentIssue.latestLogEntry != nil && self.currentIssue.latestLogEntry.endDate == nil) {
 		//stop tracking if still running
-		[self.project.currentIssue stopTracking:&err];
+		[self.currentIssue stopTracking:&err];
 	} else {
 		//start new tracking otherwise
-		[self.project.currentIssue startTracking:&err];
+		[self.currentIssue startTracking:&err];
 	}
 
 	if(err != nil) {
@@ -56,15 +60,13 @@
 }
 
 //This method updates all views.
--(void)updateViews {
-	TTIssue *currentIssue = self.project.currentIssue;
-	
-	self.currentIssueLbl.text = [NSString stringWithFormat:@"Current Issue: %@", currentIssue.name];	//Show the name of the current issue
+-(void)updateViews {	
+	self.currentIssueLbl.text = [NSString stringWithFormat:@"Current Issue: %@", self.currentIssue.name];	//Show the name of the current issue
 		
-	self.timeLbl.text = [NSString stringWithNSTimeInterval:currentIssue.latestLogEntry.timeInterval];	//Show the elapsed time
+	self.timeLbl.text = [NSString stringWithNSTimeInterval:self.currentIssue.latestLogEntry.timeInterval];	//Show the elapsed time
 		
 	//configure the trackingBtn and start/stop view update timer
-	if(currentIssue.latestLogEntry != nil && currentIssue.latestLogEntry.endDate == nil) {
+	if(self.currentIssue.latestLogEntry != nil && self.currentIssue.latestLogEntry.endDate == nil) {
 		[self.trackingBtn setTitle:@"Stop Tracking" forState:UIControlStateNormal];
 		self.pollingTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateViews) userInfo:nil repeats:YES];
 	} else {
@@ -86,11 +88,11 @@
 		destVC.logEntry = [self.dataManager logEntryAtIndexPath:[self.tableView indexPathForSelectedRow]];
 	} else if([segue.identifier isEqualToString:@"Show TTIssueDetailsVC"]) {
 		TTIssueDetailsVC *destVC = (TTIssueDetailsVC*)[segue.destinationViewController topViewController];
-		destVC.issue = self.project.currentIssue;
+		destVC.issue = self.currentIssue;
 	} else if([segue.identifier isEqualToString:@"Show TTChangeIssueVC"]) {
 		TTChangeIssueVC *destVC = (TTChangeIssueVC*)[segue.destinationViewController topViewController];
 		//pass the selected project to the ChangeIssueVC
-		destVC.project = self.project;
+		destVC.parentVC = self;
 	}
 }
 
@@ -99,7 +101,7 @@
 	
 	//configure the tableView
 	self.tableView.delegate = self;
-	self.dataManager = [[TTLogEntryDataManager alloc] initWithIssue:self.project.currentIssue asDataSourceOfTableView:self.tableView];
+	self.dataManager = [[TTLogEntryDataManager alloc] initWithIssue:self.currentIssue asDataSourceOfTableView:self.tableView];
 }
 - (void)viewWillAppear:(BOOL)animated
 {

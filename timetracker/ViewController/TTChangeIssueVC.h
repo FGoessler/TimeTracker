@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TTTrackingVC.h"
 
 @interface TTChangeIssueVC : UIViewController
-@property (nonatomic, strong) TTProject* project;
+@property (nonatomic, strong) TTTrackingVC* parentVC;
 
 @end

@@ -9,7 +9,7 @@
 #import "TTChangeIssueVC.h"
 #import "TTIssueDataManager.h"
 
-@interface TTChangeIssueVC () <UITableViewDataSource>
+@interface TTChangeIssueVC () <UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) TTIssueDataManager *dataManager;
 @end
@@ -29,7 +29,14 @@
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
 	if(buttonIndex != 1) return;	//do nothing if cancel button clicked
 	
-	[self.project addIssueWithName:[alertView textFieldAtIndex:0].text andError:nil];
+	[self.parentVC.project addIssueWithName:[alertView textFieldAtIndex:0].text andError:nil];
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	TTIssue *issue = [self.dataManager issueAtIndexPath:indexPath];
+	self.parentVC.currentIssue = issue;
+	
+	[self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark View Controller lifecycle
@@ -39,8 +46,8 @@
     [super viewDidLoad];
 
 	//setup tableView
-	self.tableView.dataSource = self;
-	self.dataManager = [[TTIssueDataManager alloc] initWithProject:self.project AsDataSourceOfTableView:self.tableView];
+	self.tableView.delegate = self;
+	self.dataManager = [[TTIssueDataManager alloc] initWithProject:self.parentVC.project asDataSourceOfTableView:self.tableView];
 }
 
 @end

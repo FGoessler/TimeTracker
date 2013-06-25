@@ -21,7 +21,7 @@
 	return [[UIApplication sharedApplication] delegate];
 }
 
--(id)initWithProject:(TTProject*)project AsDataSourceOfTableView:(UITableView*)tableView; {
+-(id)initWithProject:(TTProject*)project asDataSourceOfTableView:(UITableView*)tableView; {
 	self = [super init];
 	
 	if(self) {
