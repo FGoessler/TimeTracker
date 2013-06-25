@@ -20,9 +20,9 @@
 	//change data and save it
 	self.project.name = self.projectNameTextField.text;
 	
-	bool saved = [((TTAppDelegate*)[[UIApplication sharedApplication] delegate]) saveContextWithErrorHandler:^BOOL(NSError *err) {
+	BOOL saved = [((TTAppDelegate*)[[UIApplication sharedApplication] delegate]) saveContextWithErrorHandler:^BOOL(NSError *err) {
 		if([[err userInfo][@"NSValidationErrorKey"] isEqualToString:@"name"]) {
-			//show a message to inform teh user about the invalid name
+			//show a message to inform the user about the invalid name
 			UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Invalid data" message:@"The name you entered for the project is invalid!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
 			[alertView show];
 			
@@ -38,6 +38,9 @@
 }
 
 - (IBAction)cancelBtnClicked:(id)sender {
+	//reset all changes
+	[((TTAppDelegate*)[[UIApplication sharedApplication] delegate]).managedObjectContext rollback];
+	
 	//dismiss this ViewController
 	[self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }

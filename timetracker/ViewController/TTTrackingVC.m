@@ -49,7 +49,7 @@
 	}
 
 	if(err != nil) {
-		NSLog(@"FEHLER! %@", err);
+		NSLog(@"FEHLER! %@", err);	//TODO!
 	}
 	
 	[self updateViews];

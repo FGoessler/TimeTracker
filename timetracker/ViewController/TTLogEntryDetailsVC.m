@@ -24,12 +24,11 @@
 - (IBAction)doneBtnClicked:(id)sender {
 	self.logEntry.comment = self.commentTextField.text;
 	
-	bool saved = [((TTAppDelegate*)[[UIApplication sharedApplication] delegate]) saveContextWithErrorHandler:^BOOL(NSError *err) {
+	BOOL saved = [((TTAppDelegate*)[[UIApplication sharedApplication] delegate]) saveContextWithErrorHandler:^BOOL(NSError *err) {
 		NSDictionary *errInfo = [err userInfo];
 		if(errInfo[@"NSDetailedErrors"] != nil) {
 			errInfo = [errInfo[@"NSDetailedErrors"][0] userInfo];
 		}
-		
 		
 		NSString *msg = nil;
 		if([errInfo[@"NSValidationErrorKey"] isEqualToString:@"startDate"]) {
@@ -57,6 +56,9 @@
 	}
 }
 - (IBAction)cancelBtnClicked:(id)sender {
+	//reset all changes
+	[((TTAppDelegate*)[[UIApplication sharedApplication] delegate]).managedObjectContext rollback];
+	
 	//dismiss this ViewController
 	[self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
