@@ -66,7 +66,6 @@
 	//configure TableView
 	self.tableView.delegate = self;
 	self.projectManager = [[TTProjectDataManager alloc] initAsDataSourceOfTableView:self.tableView];
-	
 }
 
 

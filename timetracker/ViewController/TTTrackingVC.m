@@ -7,9 +7,17 @@
 //
 
 #import "TTTrackingVC.h"
+#import "TTProject+TTExtension.h"
+#import "TTAppDelegate.h"
+#import "TTProjectDataManager.h"
+#import "TTTrackingVC.h"
+#import "TTProjectSettingsVC.h"
+#import "TTChangeIssueVC.h"
 #import "TTLogEntryDataManager.h"
 #import "TTLogEntryDetailsVC.h"
 #import "TTIssueDetailsVC.h"
+
+
 
 
 @interface TTTrackingVC ()
@@ -79,6 +87,10 @@
 	} else if([segue.identifier isEqualToString:@"Show TTIssueDetailsVC"]) {
 		TTIssueDetailsVC *destVC = (TTIssueDetailsVC*)[segue.destinationViewController topViewController];
 		destVC.issue = self.project.currentIssue;
+	} else if([segue.identifier isEqualToString:@"Show TTProjectSettingsVC"]) {
+		TTChangeIssueVC *destVC = (TTChangeIssueVC*)[segue.destinationViewController topViewController];
+		//pass the selected project to the ChangeIssueVC
+		destVC.project = self.project;
 	}
 }
 
