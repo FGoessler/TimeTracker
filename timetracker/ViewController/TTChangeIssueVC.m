@@ -8,10 +8,12 @@
 
 #import "TTChangeIssueVC.h"
 #import "TTIssuesDataSource.h"
+#import "TTIssueDetailsVC.h"
 
 @interface TTChangeIssueVC () <UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) TTIssuesDataSource *dataSource;
+@property (strong, nonatomic) TTIssue *selectedIssue;
 @end
 
 @implementation TTChangeIssueVC
@@ -37,6 +39,19 @@
 	self.parentVC.currentIssue = issue;
 	
 	[self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+	self.selectedIssue = [self.dataSource issueAtIndexPath:indexPath];
+	[self performSegueWithIdentifier:@"Show TTIssueDetailsVC2" sender:self];		//show TTIssueDetailsVC
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+	if([segue.identifier isEqualToString:@"Show TTIssueDetailsVC2"]) {
+		TTIssueDetailsVC *destVC = (TTIssueDetailsVC*)[segue.destinationViewController topViewController];
+		//pass the selected issue to the TTIssueDetailsVC
+		destVC.issue = self.selectedIssue;
+	}
 }
 
 #pragma mark View Controller lifecycle

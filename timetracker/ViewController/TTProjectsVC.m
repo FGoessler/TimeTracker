@@ -28,7 +28,6 @@
 	alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
 	
 	[alertView show];
-
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {

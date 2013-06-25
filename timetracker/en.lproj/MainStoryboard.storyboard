@@ -97,7 +97,7 @@
             </objects>
             <point key="canvasLocation" x="459" y="1080"/>
         </scene>
-        <!--Project SettingsVC - Project Settings-->
+        <!--Project SettingsVC - Project Details-->
         <scene sceneID="daw-5n-pnM">
             <objects>
                 <viewController id="3Tf-oq-Cow" customClass="TTProjectSettingsVC" sceneMemberID="viewController">
@@ -124,7 +124,7 @@
                             <constraint firstItem="512-Ev-6AQ" firstAttribute="leading" secondItem="K92-UM-0ll" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="mWH-qp-NJr"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Project Settings" id="fUF-UP-1lj">
+                    <navigationItem key="navigationItem" title="Project Details" id="fUF-UP-1lj">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="BYW-td-C8G">
                             <connections>
                                 <action selector="cancelBtnClicked:" destination="3Tf-oq-Cow" id="T2A-Ck-IT3"/>
@@ -149,11 +149,14 @@
             <objects>
                 <viewController id="rmQ-eP-Ear" customClass="TTChangeIssueVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RQp-dC-fx5">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="94" width="320" height="474"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="CB6-vW-esO">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="504" id="9x3-zV-p4L"/>
+                                </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="IssueCell" textLabel="DPZ-vb-cva" detailTextLabel="m8U-wO-400" style="IBUITableViewCellStyleSubtitle" id="1gt-gs-XPx">
                                         <rect key="frame" x="0.0" y="22" width="320" height="44"/>
@@ -183,11 +186,10 @@
                         <constraints>
                             <constraint firstItem="CB6-vW-esO" firstAttribute="trailing" secondItem="RQp-dC-fx5" secondAttribute="trailing" type="default" id="VrS-ag-ygE"/>
                             <constraint firstItem="CB6-vW-esO" firstAttribute="leading" secondItem="RQp-dC-fx5" secondAttribute="leading" type="default" id="gXI-PG-z0O"/>
-                            <constraint firstItem="CB6-vW-esO" firstAttribute="bottom" secondItem="RQp-dC-fx5" secondAttribute="bottom" type="default" id="u6C-WM-yOM"/>
                             <constraint firstItem="CB6-vW-esO" firstAttribute="top" secondItem="RQp-dC-fx5" secondAttribute="top" type="default" id="xcx-Xx-1iw"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Issues" id="Fqn-qn-tEA">
+                    <navigationItem key="navigationItem" title="Issues" prompt="Choose an Issue you want to track!" id="Fqn-qn-tEA">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="zVj-eb-14T">
                             <connections>
                                 <action selector="cancelBtnClicked:" destination="rmQ-eP-Ear" id="5Yb-ft-vgA"/>
@@ -201,11 +203,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="CB6-vW-esO" id="0X8-1l-HTA"/>
+                        <segue destination="X4T-GP-4aQ" kind="modal" identifier="Show TTIssueDetailsVC2" id="ZWo-DI-uAx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="joW-oy-jdk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1971" y="1080"/>
+            <point key="canvasLocation" x="1971" y="1085"/>
         </scene>
         <!--TrackingVC - Tracking-->
         <scene sceneID="hv4-cA-PpN">
@@ -605,8 +608,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <class className="TTChangeIssueVC" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TTChangeIssueVC.h"/>
             <relationships>
-                <relationship kind="action" name="addBtnClicked:"/>
-                <relationship kind="action" name="cancelBtnClicked:"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
         </class>
@@ -656,4 +657,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="ZWo-DI-uAx"/>
+    </inferredMetricsTieBreakers>
 </document>

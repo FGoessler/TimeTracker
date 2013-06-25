@@ -38,12 +38,16 @@
 }
 
 -(void)dealloc {
+	[self removeNameChangedObserverForAllIssues];
 	[self.project removeObserver:self forKeyPath:@"childIssues"];
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	if([keyPath isEqualToString:@"childIssues"] && object == self.project) {
 		[self createSortedIssuesArray];
+		[self.tableView reloadData];
+		return;
+	} else if([keyPath isEqualToString:@"name"] && [object isKindOfClass:[TTIssue class]]) {
 		[self.tableView reloadData];
 		return;
 	}
@@ -57,9 +61,23 @@
 
 //creates a sorted list of the issues
 - (void)createSortedIssuesArray {
+	[self removeNameChangedObserverForAllIssues];
 	self.sortedIssues = [[self.project.childIssues allObjects] sortedArrayUsingComparator:^NSComparisonResult(TTIssue *obj1, TTIssue *obj2){
 		return [obj2.latestLogEntry.startDate compare:obj1.latestLogEntry.startDate];
 	}];
+	[self registerNameChangedObserverForAllIssues];
+}
+
+-(void)registerNameChangedObserverForAllIssues {
+	for (TTIssue *issue in self.sortedIssues) {
+		[issue addObserver:self forKeyPath:@"name" options:0 context:nil];
+	}
+}
+
+-(void)removeNameChangedObserverForAllIssues {
+	for (TTIssue *issue in self.sortedIssues) {
+		[issue removeObserver:self forKeyPath:@"name"];
+	}
 }
 
 #pragma mark TableViewDataSource
