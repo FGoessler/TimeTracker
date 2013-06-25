@@ -8,13 +8,16 @@
 
 #import "TTLogEntryDetailsVC.h"
 
-@interface TTLogEntryDetailsVC ()
+@interface TTLogEntryDetailsVC () <UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *startTimeTextField;
 @property (weak, nonatomic) IBOutlet UITextField *endTimeTextField;
 @property (weak, nonatomic) IBOutlet UITextView *commentTextField;
 @property (weak, nonatomic) IBOutlet UIDatePicker *timePicker;
 
+@property (weak, nonatomic) UITextField *currentTxtField;
 @end
+
+#pragma mark Navigation Bar Buttons
 
 @implementation TTLogEntryDetailsVC
 - (IBAction)doneBtnClicked:(id)sender {
@@ -26,25 +29,73 @@
 	[self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+#pragma mark Time Text Fields
+
+- (IBAction)timeTxtFieldTapped:(id)sender {
+	self.currentTxtField = sender;
+	[self.currentTxtField resignFirstResponder];
+	
+	self.timePicker.hidden = NO;
+	
+	NSDate *pickerDate = [NSDate date];
+	if(self.currentTxtField == self.startTimeTextField && self.logEntry.startDate != nil) {
+		pickerDate = self.logEntry.startDate;
+	} else if(self.currentTxtField == self.endTimeTextField && self.logEntry.endDate != nil) {
+		pickerDate = self.logEntry.endDate;
+	}
+	self.timePicker.date = pickerDate;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
+- (IBAction)pickerChanged:(id)sender {
+	if(self.currentTxtField == self.startTimeTextField) {
+		self.logEntry.startDate = self.timePicker.date;
+	} else if(self.currentTxtField == self.endTimeTextField) {
+		self.logEntry.endDate = self.timePicker.date;
+	}
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark Comment Text Field
+
+-(void)textViewDidEndEditing:(UITextView *)textView {
+	[textView resignFirstResponder];
+}
+
+#pragma mark KVO
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+	if([keyPath isEqualToString:@"startDate"] && object == self.logEntry) {
+		self.startTimeTextField.text = [self.logEntry.startDate description];
+	} else if([keyPath isEqualToString:@"startDate"] && object == self.logEntry) {
+		if(self.logEntry.endDate) {
+			self.endTimeTextField.text = [self.logEntry.endDate description];
+		} else {
+			self.endTimeTextField.text = @"now";
+		}
+	}
+}
+
+#pragma mark ViewController Lifecycle
+
+-(void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	
+	self.startTimeTextField.text = [self.logEntry.startDate description];
+	if(self.logEntry.endDate) {
+		self.endTimeTextField.text = [self.logEntry.endDate description];
+	} else {
+		self.endTimeTextField.text = @"now";
+	}
+	
+	[self.logEntry addObserver:self forKeyPath:@"startDate" options:0 context:nil];
+	[self.logEntry addObserver:self forKeyPath:@"endDate" options:0 context:nil];
+	
+	self.commentTextField.text = self.logEntry.comment;
+	self.commentTextField.delegate = self;
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+	[self.logEntry removeObserver:self forKeyPath:@"startDate"];
+	[self.logEntry removeObserver:self forKeyPath:@"endDate"];
 }
 
 @end

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Vrb-2H-CbO">
     <dependencies>
+        <deployment defaultVersion="1552" identifier="iOS"/>
+        <development version="4600" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
@@ -357,6 +359,9 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="6.4.2013 18:35" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jo9-5m-otU">
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="timeTxtFieldTapped:" destination="z9T-m1-KkL" eventType="editingDidBegin" id="Tbj-Pl-Awn"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="End Time:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MRa-Zl-Ksz">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -369,13 +374,16 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="timeTxtFieldTapped:" destination="z9T-m1-KkL" eventType="editingDidBegin" id="IvN-YA-kJk"/>
+                                </connections>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Comment" translatesAutoresizingMaskIntoConstraints="NO" id="VUd-uL-Cgz">
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="yju-si-UGs">
+                            <datePicker hidden="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="yju-si-UGs">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="216" id="ZZA-OO-dRj"/>
                                 </constraints>
@@ -403,6 +411,9 @@ AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
 AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
 </data>
                                 </timeZone>
+                                <connections>
+                                    <action selector="pickerChanged:" destination="z9T-m1-KkL" eventType="valueChanged" id="aQP-Ex-srB"/>
+                                </connections>
                             </datePicker>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -587,6 +598,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <class className="TTIssueDetailsVC" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TTIssueDetailsVC.h"/>
             <relationships>
+                <relationship kind="action" name="cancelBtnClicked:"/>
+                <relationship kind="action" name="doneBtnClicked:"/>
                 <relationship kind="outlet" name="descriptionTextField" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="nameTextField" candidateClass="UITextField"/>
             </relationships>
@@ -597,7 +610,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <class className="TTLogEntryDetailsVC" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TTLogEntryDetailsVC.h"/>
             <relationships>
+                <relationship kind="action" name="cancelBtnClicked:"/>
                 <relationship kind="action" name="doneBtnClicked:"/>
+                <relationship kind="action" name="pickerChanged:"/>
+                <relationship kind="action" name="timeTxtFieldTapped:"/>
                 <relationship kind="outlet" name="commentTextField" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="endTimeTextField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="startTimeTextField" candidateClass="UITextField"/>
