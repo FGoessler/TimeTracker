@@ -22,7 +22,7 @@
 	
 	BOOL saved = [((TTAppDelegate*)[[UIApplication sharedApplication] delegate]) saveContextWithErrorHandler:^BOOL(NSError *err) {
 		NSDictionary *errInfo = [err userInfo];
-		if(errInfo[@"NSDetailedErrors"] != nil) {
+		if(errInfo[@"NSDetailedErrors"] != nil) {	//if multiple errors occured only report the first one
 			errInfo = [errInfo[@"NSDetailedErrors"][0] userInfo];
 		}
 		
