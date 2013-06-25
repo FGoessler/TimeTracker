@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 Florian Goessler. All rights reserved.
 //
 
-#import "TTLogEntries.h"
+#import "TTLogEntry.h"
 #import "TTIssue.h"
 
 
-@implementation TTLogEntries
+@implementation TTLogEntry
 
 @dynamic comment;
 @dynamic endDate;

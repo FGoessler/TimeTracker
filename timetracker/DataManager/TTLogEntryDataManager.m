@@ -37,7 +37,7 @@
 	return self;
 }
 
--(TTLogEntries*)logEntryAtIndexPath:(NSIndexPath*)indexPath {
+-(TTLogEntry*)logEntryAtIndexPath:(NSIndexPath*)indexPath {
 	return self.sortedChildLogEntries[indexPath.row];
 }
 
@@ -54,7 +54,7 @@
 
 //creates a sorted list of the log entries (sorted by startDate)
 - (void)createSortedChildLogEntries {
-	self.sortedChildLogEntries = [[self.issue.childLogEntries allObjects] sortedArrayUsingComparator:^NSComparisonResult(TTLogEntries *obj1, TTLogEntries *obj2){
+	self.sortedChildLogEntries = [[self.issue.childLogEntries allObjects] sortedArrayUsingComparator:^NSComparisonResult(TTLogEntry *obj1, TTLogEntry *obj2){
 		return [obj2.startDate compare:obj1.startDate];
 	}];
 }
@@ -69,7 +69,7 @@
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TrackingCell"];
 	
 	//configure cell
-	TTLogEntries *logEntry = [self logEntryAtIndexPath:indexPath];
+	TTLogEntry *logEntry = [self logEntryAtIndexPath:indexPath];
 	cell.textLabel.text = [NSString stringWithNSTimeInterval:logEntry.timeInterval];
 	if(logEntry.endDate == nil) {
 		cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - now",logEntry.startDate];
@@ -87,7 +87,7 @@
 //Handle deletions.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-		TTLogEntries *logEntry = [self logEntryAtIndexPath:indexPath];
+		TTLogEntry *logEntry = [self logEntryAtIndexPath:indexPath];
 		[[self appDelegate].managedObjectContext deleteObject:logEntry];
 		[[self appDelegate] saveContext];
     }

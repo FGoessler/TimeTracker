@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Florian Goessler. All rights reserved.
 //
 
-#import "TTLogEntries.h"
+#import "TTLogEntry.h"
 
-#define MOBJ_TTLogEntry @"TTLogEntries"
+#define MOBJ_TTLogEntry @"TTLogEntry"
 
-@interface TTLogEntries (TTExtension)
+@interface TTLogEntry (TTExtension)
 @property (readonly, nonatomic) NSTimeInterval timeInterval;
 @end

@@ -11,7 +11,7 @@
 
 @class TTIssue;
 
-@interface TTLogEntries : NSManagedObject
+@interface TTLogEntry : NSManagedObject
 
 @property (nonatomic, retain) NSString * comment;
 @property (nonatomic, retain) NSDate * endDate;

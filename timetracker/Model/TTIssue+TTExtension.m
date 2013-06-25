@@ -10,9 +10,9 @@
 
 @implementation TTIssue (TTExtension)
 
--(TTLogEntries*)latestLogEntry {
-	TTLogEntries *latestLogEntry = nil;
-	for (TTLogEntries *logEntry in self.childLogEntries) {
+-(TTLogEntry*)latestLogEntry {
+	TTLogEntry *latestLogEntry = nil;
+	for (TTLogEntry *logEntry in self.childLogEntries) {
 		if(latestLogEntry == nil || [latestLogEntry.startDate compare:logEntry.startDate] == NSOrderedAscending) {
 			latestLogEntry = logEntry;
 		}
@@ -28,7 +28,7 @@
 	}
 	
 	//create new log entry
-	TTLogEntries *newLogEntry = [NSEntityDescription insertNewObjectForEntityForName:MOBJ_TTLogEntry inManagedObjectContext:self.managedObjectContext];
+	TTLogEntry *newLogEntry = [NSEntityDescription insertNewObjectForEntityForName:MOBJ_TTLogEntry inManagedObjectContext:self.managedObjectContext];
 	newLogEntry.startDate = [NSDate date];
 	newLogEntry.parentIssue = self;
 

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface TTLogEntryDetailsVC : UIViewController
-@property (nonatomic, strong) TTLogEntries *logEntry;
+@property (nonatomic, strong) TTLogEntry *logEntry;
 @end

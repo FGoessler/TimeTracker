@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class TTLogEntries, TTProject;
+@class TTLogEntry, TTProject;
 
 @interface TTIssue : NSManagedObject
 
@@ -22,8 +22,8 @@
 
 @interface TTIssue (CoreDataGeneratedAccessors)
 
-- (void)addChildLogEntriesObject:(TTLogEntries *)value;
-- (void)removeChildLogEntriesObject:(TTLogEntries *)value;
+- (void)addChildLogEntriesObject:(TTLogEntry *)value;
+- (void)removeChildLogEntriesObject:(TTLogEntry *)value;
 - (void)addChildLogEntries:(NSSet *)values;
 - (void)removeChildLogEntries:(NSSet *)values;
 

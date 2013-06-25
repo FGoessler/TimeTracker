@@ -8,7 +8,7 @@
 
 #import "TTLogEntries+TTExtension.h"
 
-@implementation TTLogEntries (TTExtension)
+@implementation TTLogEntry (TTExtension)
 
 -(NSTimeInterval)timeInterval {
 	if(self.endDate != nil)

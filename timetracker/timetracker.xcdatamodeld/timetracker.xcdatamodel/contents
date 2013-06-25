@@ -10,10 +10,10 @@
         <attribute name="externalSystemUID" optional="YES" attributeType="String" minValueString="1" syncable="YES"/>
         <attribute name="name" attributeType="String" minValueString="1" syncable="YES"/>
         <attribute name="shortText" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="childLogEntries" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="TTLogEntries" inverseName="parentIssue" inverseEntity="TTLogEntries" syncable="YES"/>
+        <relationship name="childLogEntries" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="TTLogEntry" inverseName="parentIssue" inverseEntity="TTLogEntry" syncable="YES"/>
         <relationship name="parentProject" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="TTProject" inverseName="defaultIssue" inverseEntity="TTProject" syncable="YES"/>
     </entity>
-    <entity name="TTLogEntries" representedClassName="TTLogEntries" syncable="YES">
+    <entity name="TTLogEntry" representedClassName="TTLogEntry" syncable="YES">
         <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="startDate" attributeType="Date" syncable="YES"/>
@@ -27,9 +27,9 @@
         <relationship name="parentSystemLink" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TTExternalSystemLink" inverseName="childProjects" inverseEntity="TTExternalSystemLink" syncable="YES"/>
     </entity>
     <elements>
-        <element name="TTExternalSystemLink" positionX="-407" positionY="-324" width="128" height="103"/>
-        <element name="TTIssue" positionX="-56" positionY="-27" width="128" height="118"/>
-        <element name="TTLogEntries" positionX="187" positionY="-18" width="128" height="118"/>
-        <element name="TTProject" positionX="-378" positionY="-18" width="128" height="103"/>
+        <element name="TTExternalSystemLink" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="TTIssue" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="TTLogEntry" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="TTProject" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

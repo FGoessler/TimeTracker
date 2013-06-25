@@ -7,7 +7,7 @@
 //
 
 #import "TTIssue.h"
-#import "TTLogEntries.h"
+#import "TTLogEntry.h"
 #import "TTProject.h"
 
 
