@@ -7,6 +7,7 @@
 //
 
 #import "TTLogEntryDetailsVC.h"
+#import "TTAppDelegate.h"
 
 @interface TTLogEntryDetailsVC () <UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *startTimeTextField;
@@ -21,8 +22,39 @@
 
 @implementation TTLogEntryDetailsVC
 - (IBAction)doneBtnClicked:(id)sender {
-	//dismiss this ViewController
-	[self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+	self.logEntry.comment = self.commentTextField.text;
+	
+	bool saved = [((TTAppDelegate*)[[UIApplication sharedApplication] delegate]) saveContextWithErrorHandler:^BOOL(NSError *err) {
+		NSDictionary *errInfo = [err userInfo];
+		if(errInfo[@"NSDetailedErrors"] != nil) {
+			errInfo = [errInfo[@"NSDetailedErrors"][0] userInfo];
+		}
+		
+		
+		NSString *msg = nil;
+		if([errInfo[@"NSValidationErrorKey"] isEqualToString:@"startDate"]) {
+			msg = @"The start date you entered is invalid!";
+		} else if([errInfo[@"NSValidationErrorKey"] isEqualToString:@"endDate"]) {
+			msg = @"The end date you entered is invalid!";
+		} else if([errInfo[@"NSValidationErrorKey"] isEqualToString:@"comment"]) {
+			msg = @"The comment you entered is invalid!";
+		}
+		
+		if(msg != nil) {
+			//show a message to inform the user about the invalid data
+			UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Invalid data" message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+			[alertView show];
+			
+			return true;	//the error could be handled - do not crash the app!
+		} else {
+			return false;	//another error occured - let the default routine handle this (most likly it crashes the app)
+		}
+	}];
+	
+	//dismiss this ViewController if data was saved
+	if(saved) {
+		[self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+	}
 }
 - (IBAction)cancelBtnClicked:(id)sender {
 	//dismiss this ViewController
@@ -56,9 +88,7 @@
 
 #pragma mark Comment Text Field
 
--(void)textViewDidEndEditing:(UITextView *)textView {
-	[textView resignFirstResponder];
-}
+
 
 #pragma mark KVO
 
