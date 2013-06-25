@@ -8,7 +8,7 @@
 
 #import "TTProjectsVC.h"
 #import "TTAppDelegate.h"
-#import "TTProjectDataManager.h"
+#import "TTProjectsDataSource.h"
 #import "TTTrackingVC.h"
 #import "TTProjectSettingsVC.h"
 
@@ -16,8 +16,7 @@
 @interface TTProjectsVC () <UITableViewDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (strong, nonatomic) TTProjectDataManager *projectManager;
-
+@property (strong, nonatomic) TTProjectsDataSource *dataSource;
 @property (nonatomic, strong) TTProject* selectedProject;
 @end
 
@@ -29,13 +28,12 @@
 	alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
 	
 	[alertView show];
-
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
 	if(buttonIndex != 1) return;	//do nothing if cancel button clicked
 	
-	[self.projectManager createNewProjectWithName:[alertView textFieldAtIndex:0].text];
+	[self.dataSource createNewProjectWithName:[alertView textFieldAtIndex:0].text];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -43,7 +41,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
-	self.selectedProject = [self.projectManager projectAtIndexPath:indexPath];
+	self.selectedProject = [self.dataSource projectAtIndexPath:indexPath];
 	[self performSegueWithIdentifier:@"Show TTProjectSettingsVC" sender:self];		//show ProjectSettingsVC
 }
 
@@ -51,7 +49,7 @@
 	if([segue.identifier isEqualToString:@"Show TTTrackingVC"]) {
 		TTTrackingVC *destVC = segue.destinationViewController;
 		//pass the selected project to the TrackingVC
-		destVC.project = [self.projectManager projectAtIndexPath:[self.tableView indexPathForSelectedRow]];
+		destVC.project = [self.dataSource projectAtIndexPath:[self.tableView indexPathForSelectedRow]];
 	} else if([segue.identifier isEqualToString:@"Show TTProjectSettingsVC"]) {
 		TTProjectSettingsVC *destVC = (TTProjectSettingsVC*)[segue.destinationViewController topViewController];
 		//pass the selected project to the ProjectSettingsVC
@@ -65,7 +63,7 @@
 	
 	//configure TableView
 	self.tableView.delegate = self;
-	self.projectManager = [[TTProjectDataManager alloc] initAsDataSourceOfTableView:self.tableView];
+	self.dataSource = [[TTProjectsDataSource alloc] initAsDataSourceOfTableView:self.tableView];
 }
 
 

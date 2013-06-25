@@ -29,7 +29,7 @@
         }
 		return NO;
 	}
-	if([*ioValue compare:self.endDate] != NSOrderedAscending) {
+	if(self.endDate != nil && [*ioValue compare:self.endDate] != NSOrderedAscending) {
 		if (outError != NULL) {
             NSDictionary *userInfoDict = @{ NSLocalizedDescriptionKey : @"Start date must be before end date!",
 											@"NSValidationErrorKey" : @"startDate"};
@@ -44,6 +44,9 @@
 }
 
 -(BOOL)validateEndDate:(NSDate **)ioValue error:(NSError **)outError {
+	if(*ioValue == nil) {
+		return YES;	//allow nil values
+	}
 	if([*ioValue compare:self.startDate] != NSOrderedDescending) {
 		if (outError != NULL) {
             NSDictionary *userInfoDict = @{ NSLocalizedDescriptionKey : @"End date must be after start date!",

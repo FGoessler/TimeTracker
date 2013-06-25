@@ -7,17 +7,13 @@
 //
 
 #import "TTChangeIssueVC.h"
-#import "TTProjectsVC.h"
-#import "TTProject+TTExtension.h"
-#import "TTAppDelegate.h"
-#import "TTProjectDataManager.h"
-#import "TTTrackingVC.h"
-#import "TTProjectSettingsVC.h"
+#import "TTIssuesDataSource.h"
+#import "TTIssueDetailsVC.h"
 
 @interface TTChangeIssueVC () <UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
-
+@property (strong, nonatomic) TTIssuesDataSource *dataSource;
+@property (strong, nonatomic) TTIssue *selectedIssue;
 @end
 
 @implementation TTChangeIssueVC
@@ -32,54 +28,41 @@
 	[self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
-/*- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
 	if(buttonIndex != 1) return;	//do nothing if cancel button clicked
-	[self.project createNewProjectWithName:[alertView textFieldAtIndex:0].text];
-}*/
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
--(TTIssue*)IssueAtIndexPath:(NSIndexPath*)indexPath {
-	return self.project.childIssues.allObjects[indexPath.row];
-}
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return self.project.childIssues.count;
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TrackingCell"];
 	
-	//configure cell
-	TTIssue *currentIssue = [self IssueAtIndexPath:indexPath];
-	cell.textLabel.text = currentIssue.name;
-	return cell;
+	[self.parentVC.project addIssueWithName:[alertView textFieldAtIndex:0].text andError:nil];
 }
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	TTIssue *issue = [self.dataSource issueAtIndexPath:indexPath];
+	self.parentVC.currentIssue = issue;
+	
+	[self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+	self.selectedIssue = [self.dataSource issueAtIndexPath:indexPath];
+	[self performSegueWithIdentifier:@"Show TTIssueDetailsVC2" sender:self];		//show TTIssueDetailsVC
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+	if([segue.identifier isEqualToString:@"Show TTIssueDetailsVC2"]) {
+		TTIssueDetailsVC *destVC = (TTIssueDetailsVC*)[segue.destinationViewController topViewController];
+		//pass the selected issue to the TTIssueDetailsVC
+		destVC.issue = self.selectedIssue;
+	}
+}
+
+#pragma mark View Controller lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+
+	//setup tableView
 	self.tableView.delegate = self;
-	if (self.project.childIssues.count == 0) {
-		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"ZERO." message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Create", nil];
-		alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-		[alertView show];
-	}
-	
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-
+	self.dataSource = [[TTIssuesDataSource alloc] initWithProject:self.parentVC.project asDataSourceOfTableView:self.tableView];
 }
 
 @end

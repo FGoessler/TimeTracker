@@ -6,15 +6,15 @@
 //  Copyright (c) 2013 Florian Goessler. All rights reserved.
 //
 
-#import "TTLogEntryDataManager.h"
+#import "TTLogEntriesDataSource.h"
 #import "TTAppDelegate.h"
 
 
-@interface TTLogEntryDataManager()
+@interface TTLogEntriesDataSource()
 @property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, strong) NSArray *sortedChildLogEntries;
 @end
-@implementation TTLogEntryDataManager
+@implementation TTLogEntriesDataSource
 
 - (TTAppDelegate*)appDelegate {
 	return [[UIApplication sharedApplication] delegate];
@@ -66,7 +66,7 @@
 #pragma mark - TableViewDataSource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return self.issue.childLogEntries.count;
+	return self.sortedChildLogEntries.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

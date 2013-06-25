@@ -90,14 +90,14 @@
                     <connections>
                         <outlet property="tableView" destination="aiE-Bo-nOG" id="z1T-Ow-6on"/>
                         <segue destination="7p3-hy-eb7" kind="push" identifier="Show TTTrackingVC" id="LH5-27-s6S"/>
-                        <segue destination="HiR-mU-r2h" kind="modal" identifier="Show TTProjectSettingsVC" id="A0q-Y3-leI"/>
+                        <segue destination="HiR-mU-r2h" kind="modal" identifier="Show TTProjectSettingsVC" modalTransitionStyle="flipHorizontal" id="A0q-Y3-leI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vd1-M3-gXM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="459" y="1080"/>
         </scene>
-        <!--Project SettingsVC - Project Settings-->
+        <!--Project SettingsVC - Project Details-->
         <scene sceneID="daw-5n-pnM">
             <objects>
                 <viewController id="3Tf-oq-Cow" customClass="TTProjectSettingsVC" sceneMemberID="viewController">
@@ -124,7 +124,7 @@
                             <constraint firstItem="512-Ev-6AQ" firstAttribute="leading" secondItem="K92-UM-0ll" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="mWH-qp-NJr"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Project Settings" id="fUF-UP-1lj">
+                    <navigationItem key="navigationItem" title="Project Details" id="fUF-UP-1lj">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="BYW-td-C8G">
                             <connections>
                                 <action selector="cancelBtnClicked:" destination="3Tf-oq-Cow" id="T2A-Ck-IT3"/>
@@ -149,17 +149,20 @@
             <objects>
                 <viewController id="rmQ-eP-Ear" customClass="TTChangeIssueVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RQp-dC-fx5">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="94" width="320" height="474"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="CB6-vW-esO">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="504" id="9x3-zV-p4L"/>
+                                </constraints>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="IssueCell" textLabel="DPZ-vb-cva" detailTextLabel="m8U-wO-400" style="IBUITableViewCellStyleSubtitle" id="1gt-gs-XPx">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="IssueCell" textLabel="DPZ-vb-cva" detailTextLabel="m8U-wO-400" style="IBUITableViewCellStyleSubtitle" id="1gt-gs-XPx">
                                         <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DPZ-vb-cva">
@@ -183,11 +186,10 @@
                         <constraints>
                             <constraint firstItem="CB6-vW-esO" firstAttribute="trailing" secondItem="RQp-dC-fx5" secondAttribute="trailing" type="default" id="VrS-ag-ygE"/>
                             <constraint firstItem="CB6-vW-esO" firstAttribute="leading" secondItem="RQp-dC-fx5" secondAttribute="leading" type="default" id="gXI-PG-z0O"/>
-                            <constraint firstItem="CB6-vW-esO" firstAttribute="bottom" secondItem="RQp-dC-fx5" secondAttribute="bottom" type="default" id="u6C-WM-yOM"/>
                             <constraint firstItem="CB6-vW-esO" firstAttribute="top" secondItem="RQp-dC-fx5" secondAttribute="top" type="default" id="xcx-Xx-1iw"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Issues" id="Fqn-qn-tEA">
+                    <navigationItem key="navigationItem" title="Issues" prompt="Choose an Issue you want to track!" id="Fqn-qn-tEA">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="zVj-eb-14T">
                             <connections>
                                 <action selector="cancelBtnClicked:" destination="rmQ-eP-Ear" id="5Yb-ft-vgA"/>
@@ -201,11 +203,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="CB6-vW-esO" id="0X8-1l-HTA"/>
+                        <segue destination="X4T-GP-4aQ" kind="modal" identifier="Show TTIssueDetailsVC2" modalTransitionStyle="flipHorizontal" id="ZWo-DI-uAx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="joW-oy-jdk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1971" y="1080"/>
+            <point key="canvasLocation" x="1971" y="1085"/>
         </scene>
         <!--TrackingVC - Tracking-->
         <scene sceneID="hv4-cA-PpN">
@@ -241,70 +244,82 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CEJ-Ak-3Vr">
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Start Tracking">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="trackingBtnClicked:" destination="7p3-hy-eb7" eventType="touchUpInside" id="Sud-gd-jGX"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CeD-eu-g7Y">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nLn-vZ-4WS">
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CEJ-Ak-3Vr">
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Start Tracking">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="trackingBtnClicked:" destination="7p3-hy-eb7" eventType="touchUpInside" id="Sud-gd-jGX"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CeD-eu-g7Y">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="yrI-wE-ud9"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Current Issue:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="254" translatesAutoresizingMaskIntoConstraints="NO" id="pkg-lg-qgv">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="254" id="YiA-Ti-CIc"/>
+                                            <constraint firstAttribute="height" constant="44" id="uXL-n0-jZF"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xI8-oJ-oLr">
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="X4T-GP-4aQ" kind="modal" identifier="Show TTIssueDetailsVC" modalTransitionStyle="flipHorizontal" id="ZFs-Gj-vZw"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="yrI-wE-ud9"/>
+                                    <constraint firstItem="CEJ-Ak-3Vr" firstAttribute="leading" secondItem="nLn-vZ-4WS" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="0sX-4c-5rD"/>
+                                    <constraint firstItem="pkg-lg-qgv" firstAttribute="centerY" secondItem="xI8-oJ-oLr" secondAttribute="centerY" type="default" id="1AJ-MM-Ns7"/>
+                                    <constraint firstItem="CeD-eu-g7Y" firstAttribute="leading" secondItem="nLn-vZ-4WS" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="2A8-3N-fEW"/>
+                                    <constraint firstItem="pkg-lg-qgv" firstAttribute="centerX" secondItem="CeD-eu-g7Y" secondAttribute="centerX" type="default" id="E7c-nk-tWh"/>
+                                    <constraint firstAttribute="trailing" secondItem="xI8-oJ-oLr" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Ecl-PA-Irt"/>
+                                    <constraint firstItem="xI8-oJ-oLr" firstAttribute="top" secondItem="nLn-vZ-4WS" secondAttribute="top" constant="20" symbolic="YES" type="default" id="WtI-Zo-GDI"/>
+                                    <constraint firstAttribute="bottom" secondItem="CEJ-Ak-3Vr" secondAttribute="bottom" constant="8" id="Zng-nf-uVQ"/>
+                                    <constraint firstItem="CeD-eu-g7Y" firstAttribute="top" secondItem="pkg-lg-qgv" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="lgb-bc-Npx"/>
+                                    <constraint firstAttribute="trailing" secondItem="CEJ-Ak-3Vr" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="m8U-CQ-mqe"/>
+                                    <constraint firstAttribute="trailing" secondItem="CeD-eu-g7Y" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="mMT-aI-J6n"/>
+                                    <constraint firstItem="CEJ-Ak-3Vr" firstAttribute="top" secondItem="nLn-vZ-4WS" secondAttribute="top" constant="89" scoringType="5" id="vhm-gQ-wlc"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Current Issue:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pkg-lg-qgv">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xI8-oJ-oLr">
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="moreInfoBtnClicked:" destination="7p3-hy-eb7" eventType="touchUpInside" id="6zy-xk-bm0"/>
-                                    <segue destination="X4T-GP-4aQ" kind="modal" identifier="Show TTIssueDetailsVC" id="ZFs-Gj-vZw"/>
-                                </connections>
-                            </button>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="CeD-eu-g7Y" firstAttribute="leading" secondItem="uGS-C1-LDd" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="6zr-KN-BIx"/>
-                            <constraint firstItem="4Ce-Yq-qnd" firstAttribute="top" secondItem="CEJ-Ak-3Vr" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="7U6-fE-aTg"/>
-                            <constraint firstAttribute="trailing" secondItem="CEJ-Ak-3Vr" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="82c-ax-vmm"/>
-                            <constraint firstAttribute="trailing" secondItem="CeD-eu-g7Y" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="9Wd-4j-UQ7"/>
-                            <constraint firstAttribute="trailing" secondItem="pkg-lg-qgv" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="BRZ-Hp-3Ua"/>
-                            <constraint firstItem="pkg-lg-qgv" firstAttribute="leading" secondItem="uGS-C1-LDd" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="H3S-eS-E2Y"/>
+                            <constraint firstItem="nLn-vZ-4WS" firstAttribute="trailing" secondItem="uGS-C1-LDd" secondAttribute="trailing" type="default" id="ISv-N2-B6L"/>
+                            <constraint firstItem="nLn-vZ-4WS" firstAttribute="top" secondItem="uGS-C1-LDd" secondAttribute="top" type="default" id="Icq-cr-8YB"/>
                             <constraint firstItem="4Ce-Yq-qnd" firstAttribute="leading" secondItem="uGS-C1-LDd" secondAttribute="leading" type="default" id="OQC-sx-MFP"/>
                             <constraint firstItem="4Ce-Yq-qnd" firstAttribute="bottom" secondItem="uGS-C1-LDd" secondAttribute="bottom" type="default" id="W9g-zX-zFF"/>
                             <constraint firstItem="4Ce-Yq-qnd" firstAttribute="trailing" secondItem="uGS-C1-LDd" secondAttribute="trailing" type="default" id="XiS-Y4-No0"/>
-                            <constraint firstItem="pkg-lg-qgv" firstAttribute="top" secondItem="uGS-C1-LDd" secondAttribute="top" constant="5" id="e3G-D5-ald"/>
-                            <constraint firstItem="xI8-oJ-oLr" firstAttribute="bottom" secondItem="pkg-lg-qgv" secondAttribute="bottom" type="default" id="eNT-4c-hIj"/>
                             <constraint firstItem="4Ce-Yq-qnd" firstAttribute="top" secondItem="uGS-C1-LDd" secondAttribute="top" constant="140" type="user" id="kme-VK-U4v"/>
-                            <constraint firstAttribute="trailing" secondItem="xI8-oJ-oLr" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="lWt-zG-j2R"/>
-                            <constraint firstItem="CEJ-Ak-3Vr" firstAttribute="top" secondItem="CeD-eu-g7Y" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="vKD-rG-AT0"/>
-                            <constraint firstItem="CEJ-Ak-3Vr" firstAttribute="leading" secondItem="uGS-C1-LDd" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="wWg-Am-lSv"/>
+                            <constraint firstItem="nLn-vZ-4WS" firstAttribute="leading" secondItem="uGS-C1-LDd" secondAttribute="leading" type="default" id="wKF-6c-y3P"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Tracking" id="zAV-RF-KwD">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="p5j-Q4-aGV">
+                        <barButtonItem key="rightBarButtonItem" title="Change Issue" id="p5j-Q4-aGV">
                             <connections>
-                                <action selector="changeIssueBtnClicked:" destination="7p3-hy-eb7" id="CRJ-c9-a02"/>
                                 <segue destination="UBr-Zk-GZi" kind="modal" identifier="Show TTChangeIssueVC" id="D0L-zd-TA5"/>
                             </connections>
                         </barButtonItem>
@@ -313,6 +328,7 @@
                         <outlet property="currentIssueLbl" destination="pkg-lg-qgv" id="GJJ-T9-QG7"/>
                         <outlet property="tableView" destination="4Ce-Yq-qnd" id="zhz-pw-VaT"/>
                         <outlet property="timeLbl" destination="CeD-eu-g7Y" id="7Xn-Tv-M6L"/>
+                        <outlet property="topView" destination="nLn-vZ-4WS" id="m5G-dk-hgm"/>
                         <outlet property="trackingBtn" destination="CEJ-Ak-3Vr" id="chP-rH-Vkr"/>
                         <segue destination="rJJ-wN-uWW" kind="modal" identifier="Show TTLogEntryDetailsVC" id="PSQ-c6-si9"/>
                     </connections>
@@ -601,15 +617,12 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <class className="TTChangeIssueVC" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TTChangeIssueVC.h"/>
             <relationships>
-                <relationship kind="action" name="addBtnClicked:"/>
-                <relationship kind="action" name="cancelBtnClicked:"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
         </class>
         <class className="TTIssueDetailsVC" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TTIssueDetailsVC.h"/>
             <relationships>
-                <relationship kind="action" name="doneBtnClicked:"/>
                 <relationship kind="outlet" name="descriptionTextField" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="nameTextField" candidateClass="UITextField"/>
             </relationships>
@@ -620,10 +633,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <class className="TTLogEntryDetailsVC" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TTLogEntryDetailsVC.h"/>
             <relationships>
-                <relationship kind="action" name="cancelBtnClicked:"/>
-                <relationship kind="action" name="doneBtnClicked:"/>
-                <relationship kind="action" name="pickerChanged:"/>
-                <relationship kind="action" name="timeTxtFieldTapped:"/>
                 <relationship kind="outlet" name="commentTextField" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="endTimeTextField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="startTimeTextField" candidateClass="UITextField"/>
@@ -648,6 +657,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <relationship kind="outlet" name="currentIssueLbl" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="timeLbl" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="topView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="trackingBtn" candidateClass="UIButton"/>
             </relationships>
         </class>
@@ -657,4 +667,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="ZWo-DI-uAx"/>
+    </inferredMetricsTieBreakers>
 </document>

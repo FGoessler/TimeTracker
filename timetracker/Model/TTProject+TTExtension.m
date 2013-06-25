@@ -22,4 +22,13 @@
 	return mostCurrentIssue;
 }
 
+-(BOOL)addIssueWithName:(NSString *)name andError:(NSError**)err {	
+	TTIssue *newIssue = [NSEntityDescription insertNewObjectForEntityForName:MOBJ_TTIssue inManagedObjectContext:self.managedObjectContext];
+	
+	newIssue.name = name;
+	newIssue.parentProject = self;
+	
+	return [self.managedObjectContext save:err];
+}
+
 @end

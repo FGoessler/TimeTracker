@@ -11,7 +11,7 @@
         <attribute name="name" attributeType="String" minValueString="1" syncable="YES"/>
         <attribute name="shortText" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="childLogEntries" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="TTLogEntry" inverseName="parentIssue" inverseEntity="TTLogEntry" syncable="YES"/>
-        <relationship name="parentProject" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="TTProject" inverseName="defaultIssue" inverseEntity="TTProject" syncable="YES"/>
+        <relationship name="parentProject" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="TTProject" inverseName="childIssues" inverseEntity="TTProject" syncable="YES"/>
     </entity>
     <entity name="TTLogEntry" representedClassName="TTLogEntry" syncable="YES">
         <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
@@ -27,9 +27,9 @@
         <relationship name="parentSystemLink" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TTExternalSystemLink" inverseName="childProjects" inverseEntity="TTExternalSystemLink" syncable="YES"/>
     </entity>
     <elements>
-        <element name="TTExternalSystemLink" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="TTIssue" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="TTLogEntry" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="TTProject" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="TTExternalSystemLink" positionX="52" positionY="-366" width="128" height="105"/>
+        <element name="TTIssue" positionX="349" positionY="-72" width="128" height="118"/>
+        <element name="TTLogEntry" positionX="628" positionY="-66" width="128" height="120"/>
+        <element name="TTProject" positionX="45" positionY="-63" width="128" height="105"/>
     </elements>
 </model>

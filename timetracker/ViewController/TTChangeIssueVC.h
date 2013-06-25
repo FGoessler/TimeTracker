@@ -8,13 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "TTTrackingVC.h"
-#import "TTProject+TTExtension.h"
-#import "TTAppDelegate.h"
-#import "TTProjectDataManager.h"
-#import "TTTrackingVC.h"
-#import "TTProjectSettingsVC.h"
 
 @interface TTChangeIssueVC : UIViewController
-@property (nonatomic, strong) TTProject* project;
+@property (nonatomic, strong) TTTrackingVC* parentVC;
 
 @end
