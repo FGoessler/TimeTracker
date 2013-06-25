@@ -37,6 +37,10 @@
 	return self;
 }
 
+-(void)dealloc {
+	[self.issue removeObserver:self forKeyPath:@"childLogEntries"];
+}
+
 -(TTLogEntry*)logEntryAtIndexPath:(NSIndexPath*)indexPath {
 	return self.sortedChildLogEntries[indexPath.row];
 }

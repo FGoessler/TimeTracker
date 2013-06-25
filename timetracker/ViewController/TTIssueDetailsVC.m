@@ -18,6 +18,7 @@
 @implementation TTIssueDetailsVC
 - (IBAction)doneBtnClicked:(id)sender {
 	self.issue.name = self.nameTextField.text;
+	self.issue.shortText = self.descriptionTextField.text;
 	
 	BOOL saved = [((TTAppDelegate*)[[UIApplication sharedApplication] delegate]) saveContextWithErrorHandler:^BOOL(NSError *err) {
 		NSDictionary *errInfo = [err userInfo];
