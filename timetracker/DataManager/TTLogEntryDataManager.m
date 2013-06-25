@@ -37,6 +37,10 @@
 	return self;
 }
 
+-(void)dealloc {
+	[self.issue removeObserver:self forKeyPath:@"childLogEntries"];
+}
+
 -(TTLogEntry*)logEntryAtIndexPath:(NSIndexPath*)indexPath {
 	return self.sortedChildLogEntries[indexPath.row];
 }
@@ -72,7 +76,7 @@
 	TTLogEntry *logEntry = [self logEntryAtIndexPath:indexPath];
 	cell.textLabel.text = [NSString stringWithNSTimeInterval:logEntry.timeInterval];
 	if(logEntry.endDate == nil) {
-		cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - now",logEntry.startDate];
+		cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - now",[NSString stringWithNSDate:logEntry.startDate]];
 	} else {
 		cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@",[NSString stringWithNSDate:logEntry.startDate], [NSString stringWithNSDate:logEntry.endDate]];
 	}
