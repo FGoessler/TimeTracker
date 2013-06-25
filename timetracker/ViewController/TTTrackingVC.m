@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *currentIssueLbl;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *trackingBtn;
+@property (weak, nonatomic) IBOutlet UIView *topView;
 
 @property (strong, nonatomic) NSTimer *pollingTimer;
 
@@ -101,6 +102,10 @@
     [super viewWillAppear:animated];
 	
 	[self updateViews];
+	
+	self.topView.layer.shadowOffset = CGSizeMake(0, 5);
+	self.topView.layer.shadowRadius = 5;
+	self.topView.layer.shadowOpacity = 0.5;
 }
 
 -(void)viewWillDisappear:(BOOL)animated {

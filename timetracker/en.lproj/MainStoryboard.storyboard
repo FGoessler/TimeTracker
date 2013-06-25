@@ -90,7 +90,7 @@
                     <connections>
                         <outlet property="tableView" destination="aiE-Bo-nOG" id="z1T-Ow-6on"/>
                         <segue destination="7p3-hy-eb7" kind="push" identifier="Show TTTrackingVC" id="LH5-27-s6S"/>
-                        <segue destination="HiR-mU-r2h" kind="modal" identifier="Show TTProjectSettingsVC" id="A0q-Y3-leI"/>
+                        <segue destination="HiR-mU-r2h" kind="modal" identifier="Show TTProjectSettingsVC" modalTransitionStyle="flipHorizontal" id="A0q-Y3-leI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vd1-M3-gXM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -203,7 +203,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="CB6-vW-esO" id="0X8-1l-HTA"/>
-                        <segue destination="X4T-GP-4aQ" kind="modal" identifier="Show TTIssueDetailsVC2" id="ZWo-DI-uAx"/>
+                        <segue destination="X4T-GP-4aQ" kind="modal" identifier="Show TTIssueDetailsVC2" modalTransitionStyle="flipHorizontal" id="ZWo-DI-uAx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="joW-oy-jdk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -244,69 +244,77 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CEJ-Ak-3Vr">
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Start Tracking">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="trackingBtnClicked:" destination="7p3-hy-eb7" eventType="touchUpInside" id="Sud-gd-jGX"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CeD-eu-g7Y">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nLn-vZ-4WS">
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CEJ-Ak-3Vr">
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Start Tracking">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="trackingBtnClicked:" destination="7p3-hy-eb7" eventType="touchUpInside" id="Sud-gd-jGX"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CeD-eu-g7Y">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="yrI-wE-ud9"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Current Issue:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="254" translatesAutoresizingMaskIntoConstraints="NO" id="pkg-lg-qgv">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="254" id="YiA-Ti-CIc"/>
+                                            <constraint firstAttribute="height" constant="44" id="uXL-n0-jZF"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xI8-oJ-oLr">
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="X4T-GP-4aQ" kind="modal" identifier="Show TTIssueDetailsVC" modalTransitionStyle="flipHorizontal" id="ZFs-Gj-vZw"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="yrI-wE-ud9"/>
+                                    <constraint firstItem="CEJ-Ak-3Vr" firstAttribute="leading" secondItem="nLn-vZ-4WS" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="0sX-4c-5rD"/>
+                                    <constraint firstItem="pkg-lg-qgv" firstAttribute="centerY" secondItem="xI8-oJ-oLr" secondAttribute="centerY" type="default" id="1AJ-MM-Ns7"/>
+                                    <constraint firstItem="CeD-eu-g7Y" firstAttribute="leading" secondItem="nLn-vZ-4WS" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="2A8-3N-fEW"/>
+                                    <constraint firstItem="pkg-lg-qgv" firstAttribute="centerX" secondItem="CeD-eu-g7Y" secondAttribute="centerX" type="default" id="E7c-nk-tWh"/>
+                                    <constraint firstAttribute="trailing" secondItem="xI8-oJ-oLr" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Ecl-PA-Irt"/>
+                                    <constraint firstItem="xI8-oJ-oLr" firstAttribute="top" secondItem="nLn-vZ-4WS" secondAttribute="top" constant="20" symbolic="YES" type="default" id="WtI-Zo-GDI"/>
+                                    <constraint firstAttribute="bottom" secondItem="CEJ-Ak-3Vr" secondAttribute="bottom" constant="8" id="Zng-nf-uVQ"/>
+                                    <constraint firstItem="CeD-eu-g7Y" firstAttribute="top" secondItem="pkg-lg-qgv" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="lgb-bc-Npx"/>
+                                    <constraint firstAttribute="trailing" secondItem="CEJ-Ak-3Vr" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="m8U-CQ-mqe"/>
+                                    <constraint firstAttribute="trailing" secondItem="CeD-eu-g7Y" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="mMT-aI-J6n"/>
+                                    <constraint firstItem="CEJ-Ak-3Vr" firstAttribute="top" secondItem="nLn-vZ-4WS" secondAttribute="top" constant="89" scoringType="5" id="vhm-gQ-wlc"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Current Issue:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="254" translatesAutoresizingMaskIntoConstraints="NO" id="pkg-lg-qgv">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="g8v-u4-BJz"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xI8-oJ-oLr">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="18" id="Ke4-xm-3Kj"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="X4T-GP-4aQ" kind="modal" identifier="Show TTIssueDetailsVC" id="ZFs-Gj-vZw"/>
-                                </connections>
-                            </button>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="CeD-eu-g7Y" firstAttribute="top" secondItem="pkg-lg-qgv" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="6cD-kl-k7J"/>
-                            <constraint firstItem="CeD-eu-g7Y" firstAttribute="leading" secondItem="uGS-C1-LDd" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="6zr-KN-BIx"/>
-                            <constraint firstItem="4Ce-Yq-qnd" firstAttribute="top" secondItem="CEJ-Ak-3Vr" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="7U6-fE-aTg"/>
-                            <constraint firstAttribute="trailing" secondItem="CEJ-Ak-3Vr" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="82c-ax-vmm"/>
-                            <constraint firstAttribute="trailing" secondItem="CeD-eu-g7Y" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="9Wd-4j-UQ7"/>
+                            <constraint firstItem="nLn-vZ-4WS" firstAttribute="trailing" secondItem="uGS-C1-LDd" secondAttribute="trailing" type="default" id="ISv-N2-B6L"/>
+                            <constraint firstItem="nLn-vZ-4WS" firstAttribute="top" secondItem="uGS-C1-LDd" secondAttribute="top" type="default" id="Icq-cr-8YB"/>
                             <constraint firstItem="4Ce-Yq-qnd" firstAttribute="leading" secondItem="uGS-C1-LDd" secondAttribute="leading" type="default" id="OQC-sx-MFP"/>
-                            <constraint firstItem="xI8-oJ-oLr" firstAttribute="leading" secondItem="pkg-lg-qgv" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="RWC-fU-pDV"/>
                             <constraint firstItem="4Ce-Yq-qnd" firstAttribute="bottom" secondItem="uGS-C1-LDd" secondAttribute="bottom" type="default" id="W9g-zX-zFF"/>
                             <constraint firstItem="4Ce-Yq-qnd" firstAttribute="trailing" secondItem="uGS-C1-LDd" secondAttribute="trailing" type="default" id="XiS-Y4-No0"/>
-                            <constraint firstItem="pkg-lg-qgv" firstAttribute="leading" secondItem="uGS-C1-LDd" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="i8g-NJ-EZL"/>
-                            <constraint firstItem="pkg-lg-qgv" firstAttribute="centerY" secondItem="xI8-oJ-oLr" secondAttribute="centerY" type="default" id="jU6-Xw-o3p"/>
                             <constraint firstItem="4Ce-Yq-qnd" firstAttribute="top" secondItem="uGS-C1-LDd" secondAttribute="top" constant="140" type="user" id="kme-VK-U4v"/>
-                            <constraint firstAttribute="trailing" secondItem="xI8-oJ-oLr" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="lWt-zG-j2R"/>
-                            <constraint firstItem="CEJ-Ak-3Vr" firstAttribute="top" secondItem="CeD-eu-g7Y" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="vKD-rG-AT0"/>
-                            <constraint firstItem="CEJ-Ak-3Vr" firstAttribute="leading" secondItem="uGS-C1-LDd" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="wWg-Am-lSv"/>
+                            <constraint firstItem="nLn-vZ-4WS" firstAttribute="leading" secondItem="uGS-C1-LDd" secondAttribute="leading" type="default" id="wKF-6c-y3P"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Tracking" id="zAV-RF-KwD">
@@ -320,6 +328,7 @@
                         <outlet property="currentIssueLbl" destination="pkg-lg-qgv" id="GJJ-T9-QG7"/>
                         <outlet property="tableView" destination="4Ce-Yq-qnd" id="zhz-pw-VaT"/>
                         <outlet property="timeLbl" destination="CeD-eu-g7Y" id="7Xn-Tv-M6L"/>
+                        <outlet property="topView" destination="nLn-vZ-4WS" id="m5G-dk-hgm"/>
                         <outlet property="trackingBtn" destination="CEJ-Ak-3Vr" id="chP-rH-Vkr"/>
                         <segue destination="rJJ-wN-uWW" kind="modal" identifier="Show TTLogEntryDetailsVC" id="PSQ-c6-si9"/>
                     </connections>
@@ -648,6 +657,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <relationship kind="outlet" name="currentIssueLbl" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="timeLbl" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="topView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="trackingBtn" candidateClass="UIButton"/>
             </relationships>
         </class>
