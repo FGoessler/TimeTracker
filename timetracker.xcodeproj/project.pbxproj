@@ -33,8 +33,6 @@
 		174DAB4C177597AB006057C0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 174DAB4B177597AB006057C0 /* Default-568h@2x.png */; };
 		174DAB4F177597AB006057C0 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 174DAB4D177597AB006057C0 /* MainStoryboard.storyboard */; };
 		174DAB52177597AB006057C0 /* timetracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 174DAB50177597AB006057C0 /* timetracker.xcdatamodeld */; };
-		174DAB55177597AB006057C0 /* TTMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 174DAB54177597AB006057C0 /* TTMasterViewController.m */; };
-		174DAB58177597AB006057C0 /* TTDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 174DAB57177597AB006057C0 /* TTDetailViewController.m */; };
 		174DAB60177597AB006057C0 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 174DAB5F177597AB006057C0 /* SenTestingKit.framework */; };
 		174DAB61177597AB006057C0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 174DAB33177597AB006057C0 /* UIKit.framework */; };
 		174DAB62177597AB006057C0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 174DAB35177597AB006057C0 /* Foundation.framework */; };
@@ -105,10 +103,6 @@
 		174DAB4B177597AB006057C0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		174DAB4E177597AB006057C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		174DAB51177597AB006057C0 /* timetracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = timetracker.xcdatamodel; sourceTree = "<group>"; };
-		174DAB53177597AB006057C0 /* TTMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTMasterViewController.h; sourceTree = "<group>"; };
-		174DAB54177597AB006057C0 /* TTMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTMasterViewController.m; sourceTree = "<group>"; };
-		174DAB56177597AB006057C0 /* TTDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTDetailViewController.h; sourceTree = "<group>"; };
-		174DAB57177597AB006057C0 /* TTDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTDetailViewController.m; sourceTree = "<group>"; };
 		174DAB5E177597AB006057C0 /* timetrackerTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = timetrackerTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		174DAB5F177597AB006057C0 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		174DAB68177597AB006057C0 /* timetrackerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "timetrackerTests-Info.plist"; sourceTree = "<group>"; };
@@ -249,10 +243,6 @@
 				174DAB44177597AB006057C0 /* TTAppDelegate.h */,
 				174DAB45177597AB006057C0 /* TTAppDelegate.m */,
 				174DAB4D177597AB006057C0 /* MainStoryboard.storyboard */,
-				174DAB53177597AB006057C0 /* TTMasterViewController.h */,
-				174DAB54177597AB006057C0 /* TTMasterViewController.m */,
-				174DAB56177597AB006057C0 /* TTDetailViewController.h */,
-				174DAB57177597AB006057C0 /* TTDetailViewController.m */,
 				174DAB50177597AB006057C0 /* timetracker.xcdatamodeld */,
 				174DAB3C177597AB006057C0 /* Supporting Files */,
 			);
@@ -454,8 +444,6 @@
 				174DAB42177597AB006057C0 /* main.m in Sources */,
 				174DAB46177597AB006057C0 /* TTAppDelegate.m in Sources */,
 				174DAB52177597AB006057C0 /* timetracker.xcdatamodeld in Sources */,
-				174DAB55177597AB006057C0 /* TTMasterViewController.m in Sources */,
-				174DAB58177597AB006057C0 /* TTDetailViewController.m in Sources */,
 				1781DE5A1775CCF100603ED1 /* TTProjectsVC.m in Sources */,
 				1781DE5D1775CD1300603ED1 /* TTTrackingVC.m in Sources */,
 				1781DE601775CD3900603ED1 /* TTChangeIssueVC.m in Sources */,
