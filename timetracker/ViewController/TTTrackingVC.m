@@ -62,14 +62,10 @@
 	//configure the trackingBtn and start/stop view update timer
 	if(self.currentIssue.latestLogEntry != nil && self.currentIssue.latestLogEntry.endDate == nil) {
 		[self.trackingBtn setTitle:@"Stop Tracking" forState:UIControlStateNormal];
-		self.pollingTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateViews) userInfo:nil repeats:YES];
 	} else {
-		[self.pollingTimer invalidate];
 		[self.trackingBtn setTitle:@"Start Tracking" forState:UIControlStateNormal];
 		self.timeLbl.text = @"00:00:00";
 	}
-	
-	[self.tableView reloadData];	//update the tableView
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -102,6 +98,8 @@
     [super viewWillAppear:animated];
 	
 	[self updateViews];
+	
+	self.pollingTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateViews) userInfo:nil repeats:YES];
 	
 	self.topView.layer.shadowOffset = CGSizeMake(0, 5);
 	self.topView.layer.shadowRadius = 5;

@@ -38,17 +38,25 @@
 }
 
 -(void)dealloc {
+	[self removeDateChangedObserverForAllIssues];
 	[self.issue removeObserver:self forKeyPath:@"childLogEntries"];
 }
 
 -(TTLogEntry*)logEntryAtIndexPath:(NSIndexPath*)indexPath {
-	return self.sortedChildLogEntries[indexPath.row];
+	if(((TTLogEntry*)self.sortedChildLogEntries[0]).endDate == nil) {
+		return self.sortedChildLogEntries[indexPath.row+1];		//do not show the currently running log entry
+	} else {
+		return self.sortedChildLogEntries[indexPath.row];
+	}
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {	
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	//handle changes of the childLogEntries property of the issue
 	if([keyPath isEqualToString:@"childLogEntries"] && object == self.issue) {
 		[self createSortedChildLogEntries];		//recreate the sorted list
+		[self.tableView reloadData];
+		return;
+	} else if(([keyPath isEqualToString:@"startDate"] || [keyPath isEqualToString:@"endDate"])&& [object isKindOfClass:[TTLogEntry class]]) {
 		[self.tableView reloadData];
 		return;
 	}
@@ -58,15 +66,37 @@
 
 //creates a sorted list of the log entries (sorted by startDate)
 - (void)createSortedChildLogEntries {
+	[self removeDateChangedObserverForAllIssues];
+
 	self.sortedChildLogEntries = [[self.issue.childLogEntries allObjects] sortedArrayUsingComparator:^NSComparisonResult(TTLogEntry *obj1, TTLogEntry *obj2){
 		return [obj2.startDate compare:obj1.startDate];
 	}];
+
+	[self registerDateChangedObserverForAllIssues];
+}
+
+-(void)registerDateChangedObserverForAllIssues {
+	for (TTLogEntry *logEntry in self.sortedChildLogEntries) {
+		[logEntry addObserver:self forKeyPath:@"startDate" options:0 context:nil];
+		[logEntry addObserver:self forKeyPath:@"endDate" options:0 context:nil];
+	}
+}
+
+-(void)removeDateChangedObserverForAllIssues {
+	for (TTLogEntry *logEntry in self.sortedChildLogEntries) {
+		[logEntry removeObserver:self forKeyPath:@"startDate"];
+		[logEntry removeObserver:self forKeyPath:@"endDate"];
+	}
 }
 
 #pragma mark - TableViewDataSource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return self.sortedChildLogEntries.count;
+	if(((TTLogEntry*)self.sortedChildLogEntries[0]).endDate == nil) {
+		return self.sortedChildLogEntries.count - 1;	//do not show the currently running log entry
+	} else {
+		return self.sortedChildLogEntries.count;
+	}
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
