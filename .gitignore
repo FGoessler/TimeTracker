@@ -151,3 +151,11 @@ xcuserdata
 # We're using source-control, so this is a "feature" that we do not want!
 
 *.moved-aside
+.idea/.name
+.idea/encodings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/scopes/scope_settings.xml
+.idea/timetracker.iml
+.idea/vcs.xml
+.idea/xcode.xml
