@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Florian Goessler. All rights reserved.
 //
 
-#import "TTLogEntries+TTExtension.h"
+#import "TTLogEntry+TTExtension.h"
 
 @implementation TTLogEntry (TTExtension)
 

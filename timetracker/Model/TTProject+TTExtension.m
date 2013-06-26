@@ -9,7 +9,7 @@
 #import "TTProject+TTExtension.h"
 #import "TTAppDelegate.h"
 #import "TTIssue+TTExtension.h"
-#import "TTLogEntries+TTExtension.h"
+#import "TTLogEntry+TTExtension.h"
 
 
 @implementation TTProject (TTExtension)

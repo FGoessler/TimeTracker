@@ -16,7 +16,7 @@
 
 	#import "NSString+TTExtensions.h"
 
-	#import "TTLogEntries+TTExtension.h"
+	#import "TTLogEntry+TTExtension.h"
 	#import "TTIssue+TTExtension.h"
 	#import "TTProject+TTExtension.h"
 	#import "TTExternalSystemLink+TTExtension.h"
