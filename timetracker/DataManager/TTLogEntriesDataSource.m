@@ -43,7 +43,7 @@
 }
 
 -(TTLogEntry*)logEntryAtIndexPath:(NSIndexPath*)indexPath {
-	if(((TTLogEntry*)self.sortedChildLogEntries[0]).endDate == nil) {
+	if(self.sortedChildLogEntries.count > 0 && ((TTLogEntry*)self.sortedChildLogEntries[0]).endDate == nil) {
 		return self.sortedChildLogEntries[indexPath.row+1];		//do not show the currently running log entry
 	} else {
 		return self.sortedChildLogEntries[indexPath.row];
@@ -92,7 +92,7 @@
 #pragma mark - TableViewDataSource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	if(((TTLogEntry*)self.sortedChildLogEntries[0]).endDate == nil) {
+	if(self.sortedChildLogEntries.count > 0 && ((TTLogEntry*)self.sortedChildLogEntries[0]).endDate == nil) {
 		return self.sortedChildLogEntries.count - 1;	//do not show the currently running log entry
 	} else {
 		return self.sortedChildLogEntries.count;
