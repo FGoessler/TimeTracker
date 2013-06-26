@@ -115,7 +115,7 @@
 	return cell;
 }
 
-//Allow swipe to delte for all rows.
+//Allow swipe to delete for all rows.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }

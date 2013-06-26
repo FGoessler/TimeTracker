@@ -61,14 +61,14 @@
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
 			if(handler != nil) {
 				if(handler(error)) {
-					return false;	//return false to indicate that an error happend
+					return false;	//return false to indicate that an error happened
 				}
 			}
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();	 //kill the app if the error could not been handled
         }
     }
-	return true;	//return true to indicate that no error happend
+	return true;	//return true to indicate that no error happened
 }
 
 
@@ -111,7 +111,8 @@
     }
     
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"timetracker.sqlite"];
-    
+
+	//Try to auto-migrate the model.
 	NSDictionary *options = @{NSMigratePersistentStoresAutomaticallyOption:@YES, NSInferMappingModelAutomaticallyOption:@YES};
 	
     NSError *error = nil;
@@ -128,17 +129,12 @@
          Check the error message to determine what the actual problem was.
          
          
-         If the persistent store is not accessible, there is typically something wrong with the file path. Often, a file URL is pointing into the application's resources directory instead of a writeable directory.
+         If the persistent store is not accessible, there is typically something wrong with the file path. Often, a file URL is pointing into the application's resources directory instead of a writable directory.
          
          If you encounter schema incompatibility errors during development, you can reduce their frequency by:
          * Simply deleting the existing store:
          [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil]
-         
-         * Performing automatic lightweight migration by passing the following dictionary as the options parameter:
-         @{NSMigratePersistentStoresAutomaticallyOption:@YES, NSInferMappingModelAutomaticallyOption:@YES}
-         
-         Lightweight migration will only work for a limited set of schema changes; consult "Core Data Model Versioning and Data Migration Programming Guide" for details.
-         
+
          */
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();

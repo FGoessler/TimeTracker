@@ -36,7 +36,7 @@
 }
 
 -(BOOL)stopTracking:(NSError**)err {
-	if (self.latestLogEntry.endDate != nil) {	//do not allow to stop tracking when no log entry has been started and not yet stoped
+	if (self.latestLogEntry.endDate != nil) {	//do not allow to stop tracking when no log entry has been started and not yet stopped
 		*err = [NSError errorWithDomain:@"TTModelError" code:TTLOG_ENTRY_NOT_ACTIVE userInfo:nil];
 		return false;
 	}

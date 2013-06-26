@@ -28,7 +28,7 @@
 			
 			return true;	//the error could be handled - do not crash the app!
 		}
-		return false;	//another error occured - let the default routine handle this (most likly it crashes the app)
+		return false;	//another error occurred - let the default routine handle this (most likely it crashes the app)
 	}];
 	
 	//dismiss this ViewController if data was saved

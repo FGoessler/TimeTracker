@@ -22,7 +22,7 @@
 	
 	BOOL saved = [((TTAppDelegate*)[[UIApplication sharedApplication] delegate]) saveContextWithErrorHandler:^BOOL(NSError *err) {
 		NSDictionary *errInfo = [err userInfo];
-		if(errInfo[@"NSDetailedErrors"] != nil) {	//if multiple errors occured only report the first one
+		if(errInfo[@"NSDetailedErrors"] != nil) {	//if multiple errors occurred only report the first one
 			errInfo = [errInfo[@"NSDetailedErrors"][0] userInfo];
 		}
 		
@@ -40,7 +40,7 @@
 			
 			return true;	//the error could be handled - do not crash the app!
 		} else {
-			return false;	//another error occured - let the default routine handle this (most likly it crashes the app)
+			return false;	//another error occurred - let the default routine handle this (most likely it crashes the app)
 		}
 	}];
 	
