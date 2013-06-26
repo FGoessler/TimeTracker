@@ -21,23 +21,6 @@
 	return [[UIApplication sharedApplication] delegate];
 }
 
--(void)createNewProjectWithName:(NSString*)name {
-	NSManagedObjectContext *context = [self appDelegate].managedObjectContext;
-	
-	//create new project
-    TTProject *newProject = [NSEntityDescription insertNewObjectForEntityForName:MOBJ_TTProject inManagedObjectContext:context];
-    newProject.name = name;
-	
-	//create a new issue as the default issue
-	TTIssue *defaultIssue = [NSEntityDescription insertNewObjectForEntityForName:MOBJ_TTIssue inManagedObjectContext:context];
-	defaultIssue.name = @"Default Issue";
-	
-	newProject.defaultIssue = defaultIssue;
-	[newProject addChildIssuesObject:defaultIssue];
-	
-	[[self appDelegate] saveContext];
-}
-
 -(id)initAsDataSourceOfTableView:(UITableView*)tableView {
 	self = [super init];
 	

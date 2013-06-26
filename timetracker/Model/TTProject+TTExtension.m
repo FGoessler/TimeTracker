@@ -7,9 +7,33 @@
 //
 
 #import "TTProject+TTExtension.h"
+#import "TTAppDelegate.h"
+#import "TTIssue+TTExtension.h"
+#import "TTLogEntries+TTExtension.h"
 
 
 @implementation TTProject (TTExtension)
+
++(TTProject*)createNewProjectWithName:(NSString*)name {
+	TTAppDelegate *appDelegate =   [[UIApplication sharedApplication] delegate];
+	NSManagedObjectContext *context = appDelegate.managedObjectContext;
+	
+	//create new project
+    TTProject *newProject = [NSEntityDescription insertNewObjectForEntityForName:MOBJ_TTProject inManagedObjectContext:context];
+    newProject.name = name;
+	
+	//create a new issue as the default issue
+	TTIssue *defaultIssue = [NSEntityDescription insertNewObjectForEntityForName:MOBJ_TTIssue inManagedObjectContext:context];
+	defaultIssue.name = @"Default Issue";
+	
+	newProject.defaultIssue = defaultIssue;
+	[newProject addChildIssuesObject:defaultIssue];
+	[newProject addChildIssuesObject:defaultIssue];
+	
+	[appDelegate saveContext];
+	
+	return newProject;
+}
 
 -(TTIssue*)currentIssue {
 	TTIssue *mostCurrentIssue = self.defaultIssue;

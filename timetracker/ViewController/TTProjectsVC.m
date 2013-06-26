@@ -11,6 +11,7 @@
 #import "TTProjectsDataSource.h"
 #import "TTTrackingVC.h"
 #import "TTProjectSettingsVC.h"
+#import "TTProject+TTExtension.h"
 
 
 @interface TTProjectsVC () <UITableViewDelegate, UIAlertViewDelegate>
@@ -33,7 +34,7 @@
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
 	if(buttonIndex != 1) return;	//do nothing if cancel button clicked
 	
-	[self.dataSource createNewProjectWithName:[alertView textFieldAtIndex:0].text];
+	[TTProject createNewProjectWithName:[alertView textFieldAtIndex:0].text];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
