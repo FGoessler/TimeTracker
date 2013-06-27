@@ -1,21 +1,19 @@
 //
-//  TTLinksVC.m
+//  TTExternalSystemProjectsListVC.m
 //  timetracker
 //
-//  Created by Florian Goessler on 22.06.13.
+//  Created by Florian Goessler on 27.06.13.
 //  Copyright (c) 2013 Florian Goessler. All rights reserved.
 //
 
-#import "TTLinksVC.h"
+#import "TTExternalSystemProjectsListVC.h"
 
-@interface TTLinksVC ()
+@interface TTExternalSystemProjectsListVC ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @end
 
-@implementation TTLinksVC
-- (IBAction)addLinkBtnClicked:(id)sender {
-	[self performSegueWithIdentifier:@"Show ExternalSystemLinkDetailsVC" sender:self];
-}
+@implementation TTExternalSystemProjectsListVC
 
 - (void)viewDidLoad
 {
