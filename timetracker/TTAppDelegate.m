@@ -8,8 +8,6 @@
 
 #import "TTAppDelegate.h"
 
-#import "TTMasterViewController.h"
-
 @implementation TTAppDelegate
 
 @synthesize managedObjectContext = _managedObjectContext;
