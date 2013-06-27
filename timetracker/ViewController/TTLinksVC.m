@@ -7,20 +7,39 @@
 //
 
 #import "TTLinksVC.h"
+#import "TTExternalSystemLinksDataSource.h"
+#import "TTExternalSystemLinkDetailsVC.h"
 
-@interface TTLinksVC ()
+@interface TTLinksVC () <UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) TTExternalSystemLinksDataSource *dataSource;
+@property (strong, nonatomic) TTExternalSystemLink *selectedExternalSystemLink;
 @end
 
 @implementation TTLinksVC
+
 - (IBAction)addLinkBtnClicked:(id)sender {
-	[self performSegueWithIdentifier:@"Show ExternalSystemLinkDetailsVC" sender:self];
+	[TTExternalSystemLink createNewExternalSystemLinkOfType:TT_SYS_TYPE_GITHUB];
+}
+
+-(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+	self.selectedExternalSystemLink = [self.dataSource systemLinkAtIndexPath:indexPath];
+	[self performSegueWithIdentifier:@"Show TTExternalSystemLinkDetailsVC" sender:self];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+	if([segue.identifier isEqualToString:@"Show TTExternalSystemLinkDetailsVC"]) {
+		TTExternalSystemLinkDetailsVC *destVC = (TTExternalSystemLinkDetailsVC*)[segue.destinationViewController topViewController];
+		destVC.externalSystemLink = self.selectedExternalSystemLink;
+	}
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+
+	self.tableView.delegate = self;
+	self.dataSource = [[TTExternalSystemLinksDataSource alloc] initAsDataSourceOfTableView:self.tableView];
 }
 
 @end
