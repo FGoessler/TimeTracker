@@ -33,7 +33,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	if([self.dataSource systemLinkAtIndexPath:indexPath].username != nil) {
+	if([self.dataSource systemLinkAtIndexPath:indexPath].username != nil && [self.dataSource systemLinkAtIndexPath:indexPath].password != nil) {
 		[self performSegueWithIdentifier:@"Show TTExternalSystemProjectsListVC" sender:self];
 	} else {
 		[[[UIAlertView alloc] initWithTitle:@"No data!" message:@"You haven't specified a username for this system!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];

@@ -59,6 +59,11 @@
 	[self selectRowWithSysType:self.externalSystemLink.type inPickerView:self.typeSpinner];
 }
 
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+	[self.usernameTxtField resignFirstResponder];
+	[self.passwordTxtField resignFirstResponder];
+}
+
 #pragma mark PickerView
 
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
