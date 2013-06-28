@@ -50,7 +50,7 @@
 		
 		//if this VC is presented to let the user pick a project to sync with, modify the ExternalSystemProjectsListVC and save selections 
 		if(self.projectToSelectLinkFor != nil) {
-			destVC.navigationItem.prompt = @"Select the project that should be synced with the app.";
+			destVC.navigationItem.prompt = @"Select a remote project to sync with.";
 			[destVC setHandlerForRowSelecting:^(UITableView *tableView, NSIndexPath *selectedIndexPath, TTExternalProject *selectedProject) {
 				self.projectToSelectLinkFor.parentSystemLink = [self.dataSource systemLinkAtIndexPath:[self.tableView indexPathForSelectedRow]];
 				self.projectToSelectLinkFor.externalSystemUID = selectedProject.externalSystemProjectId;
@@ -71,7 +71,7 @@
 	
 	//if this VC is presented to let the user pick a project to sync with, modify this VC (add prompt and cancel button)
 	if(self.projectToSelectLinkFor != nil) {
-		self.navigationItem.prompt = @"Select a system you want to sync your project with.";
+		self.navigationItem.prompt = @"Select a system to sync your project with.";
 		self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelBtnClicked)];
 	}
 }

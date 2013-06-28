@@ -14,7 +14,6 @@
 		171B37631778E44000832894 /* TTIssueDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 171B37621778E43F00832894 /* TTIssueDetailsVC.m */; };
 		1732A173177611B8007BDFE5 /* TTExternalSystemLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 1732A172177611B8007BDFE5 /* TTExternalSystemLink.m */; };
 		1732A176177611B8007BDFE5 /* TTLogEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 1732A175177611B8007BDFE5 /* TTLogEntry.m */; };
-		1732A179177611EC007BDFE5 /* TTProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1732A178177611EC007BDFE5 /* TTProject.m */; };
 		1732A17C177611F7007BDFE5 /* TTIssue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1732A17B177611F7007BDFE5 /* TTIssue.m */; };
 		1732A183177613D2007BDFE5 /* TTIssue+TTExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1732A182177613D2007BDFE5 /* TTIssue+TTExtension.m */; };
 		1732A186177613E0007BDFE5 /* TTProject+TTExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1732A185177613E0007BDFE5 /* TTProject+TTExtension.m */; };
@@ -59,6 +58,7 @@
 		17B642D11778B96000EB3B4D /* TTLogEntriesDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B642D01778B96000EB3B4D /* TTLogEntriesDataSource.m */; };
 		17C27DDF177C69A400EE8FC7 /* TTExternalSystemLinkDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C27DDE177C69A400EE8FC7 /* TTExternalSystemLinkDetailsVC.m */; };
 		17C27DF2177C6C2700EE8FC7 /* TTExternalSystemProjectsListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C27DF1177C6C2700EE8FC7 /* TTExternalSystemProjectsListVC.m */; };
+		17FC6191177E460300290FE7 /* TTProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5304C177E2B280004E485 /* TTProject.m */; };
 		AB01E6AC1779931F002F0E40 /* TTIssuesDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = AB01E6AB1779931F002F0E40 /* TTIssuesDataSource.m */; };
 /* End PBXBuildFile section */
 
@@ -196,8 +196,6 @@
 		1732A172177611B8007BDFE5 /* TTExternalSystemLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTExternalSystemLink.m; sourceTree = "<group>"; };
 		1732A174177611B8007BDFE5 /* TTLogEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTLogEntry.h; sourceTree = "<group>"; };
 		1732A175177611B8007BDFE5 /* TTLogEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTLogEntry.m; sourceTree = "<group>"; };
-		1732A177177611EC007BDFE5 /* TTProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTProject.h; sourceTree = "<group>"; };
-		1732A178177611EC007BDFE5 /* TTProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTProject.m; sourceTree = "<group>"; };
 		1732A17A177611F7007BDFE5 /* TTIssue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTIssue.h; sourceTree = "<group>"; };
 		1732A17B177611F7007BDFE5 /* TTIssue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTIssue.m; sourceTree = "<group>"; };
 		1732A181177613D2007BDFE5 /* TTIssue+TTExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TTIssue+TTExtension.h"; sourceTree = "<group>"; };
@@ -259,9 +257,9 @@
 		1781DE681775CDDC00603ED1 /* TTLinksVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTLinksVC.m; sourceTree = "<group>"; };
 		17B53037177E18F20004E485 /* TTMessageOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTMessageOverlay.h; sourceTree = "<group>"; };
 		17B53038177E18F20004E485 /* TTMessageOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTMessageOverlay.m; sourceTree = "<group>"; };
-		17B5304A177E2A9C0004E485 /* timetracker_0_2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = timetracker_0_2.xcdatamodel; sourceTree = "<group>"; };
-		17B5304B177E2B280004E485 /* TTProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTProject.h; path = Model/TTProject.h; sourceTree = "<group>"; };
-		17B5304C177E2B280004E485 /* TTProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTProject.m; path = Model/TTProject.m; sourceTree = "<group>"; };
+		17B5304A177E2A9C0004E485 /* timetracker_0_2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = timetracker_0_2.xcdatamodel; sourceTree = "<group>"; };
+		17B5304B177E2B280004E485 /* TTProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTProject.h; sourceTree = "<group>"; };
+		17B5304C177E2B280004E485 /* TTProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTProject.m; sourceTree = "<group>"; };
 		17B642CC1778A30000EB3B4D /* NSString+TTExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TTExtensions.h"; sourceTree = "<group>"; };
 		17B642CD1778A30000EB3B4D /* NSString+TTExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TTExtensions.m"; sourceTree = "<group>"; };
 		17B642CF1778B96000EB3B4D /* TTLogEntriesDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTLogEntriesDataSource.h; sourceTree = "<group>"; };
@@ -311,10 +309,10 @@
 		1732A17D1776121C007BDFE5 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
+				17B5304B177E2B280004E485 /* TTProject.h */,
+				17B5304C177E2B280004E485 /* TTProject.m */,
 				1732A17A177611F7007BDFE5 /* TTIssue.h */,
 				1732A17B177611F7007BDFE5 /* TTIssue.m */,
-				1732A177177611EC007BDFE5 /* TTProject.h */,
-				1732A178177611EC007BDFE5 /* TTProject.m */,
 				1732A174177611B8007BDFE5 /* TTLogEntry.h */,
 				1732A175177611B8007BDFE5 /* TTLogEntry.m */,
 				1732A171177611B8007BDFE5 /* TTExternalSystemLink.h */,
@@ -427,8 +425,6 @@
 				174DAB45177597AB006057C0 /* TTAppDelegate.m */,
 				174DAB4D177597AB006057C0 /* MainStoryboard.storyboard */,
 				174DAB50177597AB006057C0 /* timetracker.xcdatamodeld */,
-				17B5304B177E2B280004E485 /* TTProject.h */,
-				17B5304C177E2B280004E485 /* TTProject.m */,
 				174DAB3C177597AB006057C0 /* Supporting Files */,
 			);
 			path = timetracker;
@@ -809,6 +805,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17FC6191177E460300290FE7 /* TTProject.m in Sources */,
 				174DAB42177597AB006057C0 /* main.m in Sources */,
 				174DAB46177597AB006057C0 /* TTAppDelegate.m in Sources */,
 				174DAB52177597AB006057C0 /* timetracker.xcdatamodeld in Sources */,
@@ -820,7 +817,6 @@
 				1781DE691775CDDC00603ED1 /* TTLinksVC.m in Sources */,
 				1732A173177611B8007BDFE5 /* TTExternalSystemLink.m in Sources */,
 				1732A176177611B8007BDFE5 /* TTLogEntry.m in Sources */,
-				1732A179177611EC007BDFE5 /* TTProject.m in Sources */,
 				1732A17C177611F7007BDFE5 /* TTIssue.m in Sources */,
 				1732A183177613D2007BDFE5 /* TTIssue+TTExtension.m in Sources */,
 				1732A186177613E0007BDFE5 /* TTProject+TTExtension.m in Sources */,
