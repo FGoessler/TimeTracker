@@ -15,7 +15,13 @@
 @property (strong, nonatomic) NSArray *projects;
 @end
 
-@implementation TTExternalSystemProjectsListVC
+@implementation TTExternalSystemProjectsListVC {
+	TTRowSelectedHandler _handlerForRowSelection;
+}
+
+-(void)setHandlerForRowSelecting:(TTRowSelectedHandler)handler {
+	_handlerForRowSelection = handler;
+}
 
 -(void)loadProjectListFailed:(TTExternalSystemLink *)systemLink {
 	NSLog(@"Failed loading project list...");
@@ -52,6 +58,10 @@
 	cell.textLabel.text = ((TTExternalProject*)self.projects[indexPath.row]).name;
 	
 	return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	_handlerForRowSelection(tableView, indexPath);
 }
 
 

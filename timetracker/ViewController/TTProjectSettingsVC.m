@@ -7,10 +7,12 @@
 //
 
 #import "TTProjectSettingsVC.h"
+#import "TTLinksVC.h"
 #import "TTAppDelegate.h"
 
 @interface TTProjectSettingsVC ()
 @property (weak, nonatomic) IBOutlet UITextField *projectNameTextField;
+@property (weak, nonatomic) IBOutlet UILabel *externaLinkLbl;
 
 @end
 
@@ -45,11 +47,23 @@
 	[self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+	if([segue.identifier isEqualToString:@"Show ChangeExternalLink"]) {
+		TTLinksVC *destVC = (TTLinksVC*)[segue.destinationViewController topViewController];
+		destVC.projectToSelectLinkFor = self.project;
+	}
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
 	
 	self.projectNameTextField.text = self.project.name;
+	if(self.project.parentSystemLink != nil) {
+		self.externaLinkLbl.text = [NSString stringWithFormat:@"%@ @ %@", self.project.parentSystemLink.username, self.project.parentSystemLink.type];
+	} else {
+		self.externaLinkLbl.text = @"no system link configured";
+	}
 }
 
 @end

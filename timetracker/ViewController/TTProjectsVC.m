@@ -58,6 +58,10 @@
 	}
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+	[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:NO];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

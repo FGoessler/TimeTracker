@@ -6,6 +6,21 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="Dke-n5-yY8">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="nKj-QG-bGu" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fbR-qq-Y91">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="eFF-ZP-hzi" kind="relationship" relationship="rootViewController" id="IpE-8F-QZ2"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EKP-Nj-idv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-67" y="374"/>
+        </scene>
         <!--LinksVC - Links-->
         <scene sceneID="O0Z-tk-FgV">
             <objects>
@@ -143,19 +158,52 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Project Link: TODO" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="512-Ev-6AQ">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="synced with:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="512-Ev-6AQ">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="LAt-aV-7Gz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="APIName - Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6g1-Wj-hTe">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="Gv3-MO-3mI"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HRI-C4-j7h">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="23" id="imy-mJ-wOY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="nKj-QG-bGu" kind="modal" identifier="Show ChangeExternalLink" id="sOt-2u-lfJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Cfh-qp-tLC" firstAttribute="leading" secondItem="K92-UM-0ll" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="5YI-G7-amD"/>
                             <constraint firstAttribute="trailing" secondItem="Cfh-qp-tLC" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="8bP-85-7l0"/>
-                            <constraint firstItem="512-Ev-6AQ" firstAttribute="top" secondItem="Cfh-qp-tLC" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Qc1-SB-9SF"/>
+                            <constraint firstItem="512-Ev-6AQ" firstAttribute="top" secondItem="Cfh-qp-tLC" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="AAe-y5-l1a"/>
+                            <constraint firstItem="HRI-C4-j7h" firstAttribute="leading" secondItem="6g1-Wj-hTe" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="DXQ-sj-afd"/>
+                            <constraint firstItem="6g1-Wj-hTe" firstAttribute="leading" secondItem="K92-UM-0ll" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="N0d-l1-NcS"/>
                             <constraint firstItem="Cfh-qp-tLC" firstAttribute="top" secondItem="K92-UM-0ll" secondAttribute="top" constant="20" symbolic="YES" type="default" id="dbR-bl-THQ"/>
+                            <constraint firstAttribute="trailing" secondItem="512-Ev-6AQ" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="igv-3h-cFt"/>
+                            <constraint firstAttribute="trailing" secondItem="HRI-C4-j7h" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="j57-LB-1CH"/>
                             <constraint firstItem="512-Ev-6AQ" firstAttribute="leading" secondItem="K92-UM-0ll" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="mWH-qp-NJr"/>
+                            <constraint firstItem="6g1-Wj-hTe" firstAttribute="top" secondItem="K92-UM-0ll" secondAttribute="top" constant="85" id="pqT-Hw-4Pb"/>
+                            <constraint firstItem="6g1-Wj-hTe" firstAttribute="top" secondItem="HRI-C4-j7h" secondAttribute="top" type="default" id="vuh-xl-yhu"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Project Details" id="fUF-UP-1lj">
@@ -171,6 +219,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="externaLinkLbl" destination="6g1-Wj-hTe" id="eDe-Zv-IxH"/>
                         <outlet property="projectNameTextField" destination="Cfh-qp-tLC" id="JGR-lo-xzn"/>
                     </connections>
                 </viewController>
@@ -867,6 +916,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <class className="TTLinksVC" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TTLinksVC.h"/>
             <relationships>
+                <relationship kind="action" name="addLinkBtnClicked:"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
         </class>
@@ -882,6 +932,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <class className="TTProjectSettingsVC" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TTProjectSettingsVC.h"/>
             <relationships>
+                <relationship kind="outlet" name="externaLinkLbl" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="projectNameTextField" candidateClass="UITextField"/>
             </relationships>
         </class>
@@ -909,5 +960,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="ZFs-Gj-vZw"/>
+        <segue reference="IpE-8F-QZ2"/>
     </inferredMetricsTieBreakers>
 </document>

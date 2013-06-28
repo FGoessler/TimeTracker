@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void (^TTRowSelectedHandler)(UITableView *tableView, NSIndexPath *indexPath);
+
 @interface TTExternalSystemProjectsListVC : UIViewController
 @property (nonatomic, strong) TTExternalSystemLink *externalSystemLink;
+
+-(void)setHandlerForRowSelecting:(TTRowSelectedHandler)handler;
 @end

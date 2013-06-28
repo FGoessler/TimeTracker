@@ -23,13 +23,21 @@
 	[TTExternalSystemLink createNewExternalSystemLinkOfType:TT_SYS_TYPE_GITHUB];
 }
 
+-(void)cancelBtnClicked {
+	[self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
 -(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
 	self.selectedExternalSystemLink = [self.dataSource systemLinkAtIndexPath:indexPath];
 	[self performSegueWithIdentifier:@"Show TTExternalSystemLinkDetailsVC" sender:self];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	[self performSegueWithIdentifier:@"Show TTExternalSystemProjectsListVC" sender:self];
+	if([self.dataSource systemLinkAtIndexPath:indexPath].username != nil) {
+		[self performSegueWithIdentifier:@"Show TTExternalSystemProjectsListVC" sender:self];
+	} else {
+		[[[UIAlertView alloc] initWithTitle:@"No data!" message:@"You haven't specified a username for this system!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+	}
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -39,6 +47,14 @@
 	} else if([segue.identifier isEqualToString:@"Show TTExternalSystemProjectsListVC"]) {
 		TTExternalSystemProjectsListVC *destVC = (TTExternalSystemProjectsListVC*)segue.destinationViewController;
 		destVC.externalSystemLink = [self.dataSource systemLinkAtIndexPath:[self.tableView indexPathForSelectedRow]];
+		
+		//if this VC is presented to let the user pick a project to sync with, modify the ExternalSystemProjectsListVC and save selections 
+		if(self.projectToSelectLinkFor != nil) {
+			destVC.navigationItem.prompt = @"Select the project that should be synced with the app.";
+			[destVC setHandlerForRowSelecting:^(UITableView *tableView, NSIndexPath *indexPath) {
+				self.projectToSelectLinkFor.parentSystemLink = [self.dataSource systemLinkAtIndexPath:[self.tableView indexPathForSelectedRow]];
+			}];
+		}
 	}
 }
 
@@ -48,6 +64,12 @@
 
 	self.tableView.delegate = self;
 	self.dataSource = [[TTExternalSystemLinksDataSource alloc] initAsDataSourceOfTableView:self.tableView];
+	
+	//if this VC is presented to let the user pick a project to sync with, modify this VC (add prompt and cancel button)
+	if(self.projectToSelectLinkFor != nil) {
+		self.navigationItem.prompt = @"Select a system you want to sync your project with.";
+		self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelBtnClicked)];
+	}
 }
 
 @end
