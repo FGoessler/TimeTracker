@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void (^TTRowSelectedHandler)(UITableView *tableView, NSIndexPath *indexPath);
+typedef void (^TTRowSelectedHandler)(UITableView *tableView, NSIndexPath *selectedIndexPath, TTExternalProject *selectedProject);
 
 @interface TTExternalSystemProjectsListVC : UIViewController
 @property (nonatomic, strong) TTExternalSystemLink *externalSystemLink;

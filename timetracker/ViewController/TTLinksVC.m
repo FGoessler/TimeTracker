@@ -51,8 +51,12 @@
 		//if this VC is presented to let the user pick a project to sync with, modify the ExternalSystemProjectsListVC and save selections 
 		if(self.projectToSelectLinkFor != nil) {
 			destVC.navigationItem.prompt = @"Select the project that should be synced with the app.";
-			[destVC setHandlerForRowSelecting:^(UITableView *tableView, NSIndexPath *indexPath) {
+			[destVC setHandlerForRowSelecting:^(UITableView *tableView, NSIndexPath *selectedIndexPath, TTExternalProject *selectedProject) {
 				self.projectToSelectLinkFor.parentSystemLink = [self.dataSource systemLinkAtIndexPath:[self.tableView indexPathForSelectedRow]];
+				self.projectToSelectLinkFor.externalSystemUID = selectedProject.externalSystemProjectId;
+				
+				[self dismissViewControllerAnimated:NO completion:nil];
+				[self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 			}];
 		}
 	}

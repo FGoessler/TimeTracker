@@ -34,7 +34,7 @@
 -(void)loginFailed;
 -(void)loginValid;
 
--(void)loadedProjectList:(NSArray*)projectList forStytemLink:(TTExternalSystemLink*)systemLink;
+-(void)loadedProjectList:(NSArray*)projectList forSystemLink:(TTExternalSystemLink*)systemLink;
 -(void)loadProjectListFailed:(TTExternalSystemLink*)systemLink;
 
 -(void)syncedIssuesOfProject:(TTProject*)project;

@@ -31,20 +31,30 @@
 	OCTUser* user = [OCTUser userWithLogin:systemLink.username server:[OCTServer dotComServer]];
 	OCTClient* client = [OCTClient authenticatedClientWithUser:user password:systemLink.password];
 	
-	RACSignal *repositories = [client fetchUserRepositories];
-	[repositories subscribeNext:^(OCTRepository *repository) {
-		NSLog(@"%@", repository.name);
+	NSMutableArray *repositories = [NSMutableArray array];
+	
+	RACSignal *repositoriesRequest = [client fetchUserRepositories];
+	[repositoriesRequest subscribeNext:^(OCTRepository *repository) {
+		TTExternalProject *project = [[TTExternalProject alloc] init];
+		project.name = repository.name;
+		project.externalSystemProjectId = repository.name;
 		
-		[self.delegate loadedProjectList:@[repository.name] forStytemLink:systemLink];
+		[repositories addObject:project];
 	} error:^(NSError *err) {
 		NSLog(@"%@", err);
 		
-		[self.delegate loadProjectListFailed:systemLink];
+		dispatch_async(dispatch_get_main_queue(), ^(){
+			[self.delegate loadProjectListFailed:systemLink];
+		});
+	} completed:^(){
+		dispatch_async(dispatch_get_main_queue(), ^(){
+			[self.delegate loadedProjectList:repositories forSystemLink:systemLink];
+		});
 	}];
 }
 
 -(void)syncIssuesOfProject:(TTProject *)project {
-	
+	//load all issues from the server and compare them with the issues known to the app (use the externalSystemIdentifier to identify issues)
 }
 
 -(void)syncTimelogEntriesOfIssues:(TTIssue *)issue {
