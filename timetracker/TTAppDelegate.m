@@ -17,6 +17,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 
+	//some appearance settings
+	[[UINavigationBar appearance] setTintColor:UIColorFromRGB(0x224771)];
+	[[UIToolbar appearance] setTintColor:UIColorFromRGB(0x224771)];
+	[[UISearchBar appearance] setTintColor:UIColorFromRGB(0x224771)];
+	
     return YES;
 }
 							
