@@ -7,6 +7,7 @@
 //
 
 #import "TTExternalSystemLink.h"
+#import "TTExternalSystemInterface.h"
 
 #define MOBJ_TTExternalSystemLink @"TTExternalSystemLink"
 
@@ -15,4 +16,5 @@
 @interface TTExternalSystemLink (TTExtension)
 +(NSSet*)getAllSystemLinkTypes;
 +(TTExternalSystemLink*)createNewExternalSystemLinkOfType:(NSString*)type;
++(id<TTExternalSystemInterface>)externalSystemInterfaceForType:(NSString*)type;
 @end

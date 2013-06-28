@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface TTExternalSystemProjectsListVC : UIViewController
-
+@property (nonatomic, strong) TTExternalSystemLink *externalSystemLink;
 @end

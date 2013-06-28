@@ -9,6 +9,7 @@
 #import "TTLinksVC.h"
 #import "TTExternalSystemLinksDataSource.h"
 #import "TTExternalSystemLinkDetailsVC.h"
+#import "TTExternalSystemProjectsListVC.h"
 
 @interface TTLinksVC () <UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -27,10 +28,17 @@
 	[self performSegueWithIdentifier:@"Show TTExternalSystemLinkDetailsVC" sender:self];
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	[self performSegueWithIdentifier:@"Show TTExternalSystemProjectsListVC" sender:self];
+}
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	if([segue.identifier isEqualToString:@"Show TTExternalSystemLinkDetailsVC"]) {
 		TTExternalSystemLinkDetailsVC *destVC = (TTExternalSystemLinkDetailsVC*)[segue.destinationViewController topViewController];
 		destVC.externalSystemLink = self.selectedExternalSystemLink;
+	} else if([segue.identifier isEqualToString:@"Show TTExternalSystemProjectsListVC"]) {
+		TTExternalSystemProjectsListVC *destVC = (TTExternalSystemProjectsListVC*)segue.destinationViewController;
+		destVC.externalSystemLink = [self.dataSource systemLinkAtIndexPath:[self.tableView indexPathForSelectedRow]];
 	}
 }
 

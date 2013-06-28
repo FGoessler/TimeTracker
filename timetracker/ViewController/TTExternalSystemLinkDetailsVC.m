@@ -30,6 +30,8 @@
 	self.externalSystemLink.password = self.passwordTxtField.text;
 	self.externalSystemLink.type = [[[TTExternalSystemLink getAllSystemLinkTypes] allObjects] objectAtIndex:[self.typeSpinner selectedRowInComponent:0]];
 	
+	//TODO: validate user data via API
+	
 	BOOL saved = [((TTAppDelegate*)[[UIApplication sharedApplication] delegate]) saveContextWithErrorHandler:^BOOL(NSError *err) {
 		if([[err userInfo][@"NSValidationErrorKey"] isEqualToString:@"type"]) {
 			//show a message to inform the user about the invalid type

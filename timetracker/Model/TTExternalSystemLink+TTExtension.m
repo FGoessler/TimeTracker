@@ -8,6 +8,7 @@
 
 #import "TTExternalSystemLink+TTExtension.h"
 #import "TTAppDelegate.h"
+#import "TTGitHubAPI.h"
 
 @implementation TTExternalSystemLink (TTExtension)
 
@@ -27,5 +28,13 @@
 	
 	return newSysLink;
 }
+
++(id<TTExternalSystemInterface>)externalSystemInterfaceForType:(NSString*)type {
+	if([type isEqualToString:TT_SYS_TYPE_GITHUB]) {
+		return [[TTGitHubAPI alloc] init];
+	}
+	return nil;
+}
+
 
 @end

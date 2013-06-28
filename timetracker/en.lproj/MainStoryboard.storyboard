@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="13A476u" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Vrb-2H-CbO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="13A497d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Vrb-2H-CbO">
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
         <development version="4600" identifier="xcode"/>
@@ -59,7 +59,7 @@
                     <connections>
                         <outlet property="tableView" destination="rO5-LI-xYz" id="dmB-LT-yrp"/>
                         <segue destination="mVl-on-1NK" kind="modal" identifier="Show TTExternalSystemLinkDetailsVC" modalTransitionStyle="flipHorizontal" id="49j-aG-NEB"/>
-                        <segue destination="314-Vi-OW1" kind="push" identifier="Show " id="3px-zt-Iub"/>
+                        <segue destination="314-Vi-OW1" kind="push" identifier="Show TTExternalSystemProjectsListVC" id="3px-zt-Iub"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aGc-NK-7rV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -846,7 +846,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <class className="TTExternalSystemLinkDetailsVC" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TTExternalSystemLinkDetailsVC.h"/>
             <relationships>
-                <relationship kind="action" name="cancelBtnClicked:"/>
                 <relationship kind="outlet" name="passwordTxtField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="typeSpinner" candidateClass="UIPickerView"/>
                 <relationship kind="outlet" name="usernameTxtField" candidateClass="UITextField"/>
