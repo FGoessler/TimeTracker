@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1706C3D6177A40140090408A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1706C3D5177A40140090408A /* QuartzCore.framework */; };
+		1707AD3D177CD5E8002537C0 /* TTExternalSystemLinksDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1707AD3C177CD5E8002537C0 /* TTExternalSystemLinksDataSource.m */; };
 		171A0AC317774F8300A3D721 /* TTProjectDataManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1732A195177641A1007BDFE5 /* TTProjectDataManagerTest.m */; };
 		171A0AC417774FA500A3D721 /* TTCoreDataTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 171A0ABD1776F0DE00A3D721 /* TTCoreDataTest.m */; };
 		171B37631778E44000832894 /* TTIssueDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 171B37621778E43F00832894 /* TTIssueDetailsVC.m */; };
@@ -21,6 +22,8 @@
 		1732A18C177613FF007BDFE5 /* TTExternalSystemLink+TTExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1732A18B177613FF007BDFE5 /* TTExternalSystemLink+TTExtension.m */; };
 		1732A19117762DEE007BDFE5 /* TTProjectsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1732A19017762DEE007BDFE5 /* TTProjectsDataSource.m */; };
 		1732A199177641B2007BDFE5 /* TTProjectsVCTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1732A198177641B2007BDFE5 /* TTProjectsVCTest.m */; };
+		173B3FF1177D820A009B60C6 /* TTExternalProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 173B3FF0177D820A009B60C6 /* TTExternalProject.m */; };
+		173C9813177C2E88001BCB77 /* TTGitHubAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 173C9812177C2E88001BCB77 /* TTGitHubAPI.m */; };
 		174DAB34177597AB006057C0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 174DAB33177597AB006057C0 /* UIKit.framework */; };
 		174DAB36177597AB006057C0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 174DAB35177597AB006057C0 /* Foundation.framework */; };
 		174DAB38177597AB006057C0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 174DAB37177597AB006057C0 /* CoreGraphics.framework */; };
@@ -51,8 +54,11 @@
 		1781DE631775CDA000603ED1 /* TTLogEntryDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1781DE621775CDA000603ED1 /* TTLogEntryDetailsVC.m */; };
 		1781DE661775CDC000603ED1 /* TTProjectSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1781DE651775CDC000603ED1 /* TTProjectSettingsVC.m */; };
 		1781DE691775CDDC00603ED1 /* TTLinksVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1781DE681775CDDC00603ED1 /* TTLinksVC.m */; };
+		17B53039177E18F20004E485 /* TTMessageOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B53038177E18F20004E485 /* TTMessageOverlay.m */; };
 		17B642CE1778A30000EB3B4D /* NSString+TTExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B642CD1778A30000EB3B4D /* NSString+TTExtensions.m */; };
 		17B642D11778B96000EB3B4D /* TTLogEntriesDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B642D01778B96000EB3B4D /* TTLogEntriesDataSource.m */; };
+		17C27DDF177C69A400EE8FC7 /* TTExternalSystemLinkDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C27DDE177C69A400EE8FC7 /* TTExternalSystemLinkDetailsVC.m */; };
+		17C27DF2177C6C2700EE8FC7 /* TTExternalSystemProjectsListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C27DF1177C6C2700EE8FC7 /* TTExternalSystemProjectsListVC.m */; };
 		AB01E6AC1779931F002F0E40 /* TTIssuesDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = AB01E6AB1779931F002F0E40 /* TTIssuesDataSource.m */; };
 /* End PBXBuildFile section */
 
@@ -180,6 +186,8 @@
 
 /* Begin PBXFileReference section */
 		1706C3D5177A40140090408A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		1707AD3B177CD5E8002537C0 /* TTExternalSystemLinksDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTExternalSystemLinksDataSource.h; sourceTree = "<group>"; };
+		1707AD3C177CD5E8002537C0 /* TTExternalSystemLinksDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTExternalSystemLinksDataSource.m; sourceTree = "<group>"; };
 		171A0ABC1776F0DE00A3D721 /* TTCoreDataTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTCoreDataTest.h; sourceTree = "<group>"; };
 		171A0ABD1776F0DE00A3D721 /* TTCoreDataTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTCoreDataTest.m; sourceTree = "<group>"; };
 		171B37611778E43F00832894 /* TTIssueDetailsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTIssueDetailsVC.h; sourceTree = "<group>"; };
@@ -206,6 +214,11 @@
 		1732A195177641A1007BDFE5 /* TTProjectDataManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTProjectDataManagerTest.m; sourceTree = "<group>"; };
 		1732A197177641B2007BDFE5 /* TTProjectsVCTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTProjectsVCTest.h; sourceTree = "<group>"; };
 		1732A198177641B2007BDFE5 /* TTProjectsVCTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTProjectsVCTest.m; sourceTree = "<group>"; };
+		173B3FEF177D820A009B60C6 /* TTExternalProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTExternalProject.h; sourceTree = "<group>"; };
+		173B3FF0177D820A009B60C6 /* TTExternalProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTExternalProject.m; sourceTree = "<group>"; };
+		173C9811177C2E88001BCB77 /* TTGitHubAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTGitHubAPI.h; sourceTree = "<group>"; };
+		173C9812177C2E88001BCB77 /* TTGitHubAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGitHubAPI.m; sourceTree = "<group>"; };
+		173C9814177C31BC001BCB77 /* TTExternalSystemInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTExternalSystemInterface.h; sourceTree = "<group>"; };
 		174DAB30177597AB006057C0 /* timetracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = timetracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		174DAB33177597AB006057C0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		174DAB35177597AB006057C0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -244,10 +257,19 @@
 		1781DE651775CDC000603ED1 /* TTProjectSettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTProjectSettingsVC.m; sourceTree = "<group>"; };
 		1781DE671775CDDC00603ED1 /* TTLinksVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTLinksVC.h; sourceTree = "<group>"; };
 		1781DE681775CDDC00603ED1 /* TTLinksVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTLinksVC.m; sourceTree = "<group>"; };
+		17B53037177E18F20004E485 /* TTMessageOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTMessageOverlay.h; sourceTree = "<group>"; };
+		17B53038177E18F20004E485 /* TTMessageOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTMessageOverlay.m; sourceTree = "<group>"; };
+		17B5304A177E2A9C0004E485 /* timetracker_0_2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = timetracker_0_2.xcdatamodel; sourceTree = "<group>"; };
+		17B5304B177E2B280004E485 /* TTProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTProject.h; path = Model/TTProject.h; sourceTree = "<group>"; };
+		17B5304C177E2B280004E485 /* TTProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTProject.m; path = Model/TTProject.m; sourceTree = "<group>"; };
 		17B642CC1778A30000EB3B4D /* NSString+TTExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TTExtensions.h"; sourceTree = "<group>"; };
 		17B642CD1778A30000EB3B4D /* NSString+TTExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TTExtensions.m"; sourceTree = "<group>"; };
 		17B642CF1778B96000EB3B4D /* TTLogEntriesDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTLogEntriesDataSource.h; sourceTree = "<group>"; };
 		17B642D01778B96000EB3B4D /* TTLogEntriesDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTLogEntriesDataSource.m; sourceTree = "<group>"; };
+		17C27DDD177C69A400EE8FC7 /* TTExternalSystemLinkDetailsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTExternalSystemLinkDetailsVC.h; sourceTree = "<group>"; };
+		17C27DDE177C69A400EE8FC7 /* TTExternalSystemLinkDetailsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTExternalSystemLinkDetailsVC.m; sourceTree = "<group>"; };
+		17C27DF0177C6C2700EE8FC7 /* TTExternalSystemProjectsListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTExternalSystemProjectsListVC.h; sourceTree = "<group>"; };
+		17C27DF1177C6C2700EE8FC7 /* TTExternalSystemProjectsListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTExternalSystemProjectsListVC.m; sourceTree = "<group>"; };
 		AB01E6AA1779931F002F0E40 /* TTIssuesDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTIssuesDataSource.h; sourceTree = "<group>"; };
 		AB01E6AB1779931F002F0E40 /* TTIssuesDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTIssuesDataSource.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -310,6 +332,8 @@
 				17B642D01778B96000EB3B4D /* TTLogEntriesDataSource.m */,
 				AB01E6AA1779931F002F0E40 /* TTIssuesDataSource.h */,
 				AB01E6AB1779931F002F0E40 /* TTIssuesDataSource.m */,
+				1707AD3B177CD5E8002537C0 /* TTExternalSystemLinksDataSource.h */,
+				1707AD3C177CD5E8002537C0 /* TTExternalSystemLinksDataSource.m */,
 			);
 			name = DataSource;
 			path = DataManager;
@@ -331,6 +355,26 @@
 				1732A198177641B2007BDFE5 /* TTProjectsVCTest.m */,
 			);
 			path = ViewControllerTests;
+			sourceTree = "<group>";
+		};
+		173C97FF177C2C7B001BCB77 /* SystemLinks */ = {
+			isa = PBXGroup;
+			children = (
+				173C9810177C2C86001BCB77 /* GitHub */,
+				173C9814177C31BC001BCB77 /* TTExternalSystemInterface.h */,
+				173B3FEF177D820A009B60C6 /* TTExternalProject.h */,
+				173B3FF0177D820A009B60C6 /* TTExternalProject.m */,
+			);
+			path = SystemLinks;
+			sourceTree = "<group>";
+		};
+		173C9810177C2C86001BCB77 /* GitHub */ = {
+			isa = PBXGroup;
+			children = (
+				173C9811177C2E88001BCB77 /* TTGitHubAPI.h */,
+				173C9812177C2E88001BCB77 /* TTGitHubAPI.m */,
+			);
+			path = GitHub;
 			sourceTree = "<group>";
 		};
 		174DAB27177597AB006057C0 = {
@@ -374,6 +418,7 @@
 		174DAB3B177597AB006057C0 /* timetracker */ = {
 			isa = PBXGroup;
 			children = (
+				173C97FF177C2C7B001BCB77 /* SystemLinks */,
 				17B642C01778A2B600EB3B4D /* Helper */,
 				1732A18E17762D00007BDFE5 /* DataSource */,
 				174DAB7C1775CC39006057C0 /* Model */,
@@ -382,6 +427,8 @@
 				174DAB45177597AB006057C0 /* TTAppDelegate.m */,
 				174DAB4D177597AB006057C0 /* MainStoryboard.storyboard */,
 				174DAB50177597AB006057C0 /* timetracker.xcdatamodeld */,
+				17B5304B177E2B280004E485 /* TTProject.h */,
+				17B5304C177E2B280004E485 /* TTProject.m */,
 				174DAB3C177597AB006057C0 /* Supporting Files */,
 			);
 			path = timetracker;
@@ -439,6 +486,10 @@
 				1781DE681775CDDC00603ED1 /* TTLinksVC.m */,
 				171B37611778E43F00832894 /* TTIssueDetailsVC.h */,
 				171B37621778E43F00832894 /* TTIssueDetailsVC.m */,
+				17C27DDD177C69A400EE8FC7 /* TTExternalSystemLinkDetailsVC.h */,
+				17C27DDE177C69A400EE8FC7 /* TTExternalSystemLinkDetailsVC.m */,
+				17C27DF0177C6C2700EE8FC7 /* TTExternalSystemProjectsListVC.h */,
+				17C27DF1177C6C2700EE8FC7 /* TTExternalSystemProjectsListVC.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -508,6 +559,8 @@
 			children = (
 				17B642CC1778A30000EB3B4D /* NSString+TTExtensions.h */,
 				17B642CD1778A30000EB3B4D /* NSString+TTExtensions.m */,
+				17B53037177E18F20004E485 /* TTMessageOverlay.h */,
+				17B53038177E18F20004E485 /* TTMessageOverlay.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -778,6 +831,12 @@
 				17B642D11778B96000EB3B4D /* TTLogEntriesDataSource.m in Sources */,
 				171B37631778E44000832894 /* TTIssueDetailsVC.m in Sources */,
 				AB01E6AC1779931F002F0E40 /* TTIssuesDataSource.m in Sources */,
+				173C9813177C2E88001BCB77 /* TTGitHubAPI.m in Sources */,
+				17C27DDF177C69A400EE8FC7 /* TTExternalSystemLinkDetailsVC.m in Sources */,
+				17C27DF2177C6C2700EE8FC7 /* TTExternalSystemProjectsListVC.m in Sources */,
+				1707AD3D177CD5E8002537C0 /* TTExternalSystemLinksDataSource.m in Sources */,
+				173B3FF1177D820A009B60C6 /* TTExternalProject.m in Sources */,
+				17B53039177E18F20004E485 /* TTMessageOverlay.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -987,9 +1046,10 @@
 		174DAB50177597AB006057C0 /* timetracker.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				17B5304A177E2A9C0004E485 /* timetracker_0_2.xcdatamodel */,
 				174DAB51177597AB006057C0 /* timetracker.xcdatamodel */,
 			);
-			currentVersion = 174DAB51177597AB006057C0 /* timetracker.xcdatamodel */;
+			currentVersion = 17B5304A177E2A9C0004E485 /* timetracker_0_2.xcdatamodel */;
 			path = timetracker.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

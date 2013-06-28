@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "TTProject+TTExtension.h"
 
-@interface TTProjectSettingsVC : UIViewController
+@interface TTProjectSettingsVC : UITableViewController
 @property (nonatomic, strong) TTProject* project;
 @end
