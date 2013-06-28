@@ -29,7 +29,7 @@ External Links:
 - [x] The user can create several account links for external project management systems like GitHub, JIRA, Pivotal Tracker or similar services (design the system in way it can be expanded easily).
 - [x] The user can link each project with one project that exists in the external project management system (either by choosing an existing service link or creating a new link).
 - [ ] The app will synchronize all issues of this project with the external project management system.
-- [ ] The user can remove links to external project management systems and “unlink” projects from their counterpart in the external project management system.
+- [x] The user can remove links to external project management systems and “unlink” projects from their counterpart in the external project management system.
 - [ ] All log entries are exported to the external project management system - either as comments on the issue or in a similar way, depending on what possibilities the external system offers. This can either happen automatically or on explicit user request.
 
 iCloud:
