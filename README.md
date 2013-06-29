@@ -23,7 +23,7 @@ Tracking:
 
 Report:
 - [ ] The user can view all issues and all log entries to see when he spend how much time on which issue.
-- [ ] The user can see summarized information about the time spent per project and issue.
+- [x] The user can see summarized information about the time spent per project and issue.
 
 External Links:
 - [x] The user can create several account links for external project management systems like GitHub, JIRA, Pivotal Tracker or similar services (design the system in way it can be expanded easily).

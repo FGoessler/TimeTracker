@@ -245,14 +245,14 @@
                         <rect key="frame" x="0.0" y="94" width="320" height="474"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="CB6-vW-esO">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="72" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="CB6-vW-esO">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="IssueCell" textLabel="DPZ-vb-cva" detailTextLabel="m8U-wO-400" style="IBUITableViewCellStyleSubtitle" id="1gt-gs-XPx">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="22" width="320" height="72"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="71"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="33" translatesAutoresizingMaskIntoConstraints="NO" id="DPZ-vb-cva">
@@ -909,7 +909,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <class className="TTChangeIssueVC" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TTChangeIssueVC.h"/>
             <relationships>
-                <relationship kind="action" name="addBtnClicked:"/>
                 <relationship kind="action" name="cancelBtnClicked:"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
@@ -954,7 +953,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <class className="TTProjectSettingsVC" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TTProjectSettingsVC.h"/>
             <relationships>
-                <relationship kind="action" name="doneBtnClicked:"/>
                 <relationship kind="outlet" name="externaLinkLbl" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="projectNameTextField" candidateClass="UITextField"/>
             </relationships>
@@ -968,7 +966,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <class className="TTTrackingVC" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TTTrackingVC.h"/>
             <relationships>
-                <relationship kind="action" name="trackingBtnClicked:"/>
                 <relationship kind="outlet" name="currentIssueLbl" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="timeLbl" candidateClass="UILabel"/>
@@ -984,6 +981,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="J7l-Ou-mqd"/>
-        <segue reference="ZFs-Gj-vZw"/>
+        <segue reference="ZWo-DI-uAx"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -13,6 +13,7 @@
 @interface TTProjectsDataSource() <NSFetchedResultsControllerDelegate>
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, weak) UITableView* tableView;
+@property (nonatomic, strong) NSTimer* pollingTimer;
 @end
 
 @implementation TTProjectsDataSource
@@ -27,13 +28,26 @@
 	if(self) {
 		tableView.DataSource = self;
 		_tableView = tableView;
+		
+		self.pollingTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateRows) userInfo:nil repeats:YES];
 	}
 	
 	return self;
 }
 
+-(void)dealloc {
+	[self.pollingTimer invalidate];
+}
+
 -(TTProject*)projectAtIndexPath:(NSIndexPath*)indexPath {
 	return [self.fetchedResultsController objectAtIndexPath:indexPath];
+}
+
+- (void)updateRows {
+	int numberOfRows = [self tableView:self.tableView numberOfRowsInSection:0];
+	for (int i = 0; i < numberOfRows; i++) {
+		[self configureCell:[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0		]] atIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+	}
 }
 
 #pragma mark - FetchedResultsController
@@ -132,7 +146,7 @@
 -(UITableViewCell*)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath {
 	TTProject *project = [self.fetchedResultsController objectAtIndexPath:indexPath];
 	cell.textLabel.text = project.name;
-	cell.detailTextLabel.text = @"";
+	cell.detailTextLabel.text = [NSString stringWithNSTimeInterval:[((NSNumber*)[project valueForKeyPath:@"childIssues.@sum.childLogEntries.@sum.timeInterval"]) doubleValue]];
 	[cell setNeedsLayout];
 	
 	return cell;
