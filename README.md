@@ -22,7 +22,7 @@ Tracking:
 - [x] The user can delete existing log entries.
 
 Report:
-- [ ] The user can view all issues and all log entries to see when he spend how much time on which issue.
+- [x] The user can view all issues and all log entries to see when he spend how much time on which issue.
 - [x] The user can see summarized information about the time spent per project and issue.
 
 External Links:

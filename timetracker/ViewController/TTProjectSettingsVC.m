@@ -8,6 +8,7 @@
 
 #import "TTProjectSettingsVC.h"
 #import "TTLinksVC.h"
+#import "TTIssueListVC.h"
 #import "TTAppDelegate.h"
 
 @interface TTProjectSettingsVC ()
@@ -57,6 +58,9 @@
 	if([segue.identifier isEqualToString:@"Show ChangeExternalLink"]) {
 		TTLinksVC *destVC = (TTLinksVC*)[segue.destinationViewController topViewController];
 		destVC.projectToSelectLinkFor = self.project;
+	} else if([segue.identifier isEqualToString:@"Show IssueListVC"]) {
+		TTIssueListVC *destVC = segue.destinationViewController;
+		destVC.project = self.project;
 	}
 }
 

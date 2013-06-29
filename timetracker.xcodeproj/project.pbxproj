@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1706C3D6177A40140090408A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1706C3D5177A40140090408A /* QuartzCore.framework */; };
 		1707AD3D177CD5E8002537C0 /* TTExternalSystemLinksDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1707AD3C177CD5E8002537C0 /* TTExternalSystemLinksDataSource.m */; };
+		1709EB58177F8CF900D15786 /* TTIssueListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1709EB57177F8CF900D15786 /* TTIssueListVC.m */; };
 		171A0AC317774F8300A3D721 /* TTProjectDataManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1732A195177641A1007BDFE5 /* TTProjectDataManagerTest.m */; };
 		171A0AC417774FA500A3D721 /* TTCoreDataTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 171A0ABD1776F0DE00A3D721 /* TTCoreDataTest.m */; };
 		171B37631778E44000832894 /* TTIssueDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 171B37621778E43F00832894 /* TTIssueDetailsVC.m */; };
@@ -188,6 +189,8 @@
 		1706C3D5177A40140090408A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		1707AD3B177CD5E8002537C0 /* TTExternalSystemLinksDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTExternalSystemLinksDataSource.h; sourceTree = "<group>"; };
 		1707AD3C177CD5E8002537C0 /* TTExternalSystemLinksDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTExternalSystemLinksDataSource.m; sourceTree = "<group>"; };
+		1709EB56177F8CF900D15786 /* TTIssueListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTIssueListVC.h; sourceTree = "<group>"; };
+		1709EB57177F8CF900D15786 /* TTIssueListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTIssueListVC.m; sourceTree = "<group>"; };
 		171A0ABC1776F0DE00A3D721 /* TTCoreDataTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTCoreDataTest.h; sourceTree = "<group>"; };
 		171A0ABD1776F0DE00A3D721 /* TTCoreDataTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTCoreDataTest.m; sourceTree = "<group>"; };
 		171B37611778E43F00832894 /* TTIssueDetailsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTIssueDetailsVC.h; sourceTree = "<group>"; };
@@ -486,6 +489,8 @@
 				17C27DDE177C69A400EE8FC7 /* TTExternalSystemLinkDetailsVC.m */,
 				17C27DF0177C6C2700EE8FC7 /* TTExternalSystemProjectsListVC.h */,
 				17C27DF1177C6C2700EE8FC7 /* TTExternalSystemProjectsListVC.m */,
+				1709EB56177F8CF900D15786 /* TTIssueListVC.h */,
+				1709EB57177F8CF900D15786 /* TTIssueListVC.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -833,6 +838,7 @@
 				1707AD3D177CD5E8002537C0 /* TTExternalSystemLinksDataSource.m in Sources */,
 				173B3FF1177D820A009B60C6 /* TTExternalProject.m in Sources */,
 				17B53039177E18F20004E485 /* TTMessageOverlay.m in Sources */,
+				1709EB58177F8CF900D15786 /* TTIssueListVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
