@@ -40,7 +40,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FeP-KD-GQX">
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
@@ -193,7 +193,7 @@
                                                         <constraint firstAttribute="width" constant="238" id="ABP-dD-8bA"/>
                                                         <constraint firstAttribute="height" constant="24" id="Hn4-JR-Z9Z"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -255,8 +255,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DPZ-vb-cva">
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="33" translatesAutoresizingMaskIntoConstraints="NO" id="DPZ-vb-cva">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
@@ -720,7 +720,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRX-Ns-LaE">
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
@@ -887,6 +887,78 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             <point key="canvasLocation" x="1478" y="-339"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="TTChangeIssueVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TTChangeIssueVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="TTExternalSystemLinkDetailsVC" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TTExternalSystemLinkDetailsVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="passwordTxtField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="typeSpinner" candidateClass="UIPickerView"/>
+                <relationship kind="outlet" name="usernameTxtField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="TTExternalSystemProjectsListVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TTExternalSystemProjectsListVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="TTIssueDetailsVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TTIssueDetailsVC.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelBtnClicked:"/>
+                <relationship kind="action" name="doneBtnClicked:"/>
+                <relationship kind="outlet" name="descriptionTextField" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="nameTextField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="TTLinksVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TTLinksVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="TTLogEntryDetailsVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TTLogEntryDetailsVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="commentTextField" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="endTimeTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="startTimeTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="timePicker" candidateClass="UIDatePicker"/>
+            </relationships>
+        </class>
+        <class className="TTProjectSettingsVC" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TTProjectSettingsVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="externaLinkLbl" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="projectNameTextField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="TTProjectsVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TTProjectsVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="TTTrackingVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TTTrackingVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="currentIssueLbl" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="timeLbl" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="topView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="trackingBtn" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
@@ -894,6 +966,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="J7l-Ou-mqd"/>
-        <segue reference="ZFs-Gj-vZw"/>
+        <segue reference="ZWo-DI-uAx"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -105,6 +105,13 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
 		TTIssue *issue = [self issueAtIndexPath:indexPath];
+		
+		//do not allow deleting when the issue is loaded from remote system - upload not yet implemented!
+		if(issue.externalSystemUID) {
+			[[[UIAlertView alloc] initWithTitle:@"Action not allowed!" message:@"You cannot delete issues that are synced with external system! Please wait for a later version of the app which might support this feature." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+			return;
+		}
+		
 		[self.project removeChildIssuesObject:issue];
 		
 		if(issue == self.project.defaultIssue) {	//if the user deletes the DefaultIssue try to set a new DefaultIssue and display a error message when this cannot be done.

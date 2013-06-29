@@ -17,6 +17,12 @@
 
 @implementation TTIssueDetailsVC
 - (IBAction)doneBtnClicked:(id)sender {
+	//do not allow editing when the issue is loaded from remote system - upload not yet implemented!
+	if(self.issue.externalSystemUID) {
+		[[[UIAlertView alloc] initWithTitle:@"Action not allowed!" message:@"You cannot change issues that are synced with external system! Please wait for a later version of the app which might support this feature." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+		return;
+	}	
+	
 	self.issue.name = self.nameTextField.text;
 	self.issue.shortText = self.descriptionTextField.text;
 	
