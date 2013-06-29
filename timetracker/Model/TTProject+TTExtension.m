@@ -47,9 +47,15 @@
 }
 
 -(BOOL)addIssueWithName:(NSString *)name andError:(NSError**)err {	
+	return [self addIssueWithName:name shortText:nil externalUID:nil andErrorIndicator:err];
+}
+
+-(BOOL)addIssueWithName:(NSString *)name shortText:(NSString *)text externalUID:(NSString *)uid andErrorIndicator:(NSError**)err {
 	TTIssue *newIssue = [NSEntityDescription insertNewObjectForEntityForName:MOBJ_TTIssue inManagedObjectContext:self.managedObjectContext];
 	
 	newIssue.name = name;
+	newIssue.shortText = text;
+	newIssue.externalSystemUID = uid;
 	newIssue.parentProject = self;
 	
 	return [self.managedObjectContext save:err];

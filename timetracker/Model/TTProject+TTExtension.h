@@ -18,4 +18,6 @@
 @property (nonatomic, strong, readonly) TTIssue* currentIssue;
 
 -(BOOL)addIssueWithName:(NSString *)name andError:(NSError**)err;
+-(BOOL)addIssueWithName:(NSString *)name shortText:(NSString *)text externalUID:(NSString *)uid andErrorIndicator:(NSError**)err;
+
 @end
