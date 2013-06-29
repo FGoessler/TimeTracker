@@ -38,7 +38,7 @@
 	[repositoriesRequest subscribeNext:^(OCTRepository *repository) {
 		TTExternalProject *project = [[TTExternalProject alloc] init];
 		project.name = repository.name;
-		project.externalSystemProjectId = repository.name;
+		project.externalSystemProjectId = [NSString stringWithFormat:@"%@/%@",repository.ownerLogin, repository.name];
 		
 		[repositories addObject:project];
 	} error:^(NSError *err) {
@@ -64,7 +64,7 @@
 		
 	NSMutableArray *issues = [NSMutableArray array];
 	
-	RACSignal *issuesRequest = [client fetchIssuesForRepositoryWithName:project.externalSystemUID ofUser:project.parentSystemLink.username];
+	RACSignal *issuesRequest = [client fetchIssuesForRepositoryWithIdString:project.externalSystemUID];
 	[issuesRequest subscribeNext:^(OCTIssue *externalIssue) {		
 		[issues addObject:externalIssue];
 	} error:^(NSError *err) {
