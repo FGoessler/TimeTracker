@@ -12,6 +12,7 @@
 @interface TTIssueDetailsVC ()
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionTextField;
+@property (weak, nonatomic) IBOutlet UILabel *syncStatusLbl;
 
 @end
 
@@ -19,7 +20,7 @@
 - (IBAction)doneBtnClicked:(id)sender {
 	//do not allow editing when the issue is loaded from remote system - upload not yet implemented!
 	if(self.issue.externalSystemUID) {
-		[[[UIAlertView alloc] initWithTitle:@"Action not allowed!" message:@"You cannot change issues that are synced with external system! Please wait for a later version of the app which might support this feature." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+		[[[UIAlertView alloc] initWithTitle:@"Action not allowed!" message:@"You cannot change issues that are synced with an external system! Please wait for a later version of the app which might support this feature." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
 		return;
 	}	
 	
@@ -66,6 +67,12 @@
 -(void)viewWillAppear:(BOOL)animated {
 	self.nameTextField.text = self.issue.name;
 	self.descriptionTextField.text = self.issue.shortText;
+	
+	if(self.issue.externalSystemUID != nil) {
+		self.syncStatusLbl.text = @"synced with external system";
+	} else {
+		self.syncStatusLbl.text = @"not synced";
+	}
 }
 
 @end

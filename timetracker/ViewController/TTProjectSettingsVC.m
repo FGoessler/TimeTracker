@@ -82,7 +82,7 @@
 	[self.projectNameTextField resignFirstResponder];
 }
 
--(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	if(indexPath.section == 1 && indexPath.row == 0) {
 		[self performSegueWithIdentifier:@"Show ChangeExternalLink" sender:self];
 	}

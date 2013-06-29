@@ -63,7 +63,11 @@
 - (void)createSortedIssuesArray {
 	[self removeNameChangedObserverForAllIssues];
 	self.sortedIssues = [[self.project.childIssues allObjects] sortedArrayUsingComparator:^NSComparisonResult(TTIssue *obj1, TTIssue *obj2){
-		return [obj2.latestLogEntry.startDate compare:obj1.latestLogEntry.startDate];
+		NSComparisonResult compResult = [obj2.latestLogEntry.startDate compare:obj1.latestLogEntry.startDate];
+		if (compResult == NSOrderedSame) {
+			compResult = [obj2.name compare:obj1.name];
+		}
+		return compResult;
 	}];
 	[self registerNameChangedObserverForAllIssues];
 }
@@ -108,7 +112,7 @@
 		
 		//do not allow deleting when the issue is loaded from remote system - upload not yet implemented!
 		if(issue.externalSystemUID) {
-			[[[UIAlertView alloc] initWithTitle:@"Action not allowed!" message:@"You cannot delete issues that are synced with external system! Please wait for a later version of the app which might support this feature." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+			[[[UIAlertView alloc] initWithTitle:@"Action not allowed!" message:@"You cannot delete issues that are synced with an external system! Please wait for a later version of the app which might support this feature." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
 			return;
 		}
 		

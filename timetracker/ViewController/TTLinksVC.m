@@ -55,7 +55,6 @@
 				self.projectToSelectLinkFor.parentSystemLink = [self.dataSource systemLinkAtIndexPath:[self.tableView indexPathForSelectedRow]];
 				self.projectToSelectLinkFor.externalSystemUID = selectedProject.externalSystemProjectId;
 				
-				[self dismissViewControllerAnimated:NO completion:nil];
 				[self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 			}];
 		}

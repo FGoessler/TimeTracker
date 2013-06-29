@@ -65,9 +65,7 @@
 	NSMutableArray *issues = [NSMutableArray array];
 	
 	RACSignal *issuesRequest = [client fetchIssuesForRepositoryWithName:project.externalSystemUID ofUser:project.parentSystemLink.username];
-	[issuesRequest subscribeNext:^(OCTIssue *externalIssue) {
-		NSLog(@"got issue: %@ - %@",externalIssue.title, externalIssue.text);
-		
+	[issuesRequest subscribeNext:^(OCTIssue *externalIssue) {		
 		[issues addObject:externalIssue];
 	} error:^(NSError *err) {
 		NSLog(@"%@", err);
@@ -79,6 +77,7 @@
 		});
 	} completed:^(){
 		//check all issues
+		NSMutableArray *unupdatedIssues = [project.childIssues mutableCopy];
 		for(OCTIssue *externalIssue in issues) {
 			BOOL synced = false;
 			//search for the local counterpart of the external issue
@@ -86,6 +85,7 @@
 				if([localIssue.externalSystemUID isEqualToString:externalIssue.objectID]) {
 					localIssue.name = externalIssue.title;
 					localIssue.shortText = externalIssue.text;
+					[unupdatedIssues removeObject:localIssue];	//issue is synced -> remove from list of unsynced issues
 					synced = true;
 					break;
 				}
@@ -93,7 +93,12 @@
 			//no matching local issue found -> create one
 			if(!synced) {
 				[project addIssueWithName:externalIssue.title shortText:externalIssue.text externalUID:externalIssue.objectID andErrorIndicator:nil];
-			}
+			}			
+		}
+		
+		//iterate over all local issues which do not have an counterpart in the external system and set their externalSystemUID to nil
+		for (TTIssue *issueWithoutExternalCounterpart in unupdatedIssues) {
+			issueWithoutExternalCounterpart.externalSystemUID = nil;
 		}
 		
 		[((TTAppDelegate*)[[UIApplication sharedApplication] delegate]) saveContext];	//TODO: error handling
