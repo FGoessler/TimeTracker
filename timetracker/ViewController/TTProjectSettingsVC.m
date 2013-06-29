@@ -32,9 +32,17 @@
 		return false;	//another error occurred - let the default routine handle this (most likely it crashes the app)
 	}];
 	
-	//dismiss this ViewController if data was saved
 	if(saved) {
+		//dismiss this ViewController if data was saved
 		[self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+		
+		//sync issues with external project if it's configured
+		if(self.project.externalSystemUID != nil && self.project.parentSystemLink != nil) {
+			dispatch_queue_t syncQueue = dispatch_queue_create("de.timetracker.issuesync", 0);
+			dispatch_async(syncQueue, ^{	//do this on a seperate thread!
+				[[TTExternalSystemLink externalSystemInterfaceForType:self.project.parentSystemLink.type] syncIssuesOfProject:self.project];
+			});
+		}
 	}
 }
 - (IBAction)cancelBtnClicked:(id)sender {
@@ -74,7 +82,7 @@
 	[self.projectNameTextField resignFirstResponder];
 }
 
--(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	if(indexPath.section == 1 && indexPath.row == 0) {
 		[self performSegueWithIdentifier:@"Show ChangeExternalLink" sender:self];
 	}
