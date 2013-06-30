@@ -50,6 +50,9 @@
 		NSLog(@"FEHLER! %@", err);	//TODO!
 	}
 	
+	
+	[[TTExternalSystemLink externalSystemInterfaceForType:self.project.parentSystemLink.type] syncTimelogEntriesOfIssues:self.currentIssue];
+	
 	[self updateViews];
 }
 

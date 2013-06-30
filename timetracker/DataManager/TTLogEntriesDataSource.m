@@ -122,8 +122,11 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
 		TTLogEntry *logEntry = [self logEntryAtIndexPath:indexPath];
+		TTIssue *parentIssue = logEntry.parentIssue;
 		[[self appDelegate].managedObjectContext deleteObject:logEntry];
 		[[self appDelegate] saveContext];
+		
+		[[TTExternalSystemLink externalSystemInterfaceForType:parentIssue.parentProject.parentSystemLink.type] syncTimelogEntriesOfIssues:parentIssue];
     }
 }
 

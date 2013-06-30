@@ -71,7 +71,7 @@
 		NSLog(@"%@", err);
 		
 		dispatch_async(dispatch_get_main_queue(), ^(){	//make sure to perform the callback on the main thread (otherwise no UI interaction!)
-			if(self.delegate && [self.delegate respondsToSelector:@selector(loadProjectListFailed:)]) {
+			if(self.delegate && [self.delegate respondsToSelector:@selector(syncingIssuesOfProjectFailed:)]) {
 				[self.delegate syncingIssuesOfProjectFailed:project];
 			}
 		});
@@ -104,7 +104,7 @@
 		[((TTAppDelegate*)[[UIApplication sharedApplication] delegate]) saveContext];	//TODO: error handling
 		
 		dispatch_async(dispatch_get_main_queue(), ^(){	//make sure to perform the callback on the main thread (otherwise no UI interaction!)
-			if(self.delegate && [self.delegate respondsToSelector:@selector(loadProjectListFailed:)]) {
+			if(self.delegate && [self.delegate respondsToSelector:@selector(syncedIssuesOfProject:)]) {
 				[self.delegate syncedIssuesOfProject:project];
 			}
 		});
@@ -112,7 +112,129 @@
 }
 
 -(void)syncTimelogEntriesOfIssues:(TTIssue *)issue {
+	if(issue.externalSystemUID == nil) {
+		return;
+	}
 	
+	OCTUser* user = [OCTUser userWithLogin:issue.parentProject.parentSystemLink.username server:[OCTServer dotComServer]];
+	OCTClient* client = [OCTClient authenticatedClientWithUser:user password:issue.parentProject.parentSystemLink.password];
+	
+	__block BOOL updated = false;
+	
+	OCTIssue *gitHubIssue = [[OCTIssue alloc] initWithDictionary:@{@"objectID":issue.externalSystemUID} error:nil];
+	NSRange dividerPosition = [issue.parentProject.externalSystemUID rangeOfString:@"/"];;
+	NSString *ownerName = [issue.parentProject.externalSystemUID substringToIndex:dividerPosition.location];
+	NSString *repositoryName = [issue.parentProject.externalSystemUID substringFromIndex:dividerPosition.location+1];
+	OCTRepository *gitHubRepro = [[OCTRepository alloc] initWithDictionary:@{@"ownerLogin":ownerName, @"name":repositoryName} error:nil];
+	
+	RACSignal *commentsReuqest = [client fetchCommentsForIssue:gitHubIssue inRepository:gitHubRepro];
+	[commentsReuqest subscribeNext:^(OCTIssueComment *comment) {
+		//check each comment if it contains TimeTracker information and update those information if its invalid		
+		if([comment.text rangeOfString:[NSString stringWithFormat:@"[# TimeTracker : %@ #]", issue.parentProject.parentSystemLink.username]].location != NSNotFound) {
+			NSString *newCommentText = [self createTimelogCommentForIssue:issue];
+			
+			if(newCommentText != nil) {		//only add a comment when some time tracking information exist!
+				NSMutableDictionary *newData = [[comment dictionaryValue] mutableCopy];
+				[newData setValue:newCommentText forKey:@"text"];
+				OCTIssueComment *newComment = [[OCTIssueComment alloc] initWithDictionary:newData error:nil];
+				
+				RACSignal *createCommentRequest = [client updateComment:newComment inRepository:gitHubRepro];
+				[createCommentRequest subscribeError:^(NSError *err) {
+					NSLog(@"%@", err);
+					
+					dispatch_async(dispatch_get_main_queue(), ^(){	//make sure to perform the callback on the main thread (otherwise no UI interaction!)
+						if(self.delegate && [self.delegate respondsToSelector:@selector(syncingTimelogEntriesOfIssueFailed:)]) {
+							[self.delegate syncingTimelogEntriesOfIssueFailed:issue];
+						}
+					});
+				} completed:^() {
+					dispatch_async(dispatch_get_main_queue(), ^(){	//make sure to perform the callback on the main thread (otherwise no UI interaction!)
+						if(self.delegate && [self.delegate respondsToSelector:@selector(syncedTimelogEntriesOfIssue:)]) {
+							[self.delegate syncedTimelogEntriesOfIssue:issue];
+						}
+					});
+				}];
+			} else {	//since there's no tracking information delete this outdated comment				
+				RACSignal *deleteCommentRequest = [client deleteComment:comment inRepository:gitHubRepro];
+				[deleteCommentRequest subscribeError:^(NSError *err) {
+					NSLog(@"%@", err);
+					
+					dispatch_async(dispatch_get_main_queue(), ^(){	//make sure to perform the callback on the main thread (otherwise no UI interaction!)
+						if(self.delegate && [self.delegate respondsToSelector:@selector(syncingTimelogEntriesOfIssueFailed:)]) {
+							[self.delegate syncingTimelogEntriesOfIssueFailed:issue];
+						}
+					});
+				} completed:^() {
+					dispatch_async(dispatch_get_main_queue(), ^(){	//make sure to perform the callback on the main thread (otherwise no UI interaction!)
+						if(self.delegate && [self.delegate respondsToSelector:@selector(syncedTimelogEntriesOfIssue:)]) {
+							[self.delegate syncedTimelogEntriesOfIssue:issue];
+						}
+					});
+				}];
+			}
+						
+			updated = true;
+		}
+		
+	} error:^(NSError *err) {
+		NSLog(@"%@", err);
+		
+		dispatch_async(dispatch_get_main_queue(), ^(){	//make sure to perform the callback on the main thread (otherwise no UI interaction!)
+			if(self.delegate && [self.delegate respondsToSelector:@selector(loadProjectListFailed:)]) {
+				[self.delegate syncingTimelogEntriesOfIssueFailed:issue];
+			}
+		});
+	} completed:^(){
+		//if no comment exists -> create one 
+		if(!updated) {
+			NSString *newCommentText = [self createTimelogCommentForIssue:issue];
+			
+			if(newCommentText != nil) {		//only add a comment when some time tracking information exist!
+				OCTIssueComment *newComment = [[OCTIssueComment alloc] initWithDictionary:@{@"text": newCommentText} error:nil];
+				
+				RACSignal *createCommentRequest = [client createComment:newComment forIssue:gitHubIssue inRepository:gitHubRepro];
+				[createCommentRequest subscribeError:^(NSError *err) {
+					NSLog(@"%@", err);
+					
+					dispatch_async(dispatch_get_main_queue(), ^(){	//make sure to perform the callback on the main thread (otherwise no UI interaction!)
+						if(self.delegate && [self.delegate respondsToSelector:@selector(syncingTimelogEntriesOfIssueFailed:)]) {
+							[self.delegate syncingTimelogEntriesOfIssueFailed:issue];
+						}
+					});
+				} completed:^() {
+					dispatch_async(dispatch_get_main_queue(), ^(){	//make sure to perform the callback on the main thread (otherwise no UI interaction!)
+						if(self.delegate && [self.delegate respondsToSelector:@selector(syncedTimelogEntriesOfIssue:)]) {
+							[self.delegate syncedTimelogEntriesOfIssue:issue];
+						}
+					});
+				}];
+			}
+		}
+	}];
+}
+
+-(NSString*)createTimelogCommentForIssue:(TTIssue*)issue {
+	if([issue.childLogEntries count] == 0) {
+		return nil;
+	}
+	
+	NSMutableString *comment = [@""  mutableCopy];
+	
+	[comment appendFormat:@"[# TimeTracker : %@ #]\n", issue.parentProject.parentSystemLink.username];
+	
+	for (TTLogEntry *logEntry in issue.childLogEntries) {
+		if(logEntry.endDate == nil) {
+			[comment appendFormat:@"[# in progress since: %@ #]\n",[NSString stringWithNSDate:logEntry.startDate]];
+		}else if(logEntry.comment != nil && ![logEntry.comment isEqualToString:@""]) {
+			[comment appendFormat:@"[# from: %@ until: %@ = %@ : %@ #]\n",[NSString stringWithNSDate:logEntry.startDate],[NSString stringWithNSDate:logEntry.endDate], [NSString stringWithNSTimeInterval:logEntry.timeInterval], logEntry.comment];
+		} else {			
+			[comment appendFormat:@"[# from: %@ until: %@ = %@ #]\n",[NSString stringWithNSDate:logEntry.startDate],[NSString stringWithNSDate:logEntry.endDate], [NSString stringWithNSTimeInterval:logEntry.timeInterval]];
+		}
+	}
+	
+	[comment appendString:@"[# TimeTracker #]"];
+	
+	return comment;
 }
 
 @end
