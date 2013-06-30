@@ -30,7 +30,7 @@ External Links:
 - [x] The user can link each project with one project that exists in the external project management system (either by choosing an existing service link or creating a new link).
 - [x] The app will synchronize all issues of this project with the external project management system.
 - [x] The user can remove links to external project management systems and “unlink” projects from their counterpart in the external project management system.
-- [ ] All log entries are exported to the external project management system - either as comments on the issue or in a similar way, depending on what possibilities the external system offers. This can either happen automatically or on explicit user request.
+- [x] All log entries are exported to the external project management system - either as comments on the issue or in a similar way, depending on what possibilities the external system offers. This can either happen automatically or on explicit user request.
 
 iCloud:
 - [ ] The user can sync their data via iCloud between different iOS devices
