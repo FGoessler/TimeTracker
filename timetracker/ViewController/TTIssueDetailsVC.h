@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TTIssueDetailsVC : UIViewController
+@interface TTIssueDetailsVC : UITableViewController
 @property (nonatomic, strong) TTIssue *issue;
 @end
