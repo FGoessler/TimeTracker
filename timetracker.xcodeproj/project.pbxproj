@@ -309,6 +309,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1709EB691780AB2400D15786 /* ExternalSystemLinkSettings */ = {
+			isa = PBXGroup;
+			children = (
+				1781DE671775CDDC00603ED1 /* TTLinksVC.h */,
+				1781DE681775CDDC00603ED1 /* TTLinksVC.m */,
+				17C27DDD177C69A400EE8FC7 /* TTExternalSystemLinkDetailsVC.h */,
+				17C27DDE177C69A400EE8FC7 /* TTExternalSystemLinkDetailsVC.m */,
+				17C27DF0177C6C2700EE8FC7 /* TTExternalSystemProjectsListVC.h */,
+				17C27DF1177C6C2700EE8FC7 /* TTExternalSystemProjectsListVC.m */,
+			);
+			name = ExternalSystemLinkSettings;
+			sourceTree = "<group>";
+		};
+		1709EB6A1780AB3F00D15786 /* Tracking */ = {
+			isa = PBXGroup;
+			children = (
+				1781DE5B1775CD1300603ED1 /* TTTrackingVC.h */,
+				1781DE5C1775CD1300603ED1 /* TTTrackingVC.m */,
+				1781DE5E1775CD3900603ED1 /* TTChangeIssueVC.h */,
+				1781DE5F1775CD3900603ED1 /* TTChangeIssueVC.m */,
+				1781DE611775CDA000603ED1 /* TTLogEntryDetailsVC.h */,
+				1781DE621775CDA000603ED1 /* TTLogEntryDetailsVC.m */,
+				171B37611778E43F00832894 /* TTIssueDetailsVC.h */,
+				171B37621778E43F00832894 /* TTIssueDetailsVC.m */,
+				1709EB56177F8CF900D15786 /* TTIssueListVC.h */,
+				1709EB57177F8CF900D15786 /* TTIssueListVC.m */,
+			);
+			name = Tracking;
+			sourceTree = "<group>";
+		};
+		1709EB6B1780AB5800D15786 /* Projects */ = {
+			isa = PBXGroup;
+			children = (
+				1781DE581775CCF100603ED1 /* TTProjectsVC.h */,
+				1781DE591775CCF100603ED1 /* TTProjectsVC.m */,
+				1781DE641775CDC000603ED1 /* TTProjectSettingsVC.h */,
+				1781DE651775CDC000603ED1 /* TTProjectSettingsVC.m */,
+			);
+			name = Projects;
+			sourceTree = "<group>";
+		};
 		1732A17D1776121C007BDFE5 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
@@ -471,26 +512,9 @@
 		174DAB7B1775CC32006057C0 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				1781DE581775CCF100603ED1 /* TTProjectsVC.h */,
-				1781DE591775CCF100603ED1 /* TTProjectsVC.m */,
-				1781DE5B1775CD1300603ED1 /* TTTrackingVC.h */,
-				1781DE5C1775CD1300603ED1 /* TTTrackingVC.m */,
-				1781DE5E1775CD3900603ED1 /* TTChangeIssueVC.h */,
-				1781DE5F1775CD3900603ED1 /* TTChangeIssueVC.m */,
-				1781DE611775CDA000603ED1 /* TTLogEntryDetailsVC.h */,
-				1781DE621775CDA000603ED1 /* TTLogEntryDetailsVC.m */,
-				1781DE641775CDC000603ED1 /* TTProjectSettingsVC.h */,
-				1781DE651775CDC000603ED1 /* TTProjectSettingsVC.m */,
-				1781DE671775CDDC00603ED1 /* TTLinksVC.h */,
-				1781DE681775CDDC00603ED1 /* TTLinksVC.m */,
-				171B37611778E43F00832894 /* TTIssueDetailsVC.h */,
-				171B37621778E43F00832894 /* TTIssueDetailsVC.m */,
-				17C27DDD177C69A400EE8FC7 /* TTExternalSystemLinkDetailsVC.h */,
-				17C27DDE177C69A400EE8FC7 /* TTExternalSystemLinkDetailsVC.m */,
-				17C27DF0177C6C2700EE8FC7 /* TTExternalSystemProjectsListVC.h */,
-				17C27DF1177C6C2700EE8FC7 /* TTExternalSystemProjectsListVC.m */,
-				1709EB56177F8CF900D15786 /* TTIssueListVC.h */,
-				1709EB57177F8CF900D15786 /* TTIssueListVC.m */,
+				1709EB6B1780AB5800D15786 /* Projects */,
+				1709EB6A1780AB3F00D15786 /* Tracking */,
+				1709EB691780AB2400D15786 /* ExternalSystemLinkSettings */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
