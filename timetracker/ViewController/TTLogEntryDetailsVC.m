@@ -13,7 +13,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *startTimeTextField;
 @property (weak, nonatomic) IBOutlet UITextField *endTimeTextField;
 @property (weak, nonatomic) IBOutlet UITextView *commentTextField;
-@property (weak, nonatomic) IBOutlet UIDatePicker *timePicker;
+@property (weak, nonatomic) IBOutlet UIDatePicker *startPicker;
+@property (weak, nonatomic) IBOutlet UIDatePicker *endPicker;
 
 @property (weak, nonatomic) UITextField *currentTxtField;
 @end
@@ -69,28 +70,31 @@
 	self.currentTxtField = sender;
 	[self.currentTxtField resignFirstResponder];
 	
-	self.timePicker.hidden = NO;
 	
-	NSDate *pickerDate = [NSDate date];
+	//self.timePicker.hidden = NO;
+
+	UIDatePicker *picker;
 	if(self.currentTxtField == self.startTimeTextField && self.logEntry.startDate != nil) {
-		pickerDate = self.logEntry.startDate;
+		picker = self.startPicker;
+		picker.date = self.logEntry.startDate;
 	} else if(self.currentTxtField == self.endTimeTextField && self.logEntry.endDate != nil) {
-		pickerDate = self.logEntry.endDate;
-	}
-	self.timePicker.date = pickerDate;
-}
-
-- (IBAction)pickerChanged:(id)sender {
-	if(self.currentTxtField == self.startTimeTextField) {
-		self.logEntry.startDate = self.timePicker.date;
-	} else if(self.currentTxtField == self.endTimeTextField) {
-		self.logEntry.endDate = self.timePicker.date;
+		picker = self.startPicker;
+		picker.date = self.logEntry.endDate;
 	}
 }
 
-#pragma mark Comment Text Field
+- (IBAction)startPickerChanged:(id)sender {
+	self.logEntry.startDate = self.startPicker.date;
+}
+- (IBAction)endPickerChanged:(id)sender {
+	self.logEntry.endDate = self.endPicker.date;
+}
 
-
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+	[self.startTimeTextField resignFirstResponder];
+	[self.endTimeTextField resignFirstResponder];
+	[self.commentTextField resignFirstResponder];
+}
 
 #pragma mark KVO
 
@@ -110,6 +114,7 @@
 
 -(void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
+	
 	
 	self.startTimeTextField.text = [NSString stringWithNSDate: self.logEntry.startDate];
 	if(self.logEntry.endDate) {

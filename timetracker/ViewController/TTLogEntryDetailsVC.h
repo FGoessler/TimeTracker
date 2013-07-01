@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TTLogEntryDetailsVC : UIViewController
+@interface TTLogEntryDetailsVC : UITableViewController
 @property (nonatomic, strong) TTLogEntry *logEntry;
 @end

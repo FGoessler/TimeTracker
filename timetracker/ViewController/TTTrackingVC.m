@@ -26,10 +26,18 @@
 @end
 
 @implementation TTTrackingVC
+@synthesize currentIssue = _currentIssue;
 
 -(void)setProject:(TTProject *)project {
 	_project = project;
 	self.currentIssue = self.project.currentIssue;
+}
+
+-(TTIssue*)currentIssue {
+	if(_currentIssue == nil || _currentIssue.name == nil) {
+		_currentIssue = self.project.currentIssue;
+	}
+	return _currentIssue;
 }
 -(void)setCurrentIssue:(TTIssue *)currentIssue {
 	_currentIssue = currentIssue;
