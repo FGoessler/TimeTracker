@@ -64,7 +64,8 @@
 		
 	NSMutableArray *issues = [NSMutableArray array];
 	
-	RACSignal *issuesRequest = [client fetchIssuesForRepositoryWithIdString:project.externalSystemUID];
+	//load all open issues from github
+	RACSignal *issuesRequest = [client fetchIssuesForRepositoryWithIdString:project.externalSystemUID withOptions:@{@"state":@"open"}];
 	[issuesRequest subscribeNext:^(OCTIssue *externalIssue) {		
 		[issues addObject:externalIssue];
 	} error:^(NSError *err) {
@@ -76,38 +77,53 @@
 			}
 		});
 	} completed:^(){
-		//check all issues
-		NSMutableArray *unupdatedIssues = [project.childIssues mutableCopy];
-		for(OCTIssue *externalIssue in issues) {
-			BOOL synced = false;
-			//search for the local counterpart of the external issue
-			for (TTIssue *localIssue in project.childIssues) {
-				if([localIssue.externalSystemUID isEqualToString:externalIssue.objectID]) {
-					localIssue.name = externalIssue.title;
-					localIssue.shortText = externalIssue.text;
-					[unupdatedIssues removeObject:localIssue];	//issue is synced -> remove from list of unsynced issues
-					synced = true;
-					break;
+		//load all closed issues from github
+		RACSignal *issuesRequest = [client fetchIssuesForRepositoryWithIdString:project.externalSystemUID withOptions:@{@"state":@"closed"}];
+		[issuesRequest subscribeNext:^(OCTIssue *externalIssue) {
+			[externalIssue setValue:[NSString stringWithFormat:@"CLOSED - %@", externalIssue.title] forKey:@"title"];
+			[issues addObject:externalIssue];
+		} error:^(NSError *err) {
+			NSLog(@"%@", err);
+			
+			dispatch_async(dispatch_get_main_queue(), ^(){	//make sure to perform the callback on the main thread (otherwise no UI interaction!)
+				if(self.delegate && [self.delegate respondsToSelector:@selector(syncingIssuesOfProjectFailed:)]) {
+					[self.delegate syncingIssuesOfProjectFailed:project];
+				}
+			});
+		} completed:^(){
+			//check all issues
+			NSMutableArray *unupdatedIssues = [project.childIssues mutableCopy];
+			for(OCTIssue *externalIssue in issues) {
+				BOOL synced = false;
+				//search for the local counterpart of the external issue
+				for (TTIssue *localIssue in project.childIssues) {
+					if([localIssue.externalSystemUID isEqualToString:externalIssue.objectID]) {
+						localIssue.name = externalIssue.title;
+						localIssue.shortText = externalIssue.text;
+						[unupdatedIssues removeObject:localIssue];	//issue is synced -> remove from list of unsynced issues
+						synced = true;
+						break;
+					}
+				}
+				//no matching local issue found -> create one
+				if(!synced) {
+					[project addIssueWithName:externalIssue.title shortText:externalIssue.text externalUID:externalIssue.objectID andErrorIndicator:nil];
 				}
 			}
-			//no matching local issue found -> create one
-			if(!synced) {
-				[project addIssueWithName:externalIssue.title shortText:externalIssue.text externalUID:externalIssue.objectID andErrorIndicator:nil];
-			}			
-		}
-		
-		//iterate over all local issues which do not have an counterpart in the external system and set their externalSystemUID to nil
-		for (TTIssue *issueWithoutExternalCounterpart in unupdatedIssues) {
-			issueWithoutExternalCounterpart.externalSystemUID = nil;
-		}
-		
-		[((TTAppDelegate*)[[UIApplication sharedApplication] delegate]) saveContext];	//TODO: error handling
-		
-		dispatch_async(dispatch_get_main_queue(), ^(){	//make sure to perform the callback on the main thread (otherwise no UI interaction!)
-			if(self.delegate && [self.delegate respondsToSelector:@selector(syncedIssuesOfProject:)]) {
-				[self.delegate syncedIssuesOfProject:project];
+			
+			//iterate over all local issues which do not have an counterpart in the external system and set their externalSystemUID to nil
+			for (TTIssue *issueWithoutExternalCounterpart in unupdatedIssues) {
+				issueWithoutExternalCounterpart.externalSystemUID = nil;
 			}
-		});
+			
+			[((TTAppDelegate*)[[UIApplication sharedApplication] delegate]) saveContext];	//TODO: error handling
+			
+			dispatch_async(dispatch_get_main_queue(), ^(){	//make sure to perform the callback on the main thread (otherwise no UI interaction!)
+				if(self.delegate && [self.delegate respondsToSelector:@selector(syncedIssuesOfProject:)]) {
+					[self.delegate syncedIssuesOfProject:project];
+				}
+			});
+		}];
 	}];
 }
 
