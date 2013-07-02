@@ -14,6 +14,7 @@
 @interface TTProjectSettingsVC ()
 @property (weak, nonatomic) IBOutlet UITextField *projectNameTextField;
 @property (weak, nonatomic) IBOutlet UILabel *externaLinkLbl;
+@property (weak, nonatomic) IBOutlet UILabel *timeSpentLbl;
 
 @end
 
@@ -73,6 +74,8 @@
 
 -(void)updateViews {
 	self.projectNameTextField.text = self.project.name;
+	self.timeSpentLbl.text = [NSString stringWithFormat:@"Time spent on project: %@", [NSString stringWithNSTimeInterval:[((NSNumber*)[self.project valueForKeyPath:@"childIssues.@sum.childLogEntries.@sum.timeInterval"]) doubleValue]]];
+	
 	if(self.project.parentSystemLink != nil) {
 		self.externaLinkLbl.text = [NSString stringWithFormat:@"%@@%@ - %@", self.project.parentSystemLink.username, self.project.parentSystemLink.type, self.project.externalSystemUID];
 	} else {

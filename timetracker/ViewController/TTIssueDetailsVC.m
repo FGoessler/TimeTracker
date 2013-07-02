@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionTextField;
 @property (weak, nonatomic) IBOutlet UILabel *syncStatusLbl;
+@property (weak, nonatomic) IBOutlet UILabel *timeSpentLbl;
 
 @end
 
@@ -67,6 +68,7 @@
 -(void)viewWillAppear:(BOOL)animated {
 	self.nameTextField.text = self.issue.name;
 	self.descriptionTextField.text = self.issue.shortText;
+	self.timeSpentLbl.text = [NSString stringWithNSTimeInterval:[((NSNumber*)[self.issue valueForKeyPath:@"childLogEntries.@sum.timeInterval"]) doubleValue]];
 	
 	if(self.issue.externalSystemUID != nil) {
 		self.syncStatusLbl.text = @"synced with external system";
