@@ -21,6 +21,13 @@
 	return latestLogEntry;
 }
 
+-(TTLogEntry*)createNewUnsavedLogEntry {
+	TTLogEntry *newLogEntry = [NSEntityDescription insertNewObjectForEntityForName:MOBJ_TTLogEntry inManagedObjectContext:self.managedObjectContext];
+	newLogEntry.parentIssue = self;
+	
+	return newLogEntry;
+}
+
 -(BOOL)startTracking:(NSError**)err {
 	if (self.latestLogEntry.startDate != nil && self.latestLogEntry.endDate == nil) {	//do not allow to start tracking while a log entry is still active
 		*err = [NSError errorWithDomain:@"TTModelError" code:TTLOG_ENTRY_STILL_ACTIVE userInfo:nil];
@@ -28,8 +35,7 @@
 	}
 	
 	//create new log entry
-	TTLogEntry *newLogEntry = [NSEntityDescription insertNewObjectForEntityForName:MOBJ_TTLogEntry inManagedObjectContext:self.managedObjectContext];
-	newLogEntry.startDate = [NSDate date];
+	TTLogEntry *newLogEntry = [self createNewUnsavedLogEntry];
 	newLogEntry.parentIssue = self;
 
 	return [self.managedObjectContext save:err];

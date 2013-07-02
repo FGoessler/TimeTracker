@@ -64,6 +64,10 @@
 	[self updateViews];
 }
 
+-(void)newTimelogEntryBtnClicked {
+	[self performSegueWithIdentifier:@"Show TTLogEntryDetailsVC for new TTLogEntry" sender:self];
+}
+
 //This method updates all views.
 -(void)updateViews {	
 	self.currentIssueLbl.text = [NSString stringWithFormat:@"Current Issue: %@", self.currentIssue.name];	//Show the name of the current issue
@@ -87,8 +91,14 @@
 	if([segue.identifier isEqualToString:@"Show TTLogEntryDetailsVC"]) {
 		TTLogEntryDetailsVC *destVC = (TTLogEntryDetailsVC*)[segue.destinationViewController topViewController];
 		destVC.logEntry = [self.dataSource logEntryAtIndexPath:[self.tableView indexPathForSelectedRow]];
+	} else if([segue.identifier isEqualToString:@"Show TTLogEntryDetailsVC for new TTLogEntry"]) {
+		TTLogEntryDetailsVC *destVC = (TTLogEntryDetailsVC*)[segue.destinationViewController topViewController];
+		destVC.logEntry = [self.currentIssue createNewUnsavedLogEntry];
+		destVC.logEntry.startDate = [NSDate date];
+		destVC.logEntry.endDate = [NSDate date];
 	} else if([segue.identifier isEqualToString:@"Show TTIssueDetailsVC"]) {
 		TTIssueDetailsVC *destVC = (TTIssueDetailsVC*)[segue.destinationViewController topViewController];
+		destVC.issue = self.currentIssue;
 		destVC.issue = self.currentIssue;
 	} else if([segue.identifier isEqualToString:@"Show TTChangeIssueVC"]) {
 		TTChangeIssueVC *destVC = (TTChangeIssueVC*)[segue.destinationViewController topViewController];
@@ -103,10 +113,14 @@
 	//configure the tableView
 	self.tableView.delegate = self;
 	self.dataSource = [[TTLogEntriesDataSource alloc] initWithIssue:self.currentIssue asDataSourceOfTableView:self.tableView];
+	
+	self.tableView.tableHeaderView = [[UILabel alloc] init];
 }
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+	
+	[self configureTableHeaderView];
 	
 	[self updateViews];
 	
@@ -119,6 +133,33 @@
 
 -(void)viewWillDisappear:(BOOL)animated {
 	[self.pollingTimer invalidate];		//stop the timer when view disappears - don't waste computation time! 
+}
+
+
+-(void)configureTableHeaderView {
+	UIView *container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+	container.layer.borderWidth = 1.0;
+	container.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
+	label.text = @"Create a new Log Entry...";
+	label.translatesAutoresizingMaskIntoConstraints = NO;
+	UIButton *button = [UIButton buttonWithType:UIButtonTypeContactAdd];
+	button.translatesAutoresizingMaskIntoConstraints = NO;
+	
+	[container addSubview:label];
+	[container addSubview:button];
+	
+	self.tableView.tableHeaderView = container;
+	
+	[container addConstraint:[NSLayoutConstraint constraintWithItem:container attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:label attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0]];
+	[container addConstraint:[NSLayoutConstraint constraintWithItem:container attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:button attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0]];
+
+	
+	[container addConstraint:[NSLayoutConstraint constraintWithItem:label attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:container attribute:NSLayoutAttributeLeading multiplier:1.0 constant:10.0]];
+	[container addConstraint:[NSLayoutConstraint constraintWithItem:label attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:button attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:10.0]];
+	[container addConstraint:[NSLayoutConstraint constraintWithItem:container attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:button attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:10.0]];
+	
+	[button addTarget:self action:@selector(newTimelogEntryBtnClicked) forControlEvents:UIControlEventTouchUpInside];
 }
 
 @end
