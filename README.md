@@ -18,7 +18,7 @@ Issues:
 Tracking:
 - [x] The user can select a project and start tracking time.
 - [x] Each time a user starts tracking the generated log entry is associated with an issues the user selects - per default it will be the last issue he tracked time for or the „default issue“ if he hasn‘t chosen or created a specific issue yet.
-- [ ] The user can also create log entries by entering the time and date he started working on an issue and when he finished it.
+- [x] The user can also create log entries by entering the time and date he started working on an issue and when he finished it.
 - [x] The user can delete existing log entries.
 
 Report:
