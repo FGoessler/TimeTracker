@@ -91,6 +91,7 @@
 
 #pragma mark - TableViewDataSource
 
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if(self.sortedChildLogEntries.count > 0 && ((TTLogEntry*)self.sortedChildLogEntries[0]).endDate == nil) {
 		return self.sortedChildLogEntries.count - 1;	//do not show the currently running log entry
@@ -122,8 +123,11 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
 		TTLogEntry *logEntry = [self logEntryAtIndexPath:indexPath];
+		TTIssue *parentIssue = logEntry.parentIssue;
 		[[self appDelegate].managedObjectContext deleteObject:logEntry];
 		[[self appDelegate] saveContext];
+		
+		[[TTExternalSystemLink externalSystemInterfaceForType:parentIssue.parentProject.parentSystemLink.type] syncTimelogEntriesOfIssues:parentIssue];
     }
 }
 

@@ -13,6 +13,8 @@
 	#import <Foundation/Foundation.h>
 	#import <CoreData/CoreData.h>
 	#import <QuartzCore/QuartzCore.h>
+	#import <SystemConfiguration/SystemConfiguration.h>
+	#import <MobileCoreServices/MobileCoreServices.h>
 
 	#import "NSString+TTExtensions.h"
 
@@ -21,3 +23,5 @@
 	#import "TTProject+TTExtension.h"
 	#import "TTExternalSystemLink+TTExtension.h"
 #endif
+
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]

@@ -21,6 +21,7 @@
         <relationship name="parentIssue" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="TTIssue" inverseName="childLogEntries" inverseEntity="TTIssue" syncable="YES"/>
     </entity>
     <entity name="TTProject" representedClassName="TTProject" syncable="YES">
+        <attribute name="externalSystemUID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" minValueString="1" syncable="YES"/>
         <relationship name="childIssues" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="TTIssue" inverseName="parentProject" inverseEntity="TTIssue" syncable="YES"/>
         <relationship name="defaultIssue" minCount="1" maxCount="1" deletionRule="Cascade" destinationEntity="TTIssue" inverseName="parentProject" inverseEntity="TTIssue" syncable="YES"/>
@@ -30,6 +31,6 @@
         <element name="TTExternalSystemLink" positionX="52" positionY="-366" width="128" height="105"/>
         <element name="TTIssue" positionX="349" positionY="-72" width="128" height="118"/>
         <element name="TTLogEntry" positionX="628" positionY="-66" width="128" height="120"/>
-        <element name="TTProject" positionX="45" positionY="-63" width="128" height="105"/>
+        <element name="TTProject" positionX="45" positionY="-63" width="128" height="120"/>
     </elements>
 </model>

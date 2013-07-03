@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		1706C3D6177A40140090408A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1706C3D5177A40140090408A /* QuartzCore.framework */; };
+		1707AD3D177CD5E8002537C0 /* TTExternalSystemLinksDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1707AD3C177CD5E8002537C0 /* TTExternalSystemLinksDataSource.m */; };
+		1709EB58177F8CF900D15786 /* TTIssueListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1709EB57177F8CF900D15786 /* TTIssueListVC.m */; };
 		171A0AC317774F8300A3D721 /* TTProjectDataManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1732A195177641A1007BDFE5 /* TTProjectDataManagerTest.m */; };
 		171A0AC417774FA500A3D721 /* TTCoreDataTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 171A0ABD1776F0DE00A3D721 /* TTCoreDataTest.m */; };
 		171B37631778E44000832894 /* TTIssueDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 171B37621778E43F00832894 /* TTIssueDetailsVC.m */; };
 		1732A173177611B8007BDFE5 /* TTExternalSystemLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 1732A172177611B8007BDFE5 /* TTExternalSystemLink.m */; };
 		1732A176177611B8007BDFE5 /* TTLogEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 1732A175177611B8007BDFE5 /* TTLogEntry.m */; };
-		1732A179177611EC007BDFE5 /* TTProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1732A178177611EC007BDFE5 /* TTProject.m */; };
 		1732A17C177611F7007BDFE5 /* TTIssue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1732A17B177611F7007BDFE5 /* TTIssue.m */; };
 		1732A183177613D2007BDFE5 /* TTIssue+TTExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1732A182177613D2007BDFE5 /* TTIssue+TTExtension.m */; };
 		1732A186177613E0007BDFE5 /* TTProject+TTExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1732A185177613E0007BDFE5 /* TTProject+TTExtension.m */; };
@@ -21,6 +22,8 @@
 		1732A18C177613FF007BDFE5 /* TTExternalSystemLink+TTExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1732A18B177613FF007BDFE5 /* TTExternalSystemLink+TTExtension.m */; };
 		1732A19117762DEE007BDFE5 /* TTProjectsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1732A19017762DEE007BDFE5 /* TTProjectsDataSource.m */; };
 		1732A199177641B2007BDFE5 /* TTProjectsVCTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1732A198177641B2007BDFE5 /* TTProjectsVCTest.m */; };
+		173B3FF1177D820A009B60C6 /* TTExternalProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 173B3FF0177D820A009B60C6 /* TTExternalProject.m */; };
+		173C9813177C2E88001BCB77 /* TTGitHubAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 173C9812177C2E88001BCB77 /* TTGitHubAPI.m */; };
 		174DAB34177597AB006057C0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 174DAB33177597AB006057C0 /* UIKit.framework */; };
 		174DAB36177597AB006057C0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 174DAB35177597AB006057C0 /* Foundation.framework */; };
 		174DAB38177597AB006057C0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 174DAB37177597AB006057C0 /* CoreGraphics.framework */; };
@@ -38,14 +41,25 @@
 		174DAB62177597AB006057C0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 174DAB35177597AB006057C0 /* Foundation.framework */; };
 		174DAB63177597AB006057C0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 174DAB39177597AB006057C0 /* CoreData.framework */; };
 		174DAB6B177597AB006057C0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 174DAB69177597AB006057C0 /* InfoPlist.strings */; };
+		17808166177C200500395939 /* libMantle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17808154177C1FED00395939 /* libMantle.a */; };
+		17808167177C200500395939 /* libOctoKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17808136177C1FD400395939 /* libOctoKit.a */; };
+		17808168177C200500395939 /* libReactiveCocoa-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17808143177C1FE100395939 /* libReactiveCocoa-iOS.a */; };
+		17808169177C203E00395939 /* libAFNetworking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17808161177C1FF200395939 /* libAFNetworking.a */; };
+		1780816A177C204400395939 /* libISO8601DateFormatter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17808165177C1FF200395939 /* libISO8601DateFormatter.a */; };
+		1780816E177C20DE00395939 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1780816D177C20DE00395939 /* SystemConfiguration.framework */; };
+		17808170177C210800395939 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1780816F177C210800395939 /* MobileCoreServices.framework */; };
 		1781DE5A1775CCF100603ED1 /* TTProjectsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1781DE591775CCF100603ED1 /* TTProjectsVC.m */; };
 		1781DE5D1775CD1300603ED1 /* TTTrackingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1781DE5C1775CD1300603ED1 /* TTTrackingVC.m */; };
 		1781DE601775CD3900603ED1 /* TTChangeIssueVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1781DE5F1775CD3900603ED1 /* TTChangeIssueVC.m */; };
 		1781DE631775CDA000603ED1 /* TTLogEntryDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1781DE621775CDA000603ED1 /* TTLogEntryDetailsVC.m */; };
 		1781DE661775CDC000603ED1 /* TTProjectSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1781DE651775CDC000603ED1 /* TTProjectSettingsVC.m */; };
 		1781DE691775CDDC00603ED1 /* TTLinksVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1781DE681775CDDC00603ED1 /* TTLinksVC.m */; };
+		17B53039177E18F20004E485 /* TTMessageOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B53038177E18F20004E485 /* TTMessageOverlay.m */; };
 		17B642CE1778A30000EB3B4D /* NSString+TTExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B642CD1778A30000EB3B4D /* NSString+TTExtensions.m */; };
 		17B642D11778B96000EB3B4D /* TTLogEntriesDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B642D01778B96000EB3B4D /* TTLogEntriesDataSource.m */; };
+		17C27DDF177C69A400EE8FC7 /* TTExternalSystemLinkDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C27DDE177C69A400EE8FC7 /* TTExternalSystemLinkDetailsVC.m */; };
+		17C27DF2177C6C2700EE8FC7 /* TTExternalSystemProjectsListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C27DF1177C6C2700EE8FC7 /* TTExternalSystemProjectsListVC.m */; };
+		17FC6191177E460300290FE7 /* TTProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5304C177E2B280004E485 /* TTProject.m */; };
 		AB01E6AC1779931F002F0E40 /* TTIssuesDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = AB01E6AB1779931F002F0E40 /* TTIssuesDataSource.m */; };
 /* End PBXBuildFile section */
 
@@ -57,10 +71,126 @@
 			remoteGlobalIDString = 174DAB2F177597AB006057C0;
 			remoteInfo = timetracker;
 		};
+		17808131177C1FD400395939 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17808120177C1FD200395939 /* OctoKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D0871EA8169E2EFC00016ACA;
+			remoteInfo = "OctoKit Mac";
+		};
+		17808133177C1FD400395939 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17808120177C1FD200395939 /* OctoKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D0871EC0169E2EFC00016ACA;
+			remoteInfo = "OctoKit Mac Tests";
+		};
+		17808135177C1FD400395939 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17808120177C1FD200395939 /* OctoKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D0871FE4169E309900016ACA;
+			remoteInfo = "OctoKit iOS";
+		};
+		17808137177C1FD400395939 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17808120177C1FD200395939 /* OctoKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D0871FF3169E309A00016ACA;
+			remoteInfo = "OctoKit iOS Tests";
+		};
+		17808140177C1FE100395939 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17808139177C1FE100395939 /* ReactiveCocoa.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 88037F8315056328001A5B19;
+			remoteInfo = ReactiveCocoa;
+		};
+		17808142177C1FE100395939 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17808139177C1FE100395939 /* ReactiveCocoa.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 88F440AB153DAC820097B4C3;
+			remoteInfo = "ReactiveCocoa-iOS";
+		};
+		17808144177C1FE100395939 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17808139177C1FE100395939 /* ReactiveCocoa.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 88CDF7DC15000FCF00163A9F;
+			remoteInfo = ReactiveCocoaTests;
+		};
+		17808146177C1FE100395939 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17808139177C1FE100395939 /* ReactiveCocoa.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5FAF5223174D4C2000CAC810;
+			remoteInfo = "ReactiveCocoaTests-iOS";
+		};
+		1780814F177C1FED00395939 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17808148177C1FED00395939 /* Mantle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D042FC3C15F72B23004E8054;
+			remoteInfo = "Mantle Mac";
+		};
+		17808151177C1FED00395939 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17808148177C1FED00395939 /* Mantle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D042FC5415F72B23004E8054;
+			remoteInfo = "Mantle Mac Tests";
+		};
+		17808153177C1FED00395939 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17808148177C1FED00395939 /* Mantle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D042FC7915F72BC7004E8054;
+			remoteInfo = "Mantle iOS";
+		};
+		17808155177C1FED00395939 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17808148177C1FED00395939 /* Mantle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D042FC8715F72BC7004E8054;
+			remoteInfo = "Mantle iOS Tests";
+		};
+		1780815E177C1FF200395939 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17808157177C1FF100395939 /* OctoKitDependencies.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D0476DBD177916920071F3CB;
+			remoteInfo = "AFNetworking Mac";
+		};
+		17808160177C1FF200395939 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17808157177C1FF100395939 /* OctoKitDependencies.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D0476DFF177917050071F3CB;
+			remoteInfo = "AFNetworking iOS";
+		};
+		17808162177C1FF200395939 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17808157177C1FF100395939 /* OctoKitDependencies.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D0476E5E17791AA50071F3CB;
+			remoteInfo = "ISO8601DateFormatter Mac";
+		};
+		17808164177C1FF200395939 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17808157177C1FF100395939 /* OctoKitDependencies.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D0476E8817791AE70071F3CB;
+			remoteInfo = "ISO8601DateFormatter iOS";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1706C3D5177A40140090408A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		1707AD3B177CD5E8002537C0 /* TTExternalSystemLinksDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTExternalSystemLinksDataSource.h; sourceTree = "<group>"; };
+		1707AD3C177CD5E8002537C0 /* TTExternalSystemLinksDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTExternalSystemLinksDataSource.m; sourceTree = "<group>"; };
+		1709EB56177F8CF900D15786 /* TTIssueListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTIssueListVC.h; sourceTree = "<group>"; };
+		1709EB57177F8CF900D15786 /* TTIssueListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTIssueListVC.m; sourceTree = "<group>"; };
 		171A0ABC1776F0DE00A3D721 /* TTCoreDataTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTCoreDataTest.h; sourceTree = "<group>"; };
 		171A0ABD1776F0DE00A3D721 /* TTCoreDataTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTCoreDataTest.m; sourceTree = "<group>"; };
 		171B37611778E43F00832894 /* TTIssueDetailsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTIssueDetailsVC.h; sourceTree = "<group>"; };
@@ -69,8 +199,6 @@
 		1732A172177611B8007BDFE5 /* TTExternalSystemLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTExternalSystemLink.m; sourceTree = "<group>"; };
 		1732A174177611B8007BDFE5 /* TTLogEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTLogEntry.h; sourceTree = "<group>"; };
 		1732A175177611B8007BDFE5 /* TTLogEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTLogEntry.m; sourceTree = "<group>"; };
-		1732A177177611EC007BDFE5 /* TTProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTProject.h; sourceTree = "<group>"; };
-		1732A178177611EC007BDFE5 /* TTProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTProject.m; sourceTree = "<group>"; };
 		1732A17A177611F7007BDFE5 /* TTIssue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTIssue.h; sourceTree = "<group>"; };
 		1732A17B177611F7007BDFE5 /* TTIssue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTIssue.m; sourceTree = "<group>"; };
 		1732A181177613D2007BDFE5 /* TTIssue+TTExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TTIssue+TTExtension.h"; sourceTree = "<group>"; };
@@ -87,6 +215,11 @@
 		1732A195177641A1007BDFE5 /* TTProjectDataManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTProjectDataManagerTest.m; sourceTree = "<group>"; };
 		1732A197177641B2007BDFE5 /* TTProjectsVCTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTProjectsVCTest.h; sourceTree = "<group>"; };
 		1732A198177641B2007BDFE5 /* TTProjectsVCTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTProjectsVCTest.m; sourceTree = "<group>"; };
+		173B3FEF177D820A009B60C6 /* TTExternalProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTExternalProject.h; sourceTree = "<group>"; };
+		173B3FF0177D820A009B60C6 /* TTExternalProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTExternalProject.m; sourceTree = "<group>"; };
+		173C9811177C2E88001BCB77 /* TTGitHubAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTGitHubAPI.h; sourceTree = "<group>"; };
+		173C9812177C2E88001BCB77 /* TTGitHubAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGitHubAPI.m; sourceTree = "<group>"; };
+		173C9814177C31BC001BCB77 /* TTExternalSystemInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTExternalSystemInterface.h; sourceTree = "<group>"; };
 		174DAB30177597AB006057C0 /* timetracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = timetracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		174DAB33177597AB006057C0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		174DAB35177597AB006057C0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -107,6 +240,12 @@
 		174DAB5F177597AB006057C0 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		174DAB68177597AB006057C0 /* timetrackerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "timetrackerTests-Info.plist"; sourceTree = "<group>"; };
 		174DAB6A177597AB006057C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		17808120177C1FD200395939 /* OctoKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OctoKit.xcodeproj; path = octokit/OctoKit.xcodeproj; sourceTree = "<group>"; };
+		17808139177C1FE100395939 /* ReactiveCocoa.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactiveCocoa.xcodeproj; path = octokit/External/ReactiveCocoa/ReactiveCocoaFramework/ReactiveCocoa.xcodeproj; sourceTree = "<group>"; };
+		17808148177C1FED00395939 /* Mantle.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Mantle.xcodeproj; path = octokit/External/Mantle/Mantle.xcodeproj; sourceTree = "<group>"; };
+		17808157177C1FF100395939 /* OctoKitDependencies.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OctoKitDependencies.xcodeproj; path = octokit/External/OctoKitDependencies/OctoKitDependencies.xcodeproj; sourceTree = "<group>"; };
+		1780816D177C20DE00395939 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		1780816F177C210800395939 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		1781DE581775CCF100603ED1 /* TTProjectsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTProjectsVC.h; sourceTree = "<group>"; };
 		1781DE591775CCF100603ED1 /* TTProjectsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTProjectsVC.m; sourceTree = "<group>"; };
 		1781DE5B1775CD1300603ED1 /* TTTrackingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTrackingVC.h; sourceTree = "<group>"; };
@@ -119,10 +258,19 @@
 		1781DE651775CDC000603ED1 /* TTProjectSettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTProjectSettingsVC.m; sourceTree = "<group>"; };
 		1781DE671775CDDC00603ED1 /* TTLinksVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTLinksVC.h; sourceTree = "<group>"; };
 		1781DE681775CDDC00603ED1 /* TTLinksVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTLinksVC.m; sourceTree = "<group>"; };
+		17B53037177E18F20004E485 /* TTMessageOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTMessageOverlay.h; sourceTree = "<group>"; };
+		17B53038177E18F20004E485 /* TTMessageOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTMessageOverlay.m; sourceTree = "<group>"; };
+		17B5304A177E2A9C0004E485 /* timetracker_0_2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = timetracker_0_2.xcdatamodel; sourceTree = "<group>"; };
+		17B5304B177E2B280004E485 /* TTProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTProject.h; sourceTree = "<group>"; };
+		17B5304C177E2B280004E485 /* TTProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTProject.m; sourceTree = "<group>"; };
 		17B642CC1778A30000EB3B4D /* NSString+TTExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TTExtensions.h"; sourceTree = "<group>"; };
 		17B642CD1778A30000EB3B4D /* NSString+TTExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TTExtensions.m"; sourceTree = "<group>"; };
 		17B642CF1778B96000EB3B4D /* TTLogEntriesDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTLogEntriesDataSource.h; sourceTree = "<group>"; };
 		17B642D01778B96000EB3B4D /* TTLogEntriesDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTLogEntriesDataSource.m; sourceTree = "<group>"; };
+		17C27DDD177C69A400EE8FC7 /* TTExternalSystemLinkDetailsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTExternalSystemLinkDetailsVC.h; sourceTree = "<group>"; };
+		17C27DDE177C69A400EE8FC7 /* TTExternalSystemLinkDetailsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTExternalSystemLinkDetailsVC.m; sourceTree = "<group>"; };
+		17C27DF0177C6C2700EE8FC7 /* TTExternalSystemProjectsListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTExternalSystemProjectsListVC.h; sourceTree = "<group>"; };
+		17C27DF1177C6C2700EE8FC7 /* TTExternalSystemProjectsListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTExternalSystemProjectsListVC.m; sourceTree = "<group>"; };
 		AB01E6AA1779931F002F0E40 /* TTIssuesDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTIssuesDataSource.h; sourceTree = "<group>"; };
 		AB01E6AB1779931F002F0E40 /* TTIssuesDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTIssuesDataSource.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -132,6 +280,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17808170177C210800395939 /* MobileCoreServices.framework in Frameworks */,
+				1780816E177C20DE00395939 /* SystemConfiguration.framework in Frameworks */,
+				1780816A177C204400395939 /* libISO8601DateFormatter.a in Frameworks */,
+				17808169177C203E00395939 /* libAFNetworking.a in Frameworks */,
+				17808166177C200500395939 /* libMantle.a in Frameworks */,
+				17808167177C200500395939 /* libOctoKit.a in Frameworks */,
+				17808168177C200500395939 /* libReactiveCocoa-iOS.a in Frameworks */,
 				1706C3D6177A40140090408A /* QuartzCore.framework in Frameworks */,
 				174DAB34177597AB006057C0 /* UIKit.framework in Frameworks */,
 				174DAB36177597AB006057C0 /* Foundation.framework in Frameworks */,
@@ -154,13 +309,54 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1709EB691780AB2400D15786 /* ExternalSystemLinkSettings */ = {
+			isa = PBXGroup;
+			children = (
+				1781DE671775CDDC00603ED1 /* TTLinksVC.h */,
+				1781DE681775CDDC00603ED1 /* TTLinksVC.m */,
+				17C27DDD177C69A400EE8FC7 /* TTExternalSystemLinkDetailsVC.h */,
+				17C27DDE177C69A400EE8FC7 /* TTExternalSystemLinkDetailsVC.m */,
+				17C27DF0177C6C2700EE8FC7 /* TTExternalSystemProjectsListVC.h */,
+				17C27DF1177C6C2700EE8FC7 /* TTExternalSystemProjectsListVC.m */,
+			);
+			name = ExternalSystemLinkSettings;
+			sourceTree = "<group>";
+		};
+		1709EB6A1780AB3F00D15786 /* Tracking */ = {
+			isa = PBXGroup;
+			children = (
+				1781DE5B1775CD1300603ED1 /* TTTrackingVC.h */,
+				1781DE5C1775CD1300603ED1 /* TTTrackingVC.m */,
+				1781DE5E1775CD3900603ED1 /* TTChangeIssueVC.h */,
+				1781DE5F1775CD3900603ED1 /* TTChangeIssueVC.m */,
+				1781DE611775CDA000603ED1 /* TTLogEntryDetailsVC.h */,
+				1781DE621775CDA000603ED1 /* TTLogEntryDetailsVC.m */,
+				171B37611778E43F00832894 /* TTIssueDetailsVC.h */,
+				171B37621778E43F00832894 /* TTIssueDetailsVC.m */,
+				1709EB56177F8CF900D15786 /* TTIssueListVC.h */,
+				1709EB57177F8CF900D15786 /* TTIssueListVC.m */,
+			);
+			name = Tracking;
+			sourceTree = "<group>";
+		};
+		1709EB6B1780AB5800D15786 /* Projects */ = {
+			isa = PBXGroup;
+			children = (
+				1781DE581775CCF100603ED1 /* TTProjectsVC.h */,
+				1781DE591775CCF100603ED1 /* TTProjectsVC.m */,
+				1781DE641775CDC000603ED1 /* TTProjectSettingsVC.h */,
+				1781DE651775CDC000603ED1 /* TTProjectSettingsVC.m */,
+			);
+			name = Projects;
+			sourceTree = "<group>";
+		};
 		1732A17D1776121C007BDFE5 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
+				17B5304B177E2B280004E485 /* TTProject.h */,
+				17B5304C177E2B280004E485 /* TTProject.m */,
 				1732A17A177611F7007BDFE5 /* TTIssue.h */,
 				1732A17B177611F7007BDFE5 /* TTIssue.m */,
-				1732A177177611EC007BDFE5 /* TTProject.h */,
-				1732A178177611EC007BDFE5 /* TTProject.m */,
 				1732A174177611B8007BDFE5 /* TTLogEntry.h */,
 				1732A175177611B8007BDFE5 /* TTLogEntry.m */,
 				1732A171177611B8007BDFE5 /* TTExternalSystemLink.h */,
@@ -178,6 +374,8 @@
 				17B642D01778B96000EB3B4D /* TTLogEntriesDataSource.m */,
 				AB01E6AA1779931F002F0E40 /* TTIssuesDataSource.h */,
 				AB01E6AB1779931F002F0E40 /* TTIssuesDataSource.m */,
+				1707AD3B177CD5E8002537C0 /* TTExternalSystemLinksDataSource.h */,
+				1707AD3C177CD5E8002537C0 /* TTExternalSystemLinksDataSource.m */,
 			);
 			name = DataSource;
 			path = DataManager;
@@ -201,10 +399,30 @@
 			path = ViewControllerTests;
 			sourceTree = "<group>";
 		};
+		173C97FF177C2C7B001BCB77 /* SystemLinks */ = {
+			isa = PBXGroup;
+			children = (
+				173C9810177C2C86001BCB77 /* GitHub */,
+				173C9814177C31BC001BCB77 /* TTExternalSystemInterface.h */,
+				173B3FEF177D820A009B60C6 /* TTExternalProject.h */,
+				173B3FF0177D820A009B60C6 /* TTExternalProject.m */,
+			);
+			path = SystemLinks;
+			sourceTree = "<group>";
+		};
+		173C9810177C2C86001BCB77 /* GitHub */ = {
+			isa = PBXGroup;
+			children = (
+				173C9811177C2E88001BCB77 /* TTGitHubAPI.h */,
+				173C9812177C2E88001BCB77 /* TTGitHubAPI.m */,
+			);
+			path = GitHub;
+			sourceTree = "<group>";
+		};
 		174DAB27177597AB006057C0 = {
 			isa = PBXGroup;
 			children = (
-				1706C3D5177A40140090408A /* QuartzCore.framework */,
+				17808120177C1FD200395939 /* OctoKit.xcodeproj */,
 				174DAB3B177597AB006057C0 /* timetracker */,
 				174DAB66177597AB006057C0 /* timetrackerTests */,
 				174DAB32177597AB006057C0 /* Frameworks */,
@@ -224,6 +442,12 @@
 		174DAB32177597AB006057C0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				17808157177C1FF100395939 /* OctoKitDependencies.xcodeproj */,
+				17808148177C1FED00395939 /* Mantle.xcodeproj */,
+				17808139177C1FE100395939 /* ReactiveCocoa.xcodeproj */,
+				1780816F177C210800395939 /* MobileCoreServices.framework */,
+				1706C3D5177A40140090408A /* QuartzCore.framework */,
+				1780816D177C20DE00395939 /* SystemConfiguration.framework */,
 				174DAB33177597AB006057C0 /* UIKit.framework */,
 				174DAB35177597AB006057C0 /* Foundation.framework */,
 				174DAB37177597AB006057C0 /* CoreGraphics.framework */,
@@ -236,6 +460,7 @@
 		174DAB3B177597AB006057C0 /* timetracker */ = {
 			isa = PBXGroup;
 			children = (
+				173C97FF177C2C7B001BCB77 /* SystemLinks */,
 				17B642C01778A2B600EB3B4D /* Helper */,
 				1732A18E17762D00007BDFE5 /* DataSource */,
 				174DAB7C1775CC39006057C0 /* Model */,
@@ -287,20 +512,9 @@
 		174DAB7B1775CC32006057C0 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				1781DE581775CCF100603ED1 /* TTProjectsVC.h */,
-				1781DE591775CCF100603ED1 /* TTProjectsVC.m */,
-				1781DE5B1775CD1300603ED1 /* TTTrackingVC.h */,
-				1781DE5C1775CD1300603ED1 /* TTTrackingVC.m */,
-				1781DE5E1775CD3900603ED1 /* TTChangeIssueVC.h */,
-				1781DE5F1775CD3900603ED1 /* TTChangeIssueVC.m */,
-				1781DE611775CDA000603ED1 /* TTLogEntryDetailsVC.h */,
-				1781DE621775CDA000603ED1 /* TTLogEntryDetailsVC.m */,
-				1781DE641775CDC000603ED1 /* TTProjectSettingsVC.h */,
-				1781DE651775CDC000603ED1 /* TTProjectSettingsVC.m */,
-				1781DE671775CDDC00603ED1 /* TTLinksVC.h */,
-				1781DE681775CDDC00603ED1 /* TTLinksVC.m */,
-				171B37611778E43F00832894 /* TTIssueDetailsVC.h */,
-				171B37621778E43F00832894 /* TTIssueDetailsVC.m */,
+				1709EB6B1780AB5800D15786 /* Projects */,
+				1709EB6A1780AB3F00D15786 /* Tracking */,
+				1709EB691780AB2400D15786 /* ExternalSystemLinkSettings */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -321,11 +535,57 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		17808121177C1FD200395939 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				17808132177C1FD400395939 /* OctoKit.framework */,
+				17808134177C1FD400395939 /* OctoKit Mac Tests.octest */,
+				17808136177C1FD400395939 /* libOctoKit.a */,
+				17808138177C1FD400395939 /* OctoKit iOS Tests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1780813A177C1FE100395939 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				17808141177C1FE100395939 /* ReactiveCocoa.framework */,
+				17808143177C1FE100395939 /* libReactiveCocoa-iOS.a */,
+				17808145177C1FE100395939 /* ReactiveCocoaTests.octest */,
+				17808147177C1FE100395939 /* ReactiveCocoaTests-iOS.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		17808149177C1FED00395939 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				17808150177C1FED00395939 /* Mantle.framework */,
+				17808152177C1FED00395939 /* Mantle Mac Tests.octest */,
+				17808154177C1FED00395939 /* libMantle.a */,
+				17808156177C1FED00395939 /* Mantle iOS Tests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		17808158177C1FF100395939 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1780815F177C1FF200395939 /* AFNetworking.framework */,
+				17808161177C1FF200395939 /* libAFNetworking.a */,
+				17808163177C1FF200395939 /* ISO8601DateFormatter.framework */,
+				17808165177C1FF200395939 /* libISO8601DateFormatter.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		17B642C01778A2B600EB3B4D /* Helper */ = {
 			isa = PBXGroup;
 			children = (
 				17B642CC1778A30000EB3B4D /* NSString+TTExtensions.h */,
 				17B642CD1778A30000EB3B4D /* NSString+TTExtensions.m */,
+				17B53037177E18F20004E485 /* TTMessageOverlay.h */,
+				17B53038177E18F20004E485 /* TTMessageOverlay.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -389,6 +649,24 @@
 			mainGroup = 174DAB27177597AB006057C0;
 			productRefGroup = 174DAB31177597AB006057C0 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 17808149177C1FED00395939 /* Products */;
+					ProjectRef = 17808148177C1FED00395939 /* Mantle.xcodeproj */;
+				},
+				{
+					ProductGroup = 17808121177C1FD200395939 /* Products */;
+					ProjectRef = 17808120177C1FD200395939 /* OctoKit.xcodeproj */;
+				},
+				{
+					ProductGroup = 17808158177C1FF100395939 /* Products */;
+					ProjectRef = 17808157177C1FF100395939 /* OctoKitDependencies.xcodeproj */;
+				},
+				{
+					ProductGroup = 1780813A177C1FE100395939 /* Products */;
+					ProjectRef = 17808139177C1FE100395939 /* ReactiveCocoa.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				174DAB2F177597AB006057C0 /* timetracker */,
@@ -396,6 +674,121 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		17808132177C1FD400395939 /* OctoKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OctoKit.framework;
+			remoteRef = 17808131177C1FD400395939 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		17808134177C1FD400395939 /* OctoKit Mac Tests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "OctoKit Mac Tests.octest";
+			remoteRef = 17808133177C1FD400395939 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		17808136177C1FD400395939 /* libOctoKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libOctoKit.a;
+			remoteRef = 17808135177C1FD400395939 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		17808138177C1FD400395939 /* OctoKit iOS Tests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "OctoKit iOS Tests.octest";
+			remoteRef = 17808137177C1FD400395939 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		17808141177C1FE100395939 /* ReactiveCocoa.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ReactiveCocoa.framework;
+			remoteRef = 17808140177C1FE100395939 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		17808143177C1FE100395939 /* libReactiveCocoa-iOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libReactiveCocoa-iOS.a";
+			remoteRef = 17808142177C1FE100395939 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		17808145177C1FE100395939 /* ReactiveCocoaTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ReactiveCocoaTests.octest;
+			remoteRef = 17808144177C1FE100395939 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		17808147177C1FE100395939 /* ReactiveCocoaTests-iOS.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "ReactiveCocoaTests-iOS.octest";
+			remoteRef = 17808146177C1FE100395939 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		17808150177C1FED00395939 /* Mantle.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Mantle.framework;
+			remoteRef = 1780814F177C1FED00395939 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		17808152177C1FED00395939 /* Mantle Mac Tests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Mantle Mac Tests.octest";
+			remoteRef = 17808151177C1FED00395939 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		17808154177C1FED00395939 /* libMantle.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libMantle.a;
+			remoteRef = 17808153177C1FED00395939 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		17808156177C1FED00395939 /* Mantle iOS Tests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Mantle iOS Tests.octest";
+			remoteRef = 17808155177C1FED00395939 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		1780815F177C1FF200395939 /* AFNetworking.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = AFNetworking.framework;
+			remoteRef = 1780815E177C1FF200395939 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		17808161177C1FF200395939 /* libAFNetworking.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libAFNetworking.a;
+			remoteRef = 17808160177C1FF200395939 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		17808163177C1FF200395939 /* ISO8601DateFormatter.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ISO8601DateFormatter.framework;
+			remoteRef = 17808162177C1FF200395939 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		17808165177C1FF200395939 /* libISO8601DateFormatter.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libISO8601DateFormatter.a;
+			remoteRef = 17808164177C1FF200395939 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		174DAB2E177597AB006057C0 /* Resources */ = {
@@ -441,6 +834,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17FC6191177E460300290FE7 /* TTProject.m in Sources */,
 				174DAB42177597AB006057C0 /* main.m in Sources */,
 				174DAB46177597AB006057C0 /* TTAppDelegate.m in Sources */,
 				174DAB52177597AB006057C0 /* timetracker.xcdatamodeld in Sources */,
@@ -452,7 +846,6 @@
 				1781DE691775CDDC00603ED1 /* TTLinksVC.m in Sources */,
 				1732A173177611B8007BDFE5 /* TTExternalSystemLink.m in Sources */,
 				1732A176177611B8007BDFE5 /* TTLogEntry.m in Sources */,
-				1732A179177611EC007BDFE5 /* TTProject.m in Sources */,
 				1732A17C177611F7007BDFE5 /* TTIssue.m in Sources */,
 				1732A183177613D2007BDFE5 /* TTIssue+TTExtension.m in Sources */,
 				1732A186177613E0007BDFE5 /* TTProject+TTExtension.m in Sources */,
@@ -463,6 +856,13 @@
 				17B642D11778B96000EB3B4D /* TTLogEntriesDataSource.m in Sources */,
 				171B37631778E44000832894 /* TTIssueDetailsVC.m in Sources */,
 				AB01E6AC1779931F002F0E40 /* TTIssuesDataSource.m in Sources */,
+				173C9813177C2E88001BCB77 /* TTGitHubAPI.m in Sources */,
+				17C27DDF177C69A400EE8FC7 /* TTExternalSystemLinkDetailsVC.m in Sources */,
+				17C27DF2177C6C2700EE8FC7 /* TTExternalSystemProjectsListVC.m in Sources */,
+				1707AD3D177CD5E8002537C0 /* TTExternalSystemLinksDataSource.m in Sources */,
+				173B3FF1177D820A009B60C6 /* TTExternalProject.m in Sources */,
+				17B53039177E18F20004E485 /* TTMessageOverlay.m in Sources */,
+				1709EB58177F8CF900D15786 /* TTIssueListVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -575,7 +975,12 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "timetracker/timetracker-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(BUILD_ROOT)/../IntermediateBuildFilesPath/UninstalledProducts/include",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = "timetracker/timetracker-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -586,7 +991,12 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "timetracker/timetracker-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(BUILD_ROOT)/../IntermediateBuildFilesPath/UninstalledProducts/include",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = "timetracker/timetracker-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -662,9 +1072,10 @@
 		174DAB50177597AB006057C0 /* timetracker.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				17B5304A177E2A9C0004E485 /* timetracker_0_2.xcdatamodel */,
 				174DAB51177597AB006057C0 /* timetracker.xcdatamodel */,
 			);
-			currentVersion = 174DAB51177597AB006057C0 /* timetracker.xcdatamodel */;
+			currentVersion = 17B5304A177E2A9C0004E485 /* timetracker_0_2.xcdatamodel */;
 			path = timetracker.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

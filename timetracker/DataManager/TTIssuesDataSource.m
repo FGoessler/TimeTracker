@@ -13,6 +13,7 @@
 @property (nonatomic, weak) UITableView* tableView;
 @property (readonly, nonatomic, strong) TTProject* project;
 @property (nonatomic, strong) NSArray* sortedIssues;
+@property (nonatomic, strong) NSTimer* pollingTimer;
 @end
 
 @implementation TTIssuesDataSource
@@ -32,6 +33,8 @@
 		
 		_tableView = tableView;
 		_tableView.DataSource = self;
+		
+		self.pollingTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateRows) userInfo:nil repeats:YES];
 	}
 	
 	return self;
@@ -63,7 +66,18 @@
 - (void)createSortedIssuesArray {
 	[self removeNameChangedObserverForAllIssues];
 	self.sortedIssues = [[self.project.childIssues allObjects] sortedArrayUsingComparator:^NSComparisonResult(TTIssue *obj1, TTIssue *obj2){
-		return [obj2.latestLogEntry.startDate compare:obj1.latestLogEntry.startDate];
+		NSComparisonResult compResult;
+		if(obj1.latestLogEntry == nil && obj2.latestLogEntry == nil) {
+			compResult = [obj1.name compare:obj2.name];
+		} else if(obj1.latestLogEntry == nil && obj2.latestLogEntry != nil) {
+			compResult = NSOrderedDescending;
+		} else if(obj1.latestLogEntry != nil && obj2.latestLogEntry == nil) {
+			compResult = NSOrderedAscending;
+		} else {
+			compResult = [obj2.latestLogEntry.startDate compare:obj1.latestLogEntry.startDate];
+		}
+		
+		return compResult;
 	}];
 	[self registerNameChangedObserverForAllIssues];
 }
@@ -80,6 +94,13 @@
 	}
 }
 
+- (void)updateRows {
+	int numberOfRows = [self tableView:self.tableView numberOfRowsInSection:0];
+	for (int i = 0; i < numberOfRows; i++) {
+		[self configureCell:[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0		]] atIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+	}
+}
+
 #pragma mark TableViewDataSource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -89,12 +110,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"IssueCell"];
 	
-	//configure cell
-	TTIssue *currentIssue = [self issueAtIndexPath:indexPath];
-	cell.textLabel.text = currentIssue.name;
-	cell.detailTextLabel.text = @"";
-	
-	return cell;
+	return [self configureCell:cell atIndexPath:indexPath];
 }
 
 //Allow swipe to delete for all rows.
@@ -105,6 +121,13 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
 		TTIssue *issue = [self issueAtIndexPath:indexPath];
+		
+		//do not allow deleting when the issue is loaded from remote system - upload not yet implemented!
+		if(issue.externalSystemUID) {
+			[[[UIAlertView alloc] initWithTitle:@"Action not allowed!" message:@"You cannot delete issues that are synced with an external system! Please wait for a later version of the app which might support this feature." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+			return;
+		}
+		
 		[self.project removeChildIssuesObject:issue];
 		
 		if(issue == self.project.defaultIssue) {	//if the user deletes the DefaultIssue try to set a new DefaultIssue and display a error message when this cannot be done.
@@ -125,6 +148,15 @@
 			return YES;
 		}];
     }
+}
+
+//This method configures a cell based on the data delivered by the FetchedResultsController.
+-(UITableViewCell*)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath {
+	TTIssue *currentIssue = [self issueAtIndexPath:indexPath];
+	cell.textLabel.text = currentIssue.name;
+	cell.detailTextLabel.text = [NSString stringWithNSTimeInterval:[((NSNumber*)[currentIssue valueForKeyPath:@"childLogEntries.@sum.timeInterval"]) doubleValue]];
+	
+	return cell;
 }
 
 @end

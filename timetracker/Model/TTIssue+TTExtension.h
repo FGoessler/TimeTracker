@@ -16,6 +16,8 @@
 @interface TTIssue (TTExtension)
 @property (readonly, nonatomic, strong) TTLogEntry *latestLogEntry;
 
+-(TTLogEntry*)createNewUnsavedLogEntry;
+
 -(BOOL)startTracking:(NSError**)err;
 -(BOOL)stopTracking:(NSError**)err;
 

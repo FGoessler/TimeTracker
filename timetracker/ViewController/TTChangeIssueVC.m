@@ -63,6 +63,14 @@
 	//setup tableView
 	self.tableView.delegate = self;
 	self.dataSource = [[TTIssuesDataSource alloc] initWithProject:self.parentVC.project asDataSourceOfTableView:self.tableView];
+	
+	//sync issues with external project if it's configured
+	if(self.parentVC.project.externalSystemUID != nil && self.parentVC.project.parentSystemLink != nil) {
+		dispatch_queue_t syncQueue = dispatch_queue_create("de.timetracker.issuesync", 0);
+		dispatch_async(syncQueue, ^{	//do this on a seperate thread!
+			[[TTExternalSystemLink externalSystemInterfaceForType:self.parentVC.project.parentSystemLink.type] syncIssuesOfProject:self.parentVC.project];
+		});
+	}
 }
 
 @end

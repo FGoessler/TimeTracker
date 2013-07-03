@@ -1,22 +1,20 @@
 //
-//  TTProjectDataManager.m
+//  TTExternalSystemLinksDataSource.m
 //  timetracker
 //
-//  Created by Florian Goessler on 22.06.13.
+//  Created by Florian Goessler on 27.06.13.
 //  Copyright (c) 2013 Florian Goessler. All rights reserved.
 //
 
-#import "TTProjectsDataSource.h"
+#import "TTExternalSystemLinksDataSource.h"
 #import "TTAppDelegate.h"
 
-
-@interface TTProjectsDataSource() <NSFetchedResultsControllerDelegate>
+@interface TTExternalSystemLinksDataSource () <NSFetchedResultsControllerDelegate>
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, weak) UITableView* tableView;
-@property (nonatomic, strong) NSTimer* pollingTimer;
 @end
 
-@implementation TTProjectsDataSource
+@implementation TTExternalSystemLinksDataSource
 
 - (TTAppDelegate*)appDelegate {
 	return [[UIApplication sharedApplication] delegate];
@@ -28,26 +26,13 @@
 	if(self) {
 		tableView.DataSource = self;
 		_tableView = tableView;
-		
-		self.pollingTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateRows) userInfo:nil repeats:YES];
 	}
 	
 	return self;
 }
 
--(void)dealloc {
-	[self.pollingTimer invalidate];
-}
-
--(TTProject*)projectAtIndexPath:(NSIndexPath*)indexPath {
+-(TTExternalSystemLink*)systemLinkAtIndexPath:(NSIndexPath*)indexPath {
 	return [self.fetchedResultsController objectAtIndexPath:indexPath];
-}
-
-- (void)updateRows {
-	int numberOfRows = [self tableView:self.tableView numberOfRowsInSection:0];
-	for (int i = 0; i < numberOfRows; i++) {
-		[self configureCell:[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0		]] atIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
-	}
 }
 
 #pragma mark - FetchedResultsController
@@ -61,19 +46,19 @@
     
 	//init the request with an entity (TTProject)
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:MOBJ_TTProject inManagedObjectContext:[self appDelegate].managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:MOBJ_TTExternalSystemLink inManagedObjectContext:[self appDelegate].managedObjectContext];
     [fetchRequest setEntity:entity];
     
 	//set batch size
     [fetchRequest setFetchBatchSize:20];
 	
 	//set sort descriptor
-	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"username" ascending:YES];
     
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
     
 	//init the FetchedResultsController with no sections and a cache
-    _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[self appDelegate].managedObjectContext sectionNameKeyPath:nil cacheName:@"Projects"];
+    _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[self appDelegate].managedObjectContext sectionNameKeyPath:nil cacheName:@"SystemLinks"];
     _fetchedResultsController.delegate = self;
 	
 	//perform fetch
@@ -121,8 +106,8 @@
 	return [sectionInfo numberOfObjects];
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {	
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProjectCell"];
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LinksCell"];
 	
 	cell = [self configureCell:cell atIndexPath:indexPath];
 	
@@ -144,9 +129,13 @@
 
 //This method configures a cell based on the data delivered by the FetchedResultsController.
 -(UITableViewCell*)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath {
-	TTProject *project = [self.fetchedResultsController objectAtIndexPath:indexPath];
-	cell.textLabel.text = project.name;
-	cell.detailTextLabel.text = [NSString stringWithNSTimeInterval:[((NSNumber*)[project valueForKeyPath:@"childIssues.@sum.childLogEntries.@sum.timeInterval"]) doubleValue]];
+	TTExternalSystemLink *systemLink = [self.fetchedResultsController objectAtIndexPath:indexPath];
+	cell.textLabel.text = [NSString stringWithFormat:@"%@", systemLink.type];
+	if(systemLink.username != nil) {
+		cell.detailTextLabel.text = [NSString stringWithFormat:@"user: %@", systemLink.username];
+	} else {
+		cell.detailTextLabel.text = @"no user data";
+	}
 	[cell setNeedsLayout];
 	
 	return cell;
