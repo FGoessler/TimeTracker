@@ -9,7 +9,6 @@
 #import "TTProjectSettingsVC.h"
 #import "TTLinksVC.h"
 #import "TTIssueListVC.h"
-#import "TTAppDelegate.h"
 
 @interface TTProjectSettingsVC ()
 @property (weak, nonatomic) IBOutlet UITextField *projectNameTextField;
@@ -23,7 +22,7 @@
 	//change data and save it
 	self.project.name = self.projectNameTextField.text;
 	
-	BOOL saved = [((TTAppDelegate*)[[UIApplication sharedApplication] delegate]) saveContextWithErrorHandler:^BOOL(NSError *err) {
+	BOOL saved = [[TTCoreDataManager defaultManager] saveContextWithErrorHandler:^BOOL(NSError *err) {
 		if([[err userInfo][@"NSValidationErrorKey"] isEqualToString:@"name"]) {
 			//show a message to inform the user about the invalid name
 			UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Invalid data" message:@"The name you entered for the project is invalid!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -49,7 +48,7 @@
 }
 - (IBAction)cancelBtnClicked:(id)sender {
 	//reset all changes
-	[((TTAppDelegate*)[[UIApplication sharedApplication] delegate]).managedObjectContext rollback];
+	[[TTCoreDataManager defaultManager].managedObjectContext rollback];
 	
 	//dismiss this ViewController
 	[self.presentingViewController dismissViewControllerAnimated:YES completion:nil];

@@ -7,7 +7,6 @@
 //
 
 #import "TTExternalSystemLink+TTExtension.h"
-#import "TTAppDelegate.h"
 #import "TTGitHubAPI.h"
 
 @implementation TTExternalSystemLink (TTExtension)
@@ -17,14 +16,13 @@
 }
 
 +(TTExternalSystemLink*)createNewExternalSystemLinkOfType:(NSString*)type {
-	TTAppDelegate *appDelegate =   [[UIApplication sharedApplication] delegate];
-	NSManagedObjectContext *context = appDelegate.managedObjectContext;
+	NSManagedObjectContext *context = [TTCoreDataManager defaultManager].managedObjectContext;
 	
 	//create new project
     TTExternalSystemLink *newSysLink = [NSEntityDescription insertNewObjectForEntityForName:MOBJ_TTExternalSystemLink inManagedObjectContext:context];
     newSysLink.type = type;
 	
-	[appDelegate saveContext];
+	[[TTCoreDataManager defaultManager] saveContext];
 	
 	return newSysLink;
 }

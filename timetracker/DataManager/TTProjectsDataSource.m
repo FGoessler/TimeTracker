@@ -7,7 +7,6 @@
 //
 
 #import "TTProjectsDataSource.h"
-#import "TTAppDelegate.h"
 
 
 @interface TTProjectsDataSource() <NSFetchedResultsControllerDelegate>
@@ -17,10 +16,6 @@
 @end
 
 @implementation TTProjectsDataSource
-
-- (TTAppDelegate*)appDelegate {
-	return [[UIApplication sharedApplication] delegate];
-}
 
 -(id)initAsDataSourceOfTableView:(UITableView*)tableView {
 	self = [super init];
@@ -61,7 +56,7 @@
     
 	//init the request with an entity (TTProject)
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:MOBJ_TTProject inManagedObjectContext:[self appDelegate].managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:MOBJ_TTProject inManagedObjectContext:[TTCoreDataManager defaultManager].managedObjectContext];
     [fetchRequest setEntity:entity];
     
 	//set batch size
@@ -73,7 +68,7 @@
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
     
 	//init the FetchedResultsController with no sections and a cache
-    _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[self appDelegate].managedObjectContext sectionNameKeyPath:nil cacheName:@"Projects"];
+    _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[TTCoreDataManager defaultManager].managedObjectContext sectionNameKeyPath:nil cacheName:@"Projects"];
     _fetchedResultsController.delegate = self;
 	
 	//perform fetch
@@ -136,8 +131,8 @@
 //Handle deletions.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-		[[self appDelegate].managedObjectContext deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
-		[[self appDelegate] saveContext];
+		[[TTCoreDataManager defaultManager].managedObjectContext deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+		[[TTCoreDataManager defaultManager] saveContext];
     }
 }
 

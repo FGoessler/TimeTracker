@@ -7,7 +7,6 @@
 //
 
 #import "TTIssueDetailsVC.h"
-#import "TTAppDelegate.h"
 
 @interface TTIssueDetailsVC ()
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
@@ -28,7 +27,7 @@
 	self.issue.name = self.nameTextField.text;
 	self.issue.shortText = self.descriptionTextField.text;
 	
-	BOOL saved = [((TTAppDelegate*)[[UIApplication sharedApplication] delegate]) saveContextWithErrorHandler:^BOOL(NSError *err) {
+	BOOL saved = [[TTCoreDataManager defaultManager] saveContextWithErrorHandler:^BOOL(NSError *err) {
 		NSDictionary *errInfo = [err userInfo];
 		if(errInfo[@"NSDetailedErrors"] != nil) {	//if multiple errors occurred only report the first one
 			errInfo = [errInfo[@"NSDetailedErrors"][0] userInfo];
@@ -59,7 +58,7 @@
 }
 - (IBAction)cancelBtnClicked:(id)sender {
 	//reset all changes
-	[((TTAppDelegate*)[[UIApplication sharedApplication] delegate]).managedObjectContext rollback];
+	[[TTCoreDataManager defaultManager].managedObjectContext rollback];
 	
 	//dismiss this ViewController
 	[self.presentingViewController dismissViewControllerAnimated:YES completion:nil];

@@ -7,18 +7,12 @@
 //
 
 #import "TTLogEntriesDataSource.h"
-#import "TTAppDelegate.h"
-
 
 @interface TTLogEntriesDataSource()
 @property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, strong) NSArray *sortedChildLogEntries;
 @end
 @implementation TTLogEntriesDataSource
-
-- (TTAppDelegate*)appDelegate {
-	return [[UIApplication sharedApplication] delegate];
-}
 
 -(id)initWithIssue:(TTIssue*)issue asDataSourceOfTableView:(UITableView*)tableView {
 	self = [super init];
@@ -124,8 +118,8 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
 		TTLogEntry *logEntry = [self logEntryAtIndexPath:indexPath];
 		TTIssue *parentIssue = logEntry.parentIssue;
-		[[self appDelegate].managedObjectContext deleteObject:logEntry];
-		[[self appDelegate] saveContext];
+		[[TTCoreDataManager defaultManager].managedObjectContext deleteObject:logEntry];
+		[[TTCoreDataManager defaultManager]saveContext];
 		
 		[[TTExternalSystemLink externalSystemInterfaceForType:parentIssue.parentProject.parentSystemLink.type] syncTimelogEntriesOfIssues:parentIssue];
     }

@@ -7,7 +7,6 @@
 //
 
 #import "TTProject+TTExtension.h"
-#import "TTAppDelegate.h"
 #import "TTIssue+TTExtension.h"
 #import "TTLogEntry+TTExtension.h"
 
@@ -15,8 +14,7 @@
 @implementation TTProject (TTExtension)
 
 +(TTProject*)createNewProjectWithName:(NSString*)name {
-	TTAppDelegate *appDelegate =   [[UIApplication sharedApplication] delegate];
-	NSManagedObjectContext *context = appDelegate.managedObjectContext;
+	NSManagedObjectContext *context = [TTCoreDataManager defaultManager].managedObjectContext;
 	
 	//create new project
     TTProject *newProject = [NSEntityDescription insertNewObjectForEntityForName:MOBJ_TTProject inManagedObjectContext:context];
@@ -30,7 +28,7 @@
 	[newProject addChildIssuesObject:defaultIssue];
 	[newProject addChildIssuesObject:defaultIssue];
 	
-	[appDelegate saveContext];
+	[[TTCoreDataManager defaultManager] saveContext];
 	
 	return newProject;
 }
