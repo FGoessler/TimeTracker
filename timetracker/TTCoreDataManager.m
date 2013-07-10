@@ -12,16 +12,7 @@
 NSString * kiCloudPersistentStoreFilename = @"iCloudStore.sqlite";
 NSString * kFallbackPersistentStoreFilename = @"fallbackStore.sqlite"; //used when iCloud is not available
 
-#define SEED_ICLOUD_STORE NO
-//#define FORCE_FALLBACK_STORE
-
 static NSOperationQueue *_presentedItemOperationQueue;
-
-#define TT_ICLOUD_TOKEN_KEY @"TT_ICLOUD_TOKEN_KEY"
-
-@interface TTCoreDataManager ()
-@property (nonatomic, strong) id currentUbiquityToken;
-@end
 
 @implementation TTCoreDataManager {
     NSLock *_loadingLock;
@@ -38,48 +29,6 @@ static NSOperationQueue *_presentedItemOperationQueue;
     });
     return sharedMyManager;
 }
-
-#pragma mark - Save Methods
-
-- (BOOL)saveContext
-{
-    return [self saveContextWithErrorHandler:nil];
-}
-- (BOOL)saveContextWithErrorHandler:(TTErrorHandler)handler {
-    NSError *error = nil;
-    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
-    if (managedObjectContext != nil) {
-        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
-			if(handler != nil) {
-				if(handler(error)) {
-					return false;	//return false to indicate that an error happened
-				}
-			}
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();	 //kill the app if the error could not been handled
-        }
-    }
-	return true;	//return true to indicate that no error happened
-}
-
-- (void)mergeChangesFrom_iCloud:(NSNotification *)notification {
-	
-	NSLog(@"Merging in changes from iCloud...");
-	
-    NSManagedObjectContext* moc = [self managedObjectContext];
-	
-    [moc performBlock:^{
-		
-        [moc mergeChangesFromContextDidSaveNotification:notification];
-		
-        NSNotification* refreshNotification = [NSNotification notificationWithName:TT_MODEL_CHANGED_NOTIFICATION
-                                                                            object:self
-                                                                          userInfo:[notification userInfo]];
-		
-        [[NSNotificationCenter defaultCenter] postNotification:refreshNotification];
-    }];
-}
-
 
 + (void)initialize {
     if (self == [TTCoreDataManager class]) {
@@ -105,14 +54,14 @@ static NSOperationQueue *_presentedItemOperationQueue;
     
     _currentUbiquityToken = [[NSFileManager defaultManager] ubiquityIdentityToken];
     
-    //subscribe to the account change notification
+    //subscribe to the change notifications
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(iCloudAccountChanged:)
                                                  name:NSUbiquityIdentityDidChangeNotification
                                                object:nil];
 	
 	 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mergeChangesFrom_iCloud:) name:NSPersistentStoreDidImportUbiquitousContentChangesNotification object:_psc];
-	
+		
     return self;
 }
 
@@ -120,13 +69,45 @@ static NSOperationQueue *_presentedItemOperationQueue;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (BOOL)iCloudAvailable {
-#ifdef FORCE_FALLBACK_STORE
-    BOOL available = NO;
-#else
-    BOOL available = (_currentUbiquityToken != nil);
-#endif
-    return available;
+#pragma mark - Save Methods
+
+- (BOOL)saveContext
+{
+    return [self saveContextWithErrorHandler:nil];
+}
+- (BOOL)saveContextWithErrorHandler:(TTErrorHandler)handler {
+    NSError *error = nil;
+    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
+    if (managedObjectContext != nil) {
+        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
+			if(handler != nil) {
+				if(handler(error)) {
+					return false;	//return false to indicate that an error happened
+				}
+			}
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();	 //kill the app if the error could not been handled
+        }
+    }
+	return true;	//return true to indicate that no error happened
+}
+
+#pragma mark - React on Events
+
+- (void)mergeChangesFrom_iCloud:(NSNotification *)notification {
+	
+	NSLog(@"Merging in changes from iCloud...");
+	
+    NSManagedObjectContext* moc = [self managedObjectContext];
+	
+    [moc performBlock:^{
+        [moc mergeChangesFromContextDidSaveNotification:notification];
+		
+        NSNotification* refreshNotification = [NSNotification notificationWithName:TT_MODEL_CHANGED_NOTIFICATION
+                                                                            object:self
+                                                                          userInfo:[notification userInfo]];
+        [[NSNotificationCenter defaultCenter] postNotification:refreshNotification];
+    }];
 }
 
 - (void)applicationResumed {
@@ -147,18 +128,23 @@ static NSOperationQueue *_presentedItemOperationQueue;
     _currentUbiquityToken = token;
     
     //reload persistent store
-    [self loadPersistentStores];
+    [self loadPersistentStore];
 }
 
-#pragma mark Managing the Persistent Stores
-- (void)loadPersistentStores {
+#pragma mark - Managing the Persistent Stores
+
+- (BOOL)iCloudAvailable {
+    return (self.currentUbiquityToken != nil);
+}
+
+- (void)loadPersistentStore {
     dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(globalQueue, ^{
         BOOL locked = NO;
         @try {
             [_loadingLock lock];
             locked = YES;
-            [self asyncLoadPersistentStores];
+            [self asyncLoadPersistentStore];
         } @finally {
             if (locked) {
                 [_loadingLock unlock];
@@ -174,27 +160,37 @@ static NSOperationQueue *_presentedItemOperationQueue;
 	
 }
 
-- (BOOL)loadFallbackStore:(NSError * __autoreleasing *)error {
-    BOOL success = YES;
-    NSError *localError = nil;
+- (void)asyncLoadPersistentStore {
+    NSError *error = nil;
     
-    if (_fallbackStore) {
-        return YES;
+    //if iCloud is available, add the persistent store
+    //if iCloud is not available, or the add call fails, fallback to local storage
+    BOOL useFallbackStore = NO;
+    if ([self iCloudAvailable]) {
+        if ([self loadiCloudStore:&error]) {
+            NSLog(@"Added iCloud Store");
+            
+            //check to see if we need to migrate data from the fallback store
+            NSFileManager *fm = [[NSFileManager alloc] init];
+            if ([fm fileExistsAtPath:[[self fallbackStoreURL] path]]) {
+                //TODO: migrate data from the fallback store to the iCloud store
+            }
+        } else {
+            NSLog(@"Unable to add iCloud store: %@", error);
+            useFallbackStore = YES;
+        }
+    } else {
+        useFallbackStore = YES;
     }
-    NSURL *storeURL = [self fallbackStoreURL];
-    _fallbackStore = [_psc addPersistentStoreWithType:NSSQLiteStoreType
-                                        configuration:@"CloudConfig"
-                                                  URL:storeURL
-                                              options:nil
-                                                error:&localError];
-    success = (_fallbackStore != nil);
-    if (NO == success) {
-        if (localError  && (error != NULL)) {
-            *error = localError;
+    
+    if (useFallbackStore) {
+        if ([self loadFallbackStore:&error]) {
+            NSLog(@"Added fallback store: %@", self.fallbackStore);
+        } else {
+            NSLog(@"Unable to add fallback store: %@", error);
+            abort();
         }
     }
-    
-    return success;
 }
 
 - (BOOL)loadiCloudStore:(NSError * __autoreleasing *)error {
@@ -219,7 +215,7 @@ static NSOperationQueue *_presentedItemOperationQueue;
                                                     URL:iCloudStoreURL
                                                 options:options
                                                   error:&localError];
-    success = (_iCloudStore != nil);
+    success = (self.iCloudStore != nil);
     if (success) {
         //set up the file presenter
         _presentedItemURL = iCloudDataURL;
@@ -233,58 +229,34 @@ static NSOperationQueue *_presentedItemOperationQueue;
     return success;
 }
 
-- (void)asyncLoadPersistentStores {
-    NSError *error = nil;
+- (BOOL)loadFallbackStore:(NSError * __autoreleasing *)error {
+    BOOL success = YES;
+    NSError *localError = nil;
     
-    //if iCloud is available, add the persistent store
-    //if iCloud is not available, or the add call fails, fallback to local storage
-    BOOL useFallbackStore = NO;
-    if ([self iCloudAvailable]) {
-        if ([self loadiCloudStore:&error]) {
-            NSLog(@"Added iCloud Store");
-            
-            //check to see if we need to seed or migrate data from the fallback store
-            NSFileManager *fm = [[NSFileManager alloc] init];
-            if ([fm fileExistsAtPath:[[self fallbackStoreURL] path]]) {
-                //migrate data from the fallback store to the iCloud store
-                //there is no reason to do this synchronously since no other peer should have this data
-                 /*dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-               dispatch_async(globalQueue, ^{
-                    NSError *blockError = nil;
-                    BOOL seedSuccess = [self seedStore:_iCloudStore
-                              withPersistentStoreAtURL:[self fallbackStoreURL]
-                                                 error:&blockError];
-                    if (seedSuccess) {
-                        NSLog(@"Successfully seeded iCloud Store from Fallback Store");
-                    } else {
-                        NSLog(@"Error seeding iCloud Store from fallback store: %@", error);
-                        abort();
-                    }
-                });*/
-            }
-        } else {
-            NSLog(@"Unable to add iCloud store: %@", error);
-            useFallbackStore = YES;
-        }
-    } else {
-        useFallbackStore = YES;
+    if (_fallbackStore) {
+        return YES;
     }
-    
-    if (useFallbackStore) {
-        if ([self loadFallbackStore:&error]) {
-            NSLog(@"Added fallback store: %@", self.fallbackStore);
-        } else {
-            NSLog(@"Unable to add fallback store: %@", error);
-            abort();
+    NSURL *storeURL = [self fallbackStoreURL];
+    _fallbackStore = [self.psc addPersistentStoreWithType:NSSQLiteStoreType
+                                        configuration:@"CloudConfig"
+                                                  URL:storeURL
+                                              options:nil
+                                                error:&localError];
+    success = (_fallbackStore != nil);
+    if (NO == success) {
+        if (localError  && (error != NULL)) {
+            *error = localError;
         }
     }
+    
+    return success;
 }
 
 - (void)dropStores {
     NSError *error = nil;
     
-    if (_fallbackStore) {
-        if ([_psc removePersistentStore:_fallbackStore error:&error]) {
+    if (self.fallbackStore) {
+        if ([self.psc removePersistentStore:self.fallbackStore error:&error]) {
             NSLog(@"Removed fallback store");
             _fallbackStore = nil;
         } else {
@@ -292,10 +264,10 @@ static NSOperationQueue *_presentedItemOperationQueue;
         }
     }
     
-    if (_iCloudStore) {
+    if (self.iCloudStore) {
         _presentedItemURL = nil;
         [NSFileCoordinator removeFilePresenter:self];
-        if ([_psc removePersistentStore:_iCloudStore error:&error]) {
+        if ([self.psc removePersistentStore:self.iCloudStore error:&error]) {
             NSLog(@"Removed iCloud Store");
             _iCloudStore = nil;
         } else {
@@ -304,129 +276,7 @@ static NSOperationQueue *_presentedItemOperationQueue;
     }
 }
 
-- (void)reLoadiCloudStore:(NSPersistentStore *)store readOnly:(BOOL)readOnly {
-    NSMutableDictionary *options = [[NSMutableDictionary alloc] initWithDictionary:[store options]];
-    if (readOnly) {
-        [options setObject:[NSNumber numberWithBool:YES] forKey:NSReadOnlyPersistentStoreOption];
-    }
-    
-    NSError *error = nil;
-    NSURL *storeURL = [store URL];
-    NSString *storeType = [store type];
-    NSString *configurationName = [store configurationName];
-    _iCloudStore = [_psc addPersistentStoreWithType:storeType configuration:configurationName URL:storeURL options:options error:&error];
-    if (_iCloudStore) {
-        NSLog(@"Added store back as read only: %@", store);
-    } else {
-        NSLog(@"Error adding read only store: %@", error);
-    }
-}
-
-
-#pragma mark -
-#pragma mark Debugging Helpers
-- (void)copyContainerToSandbox {
-    @autoreleasepool {
-        NSFileCoordinator *fc = [[NSFileCoordinator alloc] initWithFilePresenter:nil];
-        NSError *error = nil;
-        NSFileManager *fm = [[NSFileManager alloc] init];
-        NSString *path = [self.ubiquityURL path];
-        NSString *sandboxPath = [[self applicationDocumentsDirectory] stringByAppendingPathComponent:[self.ubiquityURL lastPathComponent]];
-        
-        if ([fm createDirectoryAtPath:sandboxPath withIntermediateDirectories:YES attributes:nil error:&error]) {
-            NSLog(@"Created container directory in sandbox: %@", sandboxPath);
-        } else {
-            if ([[error domain] isEqualToString:NSCocoaErrorDomain]) {
-                if ([error code] == NSFileWriteFileExistsError) {
-                    //delete the existing directory
-                    error = nil;
-                    if ([fm removeItemAtPath:sandboxPath error:&error]) {
-                        NSLog(@"Removed old sandbox container copy");
-                    } else {
-                        NSLog(@"Error trying to remove old sandbox container copy: %@", error);
-                    }
-                }
-            } else {
-                NSLog(@"Error attempting to create sandbox container copy: %@", error);
-                return;
-            }
-        }
-        
-        
-        NSArray *subPaths = [fm subpathsAtPath:path];
-        for (NSString *subPath in subPaths) {
-            NSString *fullPath = [NSString stringWithFormat:@"%@/%@", path, subPath];
-            NSString *fullSandboxPath = [NSString stringWithFormat:@"%@/%@", sandboxPath, subPath];
-            BOOL isDirectory = NO;
-            if ([fm fileExistsAtPath:fullPath isDirectory:&isDirectory]) {
-                if (isDirectory) {
-                    //create the directory
-                    BOOL createSuccess = [fm createDirectoryAtPath:fullSandboxPath
-                                       withIntermediateDirectories:YES
-                                                        attributes:nil
-                                                             error:&error];
-                    if (createSuccess) {
-                        //yay
-                    } else {
-                        NSLog(@"Error creating directory in sandbox: %@", error);
-                    }
-                } else {
-                    //simply copy the file over
-                    BOOL copySuccess = [fm copyItemAtPath:fullPath
-                                                   toPath:fullSandboxPath
-                                                    error:&error];
-                    if (copySuccess) {
-                        //yay
-                    } else {
-                        NSLog(@"Error copying item at path: %@\nTo path: %@\nError: %@", fullPath, fullSandboxPath, error);
-                    }
-                }
-            } else {
-                NSLog(@"Got subpath but there is no file at the full path: %@", fullPath);
-            }
-        }
-        
-        fc = nil;
-    }
-}
-
-- (void)nukeAndPave {
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_async(queue, ^{
-        [self asyncNukeAndPave];
-    });
-}
-
-- (void)asyncNukeAndPave {
-    //disconnect from the various stores
-    [self dropStores];
-    
-    NSFileCoordinator *fc = [[NSFileCoordinator alloc] initWithFilePresenter:nil];
-    NSError *error = nil;
-    NSFileManager *fm = [NSFileManager defaultManager];
-    NSString *path = [self.ubiquityURL path];
-    NSArray *subPaths = [fm subpathsAtPath:path];
-    for (NSString *subPath in subPaths) {
-        NSString *fullPath = [NSString stringWithFormat:@"%@/%@", path, subPath];
-        [fc coordinateWritingItemAtURL:[NSURL fileURLWithPath:fullPath]
-                               options:NSFileCoordinatorWritingForDeleting
-                                 error:&error
-                            byAccessor:^(NSURL *newURL) {
-								NSError *blockError = nil;
-								if ([fm removeItemAtURL:newURL error:&blockError]) {
-									NSLog(@"Deleted file: %@", newURL);
-								} else {
-									NSLog(@"Error deleting file: %@\nError: %@", newURL, blockError);
-								}
-								
-							}];
-    }
-	
-    fc = nil;
-}
-
-#pragma mark -
-#pragma mark Misc.
+#pragma mark - Directory/URL Getters
 
 - (NSString *)folderForUbiquityToken:(id)token {
     NSURL *tokenURL = [[self applicationSandboxStoresDirectory] URLByAppendingPathComponent:@"TokenFoldersData"];
@@ -466,12 +316,6 @@ static NSOperationQueue *_presentedItemOperationQueue;
     
     iCloudStoreURL = [iCloudStoreURL URLByAppendingPathComponent:kiCloudPersistentStoreFilename];
     return iCloudStoreURL;
-}
-
-- (NSURL *)seedStoreURL {
-    NSBundle *mainBundle = [NSBundle mainBundle];
-    NSURL *bundleURL = [mainBundle URLForResource:@"seedStore" withExtension:@"sqlite"];
-    return bundleURL;
 }
 
 - (NSURL *)fallbackStoreURL {

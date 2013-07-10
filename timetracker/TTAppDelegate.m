@@ -18,7 +18,7 @@
 	[[UIToolbar appearance] setTintColor:UIColorFromRGB(0x224771)];
 	[[UISearchBar appearance] setTintColor:UIColorFromRGB(0x224771)];
 	
-	[[TTCoreDataManager defaultManager] loadPersistentStores];
+	[[TTCoreDataManager defaultManager] loadPersistentStore];
 	
     return YES;
 }
