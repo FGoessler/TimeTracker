@@ -13,18 +13,53 @@
 
 typedef BOOL (^TTErrorHandler)(NSError*);
 
-@interface TTCoreDataManager : NSObject
+@interface TTCoreDataManager : NSObject <NSFilePresenter>
 //Use this method to get a singleton instance of this manager
 +(TTCoreDataManager*)defaultManager;
-
-//Do NOT assign something to this property from an other class - unless for test cases!
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
-@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 - (BOOL)saveContext;
 //Saves the context but executes the given handler if an error occurs. The handler should return true if he could solve or react on the error. If the handler is nil or returns false the default routine will try to solve the error or kill the app if the error could not been solved.
 - (BOOL)saveContextWithErrorHandler:(TTErrorHandler)handler;
-- (NSString *)applicationDocumentsDirectory;
+
+
+@property (nonatomic, readonly) NSPersistentStoreCoordinator *psc;
+@property (nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, readonly) NSPersistentStore *iCloudStore;
+@property (nonatomic, readonly) NSPersistentStore *fallbackStore;
+
+@property (nonatomic, readonly) NSURL *ubiquityURL;
+@property (nonatomic, readonly) id currentUbiquityToken;
+
+/*
+ Called by the AppDelegate whenever the application becomes active.
+ We use this signal to check to see if the container identifier has
+ changed.
+ */
+- (void)applicationResumed;
+
+/*
+ Load all the various persistent stores
+ - The iCloud Store / Fallback Store if iCloud is not available
+ - The persistent store used to store local data
+ 
+ Also:
+ - Seed the database if desired (using the SEED #define)
+ - Unique
+ */
+- (void)loadPersistentStores;
+
+#pragma mark Debugging Methods
+/*
+ Copy the entire contents of the application's iCloud container to the Application's sandbox.
+ Use this on iOS to copy the entire contents of the iCloud Continer to the application sandbox
+ where they can be downloaded by Xcode.
+ */
+- (void)copyContainerToSandbox;
+
+/*
+ Delete the contents of the ubiquity container, this method will do a coordinated write to
+ delete every file inside the Application's iCloud Container.
+ */
+- (void)nukeAndPave;
 
 @end

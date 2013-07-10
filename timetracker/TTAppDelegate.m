@@ -18,6 +18,8 @@
 	[[UIToolbar appearance] setTintColor:UIColorFromRGB(0x224771)];
 	[[UISearchBar appearance] setTintColor:UIColorFromRGB(0x224771)];
 	
+	[[TTCoreDataManager defaultManager] loadPersistentStores];
+	
     return YES;
 }
 							
@@ -40,7 +42,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-	// Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+	[[TTCoreDataManager defaultManager] applicationResumed];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -48,5 +50,6 @@
 	// Saves changes in the application's managed object context before the application terminates.
 	[[TTCoreDataManager defaultManager] saveContext];
 }
+
 
 @end
