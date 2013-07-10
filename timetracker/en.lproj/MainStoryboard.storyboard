@@ -137,6 +137,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addBtn" destination="6Ql-4a-XYu" id="hrx-qF-duH"/>
+                        <outlet property="externalLinksBtn" destination="wGl-7a-kze" id="VNM-oJ-ZFo"/>
                         <outlet property="tableView" destination="aiE-Bo-nOG" id="z1T-Ow-6on"/>
                         <segue destination="7p3-hy-eb7" kind="push" identifier="Show TTTrackingVC" id="LH5-27-s6S"/>
                         <segue destination="HiR-mU-r2h" kind="modal" identifier="Show TTProjectSettingsVC" modalTransitionStyle="flipHorizontal" id="A0q-Y3-leI"/>

@@ -25,6 +25,8 @@
 		_tableView = tableView;
 		
 		self.pollingTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateRows) userInfo:nil repeats:YES];
+		
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateOnICloudChange:) name:TT_MODEL_CHANGED_NOTIFICATION object:nil];
 	}
 	
 	return self;
@@ -32,10 +34,16 @@
 
 -(void)dealloc {
 	[self.pollingTimer invalidate];
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 -(TTProject*)projectAtIndexPath:(NSIndexPath*)indexPath {
 	return [self.fetchedResultsController objectAtIndexPath:indexPath];
+}
+
+-(void)updateOnICloudChange:(NSNotification*)notification {
+	self.fetchedResultsController = nil;
+	[self.tableView reloadData];
 }
 
 - (void)updateRows {

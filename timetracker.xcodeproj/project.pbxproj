@@ -218,6 +218,7 @@
 		1732A198177641B2007BDFE5 /* TTProjectsVCTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTProjectsVCTest.m; sourceTree = "<group>"; };
 		173B3FEF177D820A009B60C6 /* TTExternalProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTExternalProject.h; sourceTree = "<group>"; };
 		173B3FF0177D820A009B60C6 /* TTExternalProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTExternalProject.m; sourceTree = "<group>"; };
+		173B776917881C4C002E68BB /* timetracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = timetracker.entitlements; sourceTree = "<group>"; };
 		173C9811177C2E88001BCB77 /* TTGitHubAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTGitHubAPI.h; sourceTree = "<group>"; };
 		173C9812177C2E88001BCB77 /* TTGitHubAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGitHubAPI.m; sourceTree = "<group>"; };
 		173C9814177C31BC001BCB77 /* TTExternalSystemInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTExternalSystemInterface.h; sourceTree = "<group>"; };
@@ -463,6 +464,7 @@
 		174DAB3B177597AB006057C0 /* timetracker */ = {
 			isa = PBXGroup;
 			children = (
+				173B776917881C4C002E68BB /* timetracker.entitlements */,
 				173C97FF177C2C7B001BCB77 /* SystemLinks */,
 				17B642C01778A2B600EB3B4D /* Helper */,
 				1732A18E17762D00007BDFE5 /* DataSource */,
@@ -643,6 +645,11 @@
 				CLASSPREFIX = TT;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Florian Goessler";
+				TargetAttributes = {
+					174DAB2F177597AB006057C0 = {
+						DevelopmentTeam = 44JCK5NK4Y;
+					};
+				};
 			};
 			buildConfigurationList = 174DAB2B177597AB006057C0 /* Build configuration list for PBXProject "timetracker" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -979,6 +986,8 @@
 		174DAB72177597AB006057C0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = timetracker/timetracker.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "timetracker/timetracker-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -995,6 +1004,8 @@
 		174DAB73177597AB006057C0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = timetracker/timetracker.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "timetracker/timetracker-Prefix.pch";
 				HEADER_SEARCH_PATHS = (

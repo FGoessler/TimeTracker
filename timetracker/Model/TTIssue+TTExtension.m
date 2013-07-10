@@ -36,7 +36,7 @@
 	
 	//create new log entry
 	TTLogEntry *newLogEntry = [self createNewUnsavedLogEntry];
-	newLogEntry.parentIssue = self;
+	newLogEntry.startDate = [NSDate date];
 
 	return [self.managedObjectContext save:err];
 }
