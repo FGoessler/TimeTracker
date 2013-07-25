@@ -14,11 +14,14 @@
 {
 
 	//some appearance settings
-	[[UINavigationBar appearance] setTintColor:UIColorFromRGB(0x224771)];
-	[[UIToolbar appearance] setTintColor:UIColorFromRGB(0x224771)];
-	[[UISearchBar appearance] setTintColor:UIColorFromRGB(0x224771)];
+	if ([[[UIDevice currentDevice] systemVersion] doubleValue] < 7.0) {
+		[[UINavigationBar appearance] setTintColor:UIColorFromRGB(0x224771)];
+		[[UIToolbar appearance] setTintColor:UIColorFromRGB(0x224771)];
+		[[UISearchBar appearance] setTintColor:UIColorFromRGB(0x224771)];
+	}
 	
-	[[TTCoreDataManager defaultManager] loadPersistentStore];
+	[[TTCoreDataManager defaultManager] initCoreData];
+
 	
     return YES;
 }
@@ -42,7 +45,6 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-	[[TTCoreDataManager defaultManager] applicationResumed];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

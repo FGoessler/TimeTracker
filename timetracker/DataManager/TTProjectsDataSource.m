@@ -42,6 +42,9 @@
 }
 
 -(void)updateOnICloudChange:(NSNotification*)notification {
+	NSLog(@"updating project list...");
+	
+	//[NSFetchedResultsController deleteCacheWithName:@"Projects"];
 	self.fetchedResultsController = nil;
 	[self.tableView reloadData];
 }
@@ -61,27 +64,29 @@
     if (_fetchedResultsController != nil) {
         return _fetchedResultsController;
     }
-    
+
 	//init the request with an entity (TTProject)
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:MOBJ_TTProject inManagedObjectContext:[TTCoreDataManager defaultManager].managedObjectContext];
     [fetchRequest setEntity:entity];
-    
-	//set batch size
-    [fetchRequest setFetchBatchSize:20];
-	
+
 	//set sort descriptor
 	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-    
+
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
-    
+
 	//init the FetchedResultsController with no sections and a cache
-    _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[TTCoreDataManager defaultManager].managedObjectContext sectionNameKeyPath:nil cacheName:@"Projects"];
+    _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[TTCoreDataManager defaultManager].managedObjectContext sectionNameKeyPath:nil cacheName:nil];
     _fetchedResultsController.delegate = self;
-	
+
 	//perform fetch
-	[_fetchedResultsController performFetch:nil];
-    
+	NSError *error;
+	[_fetchedResultsController performFetch:&error];
+
+	if(error) {
+		NSLog(@"error while performing fetch:%@", error);
+	}
+
     return _fetchedResultsController;
 }
 
@@ -120,8 +125,12 @@
 #pragma mark - TableViewDataSource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
-	return [sectionInfo numberOfObjects];
+	if([[TTCoreDataManager defaultManager] isReady]) {
+		id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
+		return [sectionInfo numberOfObjects];
+	} else {
+		return 0;
+	}
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {	

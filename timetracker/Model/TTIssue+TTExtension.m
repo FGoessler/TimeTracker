@@ -38,7 +38,7 @@
 	TTLogEntry *newLogEntry = [self createNewUnsavedLogEntry];
 	newLogEntry.startDate = [NSDate date];
 
-	return [self.managedObjectContext save:err];
+	return [[TTCoreDataManager defaultManager] saveContext];
 }
 
 -(BOOL)stopTracking:(NSError**)err {
@@ -50,7 +50,7 @@
 	//update log entry
 	self.latestLogEntry.endDate = [NSDate date];
 	
-	return [self.managedObjectContext save:err];
+	return [[TTCoreDataManager defaultManager] saveContext];
 }
 
 @end

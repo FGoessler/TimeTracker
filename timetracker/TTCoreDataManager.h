@@ -11,18 +11,21 @@
 #define TT_MODEL_CHANGED_NOTIFICATION @"TT_MODEL_CHANGED_NOTIFICATION"
 #define TT_ICLOUD_INITATION_NOTIFICATION @"TT_ICLOUD_INITATION"
 
+#define CLOUD_FILE_NAME @"de.floriangoessler.timetracker.f1234"
+#define LOCAL_FILE_NAME @"CoreDataLocalFile"
+
 typedef BOOL (^TTErrorHandler)(NSError*);
 
-@interface TTCoreDataManager : NSObject <NSFilePresenter>
+@interface TTCoreDataManager : NSObject {
+	NSString *testThat;
+}
 
-@property (nonatomic, readonly) NSPersistentStoreCoordinator *psc;
-@property (nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, readonly) NSPersistentStore *iCloudStore;
-@property (nonatomic, readonly) NSPersistentStore *fallbackStore;
+@property (nonatomic, strong) UIManagedDocument *document;
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) NSFileCoordinator* coordinator;
 
-@property (nonatomic, readonly) NSURL *ubiquityURL;
-@property (nonatomic, readonly) id currentUbiquityToken;
 
+@property(nonatomic, copy) NSString *testThat;
 
 //Use this method to get a singleton instance of this manager
 +(TTCoreDataManager*)defaultManager;
@@ -32,25 +35,7 @@ typedef BOOL (^TTErrorHandler)(NSError*);
 //Saves the context but executes the given handler if an error occurs. The handler should return true if he could solve or react on the error. If the handler is nil or returns false the default routine will try to solve the error or kill the app if the error could not been solved.
 - (BOOL)saveContextWithErrorHandler:(TTErrorHandler)handler;
 
-/*
- Called by the AppDelegate whenever the application becomes active.
- We use this signal to check to see if the container identifier has
- changed.
- */
-- (void)applicationResumed;
+-(BOOL)isReady;
 
-/*
- Load all the various persistent stores
- - The iCloud Store / Fallback Store if iCloud is not available
- - The persistent store used to store local data
- 
- Also:
- - Seed the database if desired (using the SEED #define)
- - Unique
- */
-- (void)loadPersistentStore;
-
-
-- (NSString *)applicationDocumentsDirectory;
-- (void)dropStores;
+-(void)initCoreData;
 @end
