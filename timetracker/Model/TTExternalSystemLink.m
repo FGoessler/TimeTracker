@@ -6,9 +6,6 @@
 //  Copyright (c) 2013 Florian Goessler. All rights reserved.
 //
 
-#import "TTExternalSystemLink.h"
-#import "TTProject.h"
-
 
 @implementation TTExternalSystemLink
 

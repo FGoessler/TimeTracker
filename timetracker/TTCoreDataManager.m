@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 Florian Goessler. All rights reserved.
 //
 
-#import "TTCoreDataManager.h"
-#import "TTAppDelegate.h"
 #import "TTCloudHelper.h"
 
 @implementation TTCoreDataManager
@@ -195,71 +193,3 @@
 }
 
 @end
-
-// Merge the iCloud changes into the managed context
-/*- (void)mergeiCloudChanges: (NSDictionary*)userInfo
-				forContext: (NSManagedObjectContext*)managedObjectContext
-{
-	NSMutableDictionary *localUserInfo =
-	[NSMutableDictionary dictionary];
-
-	// Handle the invalidations
-	NSSet* allInvalidations =
-	[userInfo objectForKey:NSInvalidatedAllObjectsKey];
-	NSString* materializeKeys[] = { NSDeletedObjectsKey,
-		NSInsertedObjectsKey };
-	if (nil == allInvalidations)
-	{
-		int c = (sizeof(materializeKeys) / sizeof(NSString*));
-		for (int i = 0; i < c; i++)
-		{
-			NSSet* set = [userInfo objectForKey:materializeKeys[i]];
-			if ([set count] > 0)
-			{
-				NSMutableSet* objectSet = [NSMutableSet set];
-				for (NSManagedObjectID* moid in set)
-					[objectSet addObject:[managedObjectContext
-										  objectWithID:moid]];
-				[localUserInfo setObject:objectSet
-								  forKey:materializeKeys[i]];
-			}
-		}
-		// Handle the updated and refreshed Items
-		NSString* noMaterializeKeys[] = { NSUpdatedObjectsKey,
-			NSRefreshedObjectsKey, NSInvalidatedObjectsKey };
-		c = (sizeof(noMaterializeKeys) / sizeof(NSString*));
-
-		for (int i = 0; i < 2; i++)
-		{
-			NSSet* set = [userInfo objectForKey:noMaterializeKeys[i]];
-			if ([set count] > 0)
-			{
-				NSMutableSet* objectSet = [NSMutableSet set];
-				for (NSManagedObjectID* moid in set)
-				{
-					NSManagedObject* realObj =
-					[managedObjectContext
-					 objectRegisteredForID:moid];
-					if (realObj)
-						[objectSet addObject:realObj];
-				}
-				[localUserInfo setObject:objectSet
-								  forKey:noMaterializeKeys[i]];
-			}
-		}
-		// Fake a save to merge the changes
-		NSNotification *fakeSave = [NSNotification
-									notificationWithName:
-									NSManagedObjectContextDidSaveNotification
-									object:self userInfo:localUserInfo];
-		[managedObjectContext
-		 mergeChangesFromContextDidSaveNotification:fakeSave];
-	}
-	else
-		[localUserInfo setObject:allInvalidations
-						  forKey:NSInvalidatedAllObjectsKey];
-
-	[managedObjectContext processPendingChanges];
-
-
-}*/

@@ -7,12 +7,10 @@
 //
 
 #import "TTProjectsVC.h"
-#import "TTAppDelegate.h"
 #import "TTProjectsDataSource.h"
 #import "TTTrackingVC.h"
 #import "TTMessageOverlay.h"
 #import "TTProjectSettingsVC.h"
-#import "TTProject+TTExtension.h"
 
 
 @interface TTProjectsVC () <UITableViewDelegate, UIAlertViewDelegate>

@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 Florian Goessler. All rights reserved.
 //
 
-#import "NSString+TTExtensions.h"
-
 @implementation NSString (TTExtensions)
 
 + (NSString *)stringWithNSTimeInterval:(NSTimeInterval)timeInterval {

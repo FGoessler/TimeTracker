@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 Florian Goessler. All rights reserved.
 //
 
-#import "TTLogEntry+TTExtension.h"
-
 @implementation TTLogEntry (TTExtension)
 
 -(NSTimeInterval)timeInterval {

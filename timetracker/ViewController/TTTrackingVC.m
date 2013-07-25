@@ -7,7 +7,6 @@
 //
 
 #import "TTTrackingVC.h"
-#import "TTAppDelegate.h"
 #import "TTChangeIssueVC.h"
 #import "TTLogEntriesDataSource.h"
 #import "TTLogEntryDetailsVC.h"

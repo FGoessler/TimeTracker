@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 Florian Goessler. All rights reserved.
 //
 
-#import "TTExternalSystemLink+TTExtension.h"
 #import "TTGitHubAPI.h"
 
 @implementation TTExternalSystemLink (TTExtension)
