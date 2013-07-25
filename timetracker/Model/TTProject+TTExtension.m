@@ -56,7 +56,7 @@
 	newIssue.externalSystemUID = uid;
 	newIssue.parentProject = self;
 	
-	return [self.managedObjectContext save:err];
+	return [[TTCoreDataManager defaultManager] saveContext];
 }
 
 @end

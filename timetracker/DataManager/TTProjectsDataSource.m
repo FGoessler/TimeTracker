@@ -44,7 +44,6 @@
 -(void)updateOnICloudChange:(NSNotification*)notification {
 	NSLog(@"updating project list...");
 	
-	//[NSFetchedResultsController deleteCacheWithName:@"Projects"];
 	self.fetchedResultsController = nil;
 	[self.tableView reloadData];
 }

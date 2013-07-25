@@ -156,12 +156,6 @@
 		name: UIDocumentStateChangedNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(documentContentsDidUpdate:)
 		name:NSPersistentStoreDidImportUbiquitousContentChangesNotification object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contextDidChange:)
-		name:NSManagedObjectContextObjectsDidChangeNotification object:self.managedObjectContext];
-}
-
-- (void)contextDidChange:(NSNotification*)contextDidChange {
-	NSLog(@"Context did change objects!");
 }
 
 
