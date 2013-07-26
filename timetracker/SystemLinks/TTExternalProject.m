@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 Florian Goessler. All rights reserved.
 //
 
-#import "TTExternalProject.h"
-
 @implementation TTExternalProject
 
 @end

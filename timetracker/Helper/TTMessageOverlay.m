@@ -42,10 +42,14 @@
 }
 
 +(TTMessageOverlay*)showLoadingOverlayInViewController:(UIViewController*)viewController {
+	return [TTMessageOverlay showLoadingOverlayInViewController:viewController withMessage:@"Loading data..."];
+}
+
++(TTMessageOverlay*)showLoadingOverlayInViewController:(UIViewController*)viewController withMessage:(NSString*)message {
 	TTMessageOverlay *newOverlay = [[TTMessageOverlay alloc] init];
 	
 	newOverlay.messageLabel = [TTMessageOverlay createMessageLabelInVC:viewController];
-	newOverlay.messageLabel.text = @"Loading data...";
+	newOverlay.messageLabel.text = message;
 	
 	return newOverlay;
 }

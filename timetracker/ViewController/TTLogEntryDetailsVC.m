@@ -7,7 +7,6 @@
 //
 
 #import "TTLogEntryDetailsVC.h"
-#import "TTAppDelegate.h"
 
 @interface TTLogEntryDetailsVC () <UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *startTimeTextField;
@@ -25,7 +24,7 @@
 - (IBAction)doneBtnClicked:(id)sender {
 	self.logEntry.comment = self.commentTextField.text;
 	
-	BOOL saved = [((TTAppDelegate*)[[UIApplication sharedApplication] delegate]) saveContextWithErrorHandler:^BOOL(NSError *err) {
+	BOOL saved = [[TTCoreDataManager defaultManager] saveContextWithErrorHandler:^BOOL(NSError *err) {
 		NSDictionary *errInfo = [err userInfo];
 		if(errInfo[@"NSDetailedErrors"] != nil) {	//if multiple errors occurred only report the first one
 			errInfo = [errInfo[@"NSDetailedErrors"][0] userInfo];
@@ -58,7 +57,7 @@
 }
 - (IBAction)cancelBtnClicked:(id)sender {
 	//reset all changes
-	[((TTAppDelegate*)[[UIApplication sharedApplication] delegate]).managedObjectContext rollback];
+	[[TTCoreDataManager defaultManager].managedObjectContext rollback];
 	
 	//dismiss this ViewController
 	[self.presentingViewController dismissViewControllerAnimated:YES completion:nil];

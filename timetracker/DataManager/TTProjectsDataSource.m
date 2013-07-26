@@ -7,7 +7,6 @@
 //
 
 #import "TTProjectsDataSource.h"
-#import "TTAppDelegate.h"
 
 
 @interface TTProjectsDataSource() <NSFetchedResultsControllerDelegate>
@@ -18,10 +17,6 @@
 
 @implementation TTProjectsDataSource
 
-- (TTAppDelegate*)appDelegate {
-	return [[UIApplication sharedApplication] delegate];
-}
-
 -(id)initAsDataSourceOfTableView:(UITableView*)tableView {
 	self = [super init];
 	
@@ -30,6 +25,8 @@
 		_tableView = tableView;
 		
 		self.pollingTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateRows) userInfo:nil repeats:YES];
+		
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateOnICloudChange:) name:TT_MODEL_CHANGED_NOTIFICATION object:nil];
 	}
 	
 	return self;
@@ -37,10 +34,18 @@
 
 -(void)dealloc {
 	[self.pollingTimer invalidate];
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 -(TTProject*)projectAtIndexPath:(NSIndexPath*)indexPath {
 	return [self.fetchedResultsController objectAtIndexPath:indexPath];
+}
+
+-(void)updateOnICloudChange:(NSNotification*)notification {
+	NSLog(@"updating project list...");
+	
+	self.fetchedResultsController = nil;
+	[self.tableView reloadData];
 }
 
 - (void)updateRows {
@@ -58,27 +63,29 @@
     if (_fetchedResultsController != nil) {
         return _fetchedResultsController;
     }
-    
+
 	//init the request with an entity (TTProject)
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:MOBJ_TTProject inManagedObjectContext:[self appDelegate].managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:MOBJ_TTProject inManagedObjectContext:[TTCoreDataManager defaultManager].managedObjectContext];
     [fetchRequest setEntity:entity];
-    
-	//set batch size
-    [fetchRequest setFetchBatchSize:20];
-	
+
 	//set sort descriptor
 	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-    
+
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
-    
+
 	//init the FetchedResultsController with no sections and a cache
-    _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[self appDelegate].managedObjectContext sectionNameKeyPath:nil cacheName:@"Projects"];
+    _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[TTCoreDataManager defaultManager].managedObjectContext sectionNameKeyPath:nil cacheName:nil];
     _fetchedResultsController.delegate = self;
-	
+
 	//perform fetch
-	[_fetchedResultsController performFetch:nil];
-    
+	NSError *error;
+	[_fetchedResultsController performFetch:&error];
+
+	if(error) {
+		NSLog(@"error while performing fetch:%@", error);
+	}
+
     return _fetchedResultsController;
 }
 
@@ -117,8 +124,12 @@
 #pragma mark - TableViewDataSource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
-	return [sectionInfo numberOfObjects];
+	if([[TTCoreDataManager defaultManager] isReady]) {
+		id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
+		return [sectionInfo numberOfObjects];
+	} else {
+		return 0;
+	}
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {	
@@ -136,8 +147,8 @@
 //Handle deletions.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-		[[self appDelegate].managedObjectContext deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
-		[[self appDelegate] saveContext];
+		[[TTCoreDataManager defaultManager].managedObjectContext deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+		[[TTCoreDataManager defaultManager] saveContext];
     }
 }
 

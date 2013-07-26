@@ -7,7 +7,6 @@
 //
 
 #import "TTExternalSystemLinkDetailsVC.h"
-#import "TTAppDelegate.h"
 
 @interface TTExternalSystemLinkDetailsVC () <UIPickerViewDataSource, UIPickerViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *usernameTxtField;
@@ -20,7 +19,7 @@
 
 - (IBAction)cancelBtnClicked:(id)sender {
 	//reset all changes
-	[((TTAppDelegate*)[[UIApplication sharedApplication] delegate]).managedObjectContext rollback];
+	[[TTCoreDataManager defaultManager].managedObjectContext rollback];
 	
 	[self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
@@ -32,7 +31,7 @@
 	
 	//TODO: validate user data via API
 	
-	BOOL saved = [((TTAppDelegate*)[[UIApplication sharedApplication] delegate]) saveContextWithErrorHandler:^BOOL(NSError *err) {
+	BOOL saved = [[TTCoreDataManager defaultManager] saveContextWithErrorHandler:^BOOL(NSError *err) {
 		if([[err userInfo][@"NSValidationErrorKey"] isEqualToString:@"type"]) {
 			//show a message to inform the user about the invalid type
 			UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Invalid data" message:@"The type you entered is invalid!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];

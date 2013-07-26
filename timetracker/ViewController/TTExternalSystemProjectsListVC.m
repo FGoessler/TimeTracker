@@ -7,7 +7,6 @@
 //
 
 #import "TTExternalSystemProjectsListVC.h"
-#import "TTExternalSystemInterface.h"
 #import "TTMessageOverlay.h"
 
 @interface TTExternalSystemProjectsListVC () <TTexternalSystemInterfaceDelegate, UITableViewDataSource, UITableViewDelegate>

@@ -7,18 +7,21 @@
 //
 
 #import "TTProjectsVC.h"
-#import "TTAppDelegate.h"
 #import "TTProjectsDataSource.h"
 #import "TTTrackingVC.h"
+#import "TTMessageOverlay.h"
 #import "TTProjectSettingsVC.h"
-#import "TTProject+TTExtension.h"
 
 
 @interface TTProjectsVC () <UITableViewDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *addBtn;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *externalLinksBtn;
 
 @property (strong, nonatomic) TTProjectsDataSource *dataSource;
 @property (nonatomic, strong) TTProject* selectedProject;
+
+@property (nonatomic, strong) TTMessageOverlay* messageOverlay;
 @end
 
 @implementation TTProjectsVC
@@ -46,6 +49,20 @@
 	[self performSegueWithIdentifier:@"Show TTProjectSettingsVC" sender:self];		//show ProjectSettingsVC
 }
 
+-(void)showICloudMessage:(NSNotification*)notification {
+	self.messageOverlay = [TTMessageOverlay showLoadingOverlayInViewController:self withMessage:@"Loading data from iCloud. Please wait!"];
+	[self.addBtn setEnabled:NO];
+	[self.externalLinksBtn setEnabled:NO];
+	
+}
+-(void)hideICloudMessage:(NSNotification*)notification {
+	if(self.messageOverlay) {
+		[self.messageOverlay hide];
+	}
+	[self.addBtn setEnabled:YES];
+	[self.externalLinksBtn setEnabled:YES];
+}
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	if([segue.identifier isEqualToString:@"Show TTTrackingVC"]) {
 		TTTrackingVC *destVC = segue.destinationViewController;
@@ -69,6 +86,13 @@
 	//configure TableView
 	self.tableView.delegate = self;
 	self.dataSource = [[TTProjectsDataSource alloc] initAsDataSourceOfTableView:self.tableView];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showICloudMessage:) name:TT_ICLOUD_INITATION_NOTIFICATION object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideICloudMessage:) name:TT_MODEL_CHANGED_NOTIFICATION object:nil];
+}
+
+-(void)dealloc {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 

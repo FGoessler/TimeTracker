@@ -20,4 +20,5 @@
 -(BOOL)addIssueWithName:(NSString *)name andError:(NSError**)err;
 -(BOOL)addIssueWithName:(NSString *)name shortText:(NSString *)text externalUID:(NSString *)uid andErrorIndicator:(NSError**)err;
 
+- (TTProject *)clone;
 @end

@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Florian Goessler. All rights reserved.
 //
 
-#import "TTIssue+TTExtension.h"
+#import "TTProject.h"
 
 @implementation TTIssue (TTExtension)
 
@@ -36,9 +36,9 @@
 	
 	//create new log entry
 	TTLogEntry *newLogEntry = [self createNewUnsavedLogEntry];
-	newLogEntry.parentIssue = self;
+	newLogEntry.startDate = [NSDate date];
 
-	return [self.managedObjectContext save:err];
+	return [[TTCoreDataManager defaultManager] saveContext];
 }
 
 -(BOOL)stopTracking:(NSError**)err {
@@ -50,7 +50,19 @@
 	//update log entry
 	self.latestLogEntry.endDate = [NSDate date];
 	
-	return [self.managedObjectContext save:err];
+	return [[TTCoreDataManager defaultManager] saveContext];
 }
 
+- (TTIssue *)clone {
+	TTIssue *newIssue = [NSEntityDescription insertNewObjectForEntityForName:MOBJ_TTIssue inManagedObjectContext:self.managedObjectContext];
+
+	newIssue.name = self.name;
+	newIssue.shortText = self.shortText;
+
+	for(TTLogEntry *logEntry in self.childLogEntries) {
+		[newIssue addChildLogEntriesObject:[logEntry clone]];
+	}
+
+	return newIssue;
+}
 @end

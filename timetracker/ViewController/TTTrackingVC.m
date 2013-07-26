@@ -7,7 +7,6 @@
 //
 
 #import "TTTrackingVC.h"
-#import "TTAppDelegate.h"
 #import "TTChangeIssueVC.h"
 #import "TTLogEntriesDataSource.h"
 #import "TTLogEntryDetailsVC.h"
@@ -156,7 +155,6 @@
 
 	
 	[container addConstraint:[NSLayoutConstraint constraintWithItem:label attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:container attribute:NSLayoutAttributeLeading multiplier:1.0 constant:10.0]];
-	[container addConstraint:[NSLayoutConstraint constraintWithItem:label attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:button attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:10.0]];
 	[container addConstraint:[NSLayoutConstraint constraintWithItem:container attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:button attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:10.0]];
 	
 	[button addTarget:self action:@selector(newTimelogEntryBtnClicked) forControlEvents:UIControlEventTouchUpInside];

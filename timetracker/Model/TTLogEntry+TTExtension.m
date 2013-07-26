@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 Florian Goessler. All rights reserved.
 //
 
-#import "TTLogEntry+TTExtension.h"
-
 @implementation TTLogEntry (TTExtension)
 
 -(NSTimeInterval)timeInterval {
@@ -61,4 +59,14 @@
 	return YES;
 }
 
+- (TTLogEntry *)clone {
+	TTLogEntry *newLogEntry = [NSEntityDescription insertNewObjectForEntityForName:MOBJ_TTLogEntry inManagedObjectContext:self.managedObjectContext];
+
+	newLogEntry.comment = self.comment;
+	newLogEntry.endDate = [self.endDate copy];
+	newLogEntry.startDate = [self.startDate copy];
+	newLogEntry.synced = @(false);
+
+	return newLogEntry;
+}
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "TTIssuesDataSource.h"
-#import "TTAppDelegate.h"
 
 @interface TTIssuesDataSource() 
 @property (nonatomic, weak) UITableView* tableView;
@@ -17,10 +16,6 @@
 @end
 
 @implementation TTIssuesDataSource
-
-- (TTAppDelegate*)appDelegate {
-	return [[UIApplication sharedApplication] delegate];
-}
 
 -(id)initWithProject:(TTProject*)project asDataSourceOfTableView:(UITableView*)tableView; {
 	self = [super init];
@@ -135,16 +130,16 @@
 				self.project.defaultIssue = [self.project.childIssues allObjects][0];
 			} else {
 				[[[UIAlertView alloc] initWithTitle:@"Action not allowed!" message:@"You cannot delete all issues!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
-				[[self appDelegate].managedObjectContext rollback];
+				[[TTCoreDataManager defaultManager].managedObjectContext rollback];
 				return;
 			}
 		}
 		
-		[[self appDelegate].managedObjectContext deleteObject:issue];		
-		[[self appDelegate] saveContextWithErrorHandler:^BOOL(NSError *err) {
+		[[TTCoreDataManager defaultManager].managedObjectContext deleteObject:issue];		
+		[[TTCoreDataManager defaultManager] saveContextWithErrorHandler:^BOOL(NSError *err) {
 			//show a message to inform the user about a generic error
 			[[[UIAlertView alloc] initWithTitle:@"Action not allowed!" message:@"You are not allowed to delete this issue!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
-			[[self appDelegate].managedObjectContext rollback];
+			[[TTCoreDataManager defaultManager].managedObjectContext rollback];
 			return YES;
 		}];
     }

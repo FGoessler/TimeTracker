@@ -7,7 +7,6 @@
 //
 
 #import "TTGitHubAPI.h"
-#import "TTAppDelegate.h"
 #import <OctoKit/OctoKit.h>
 
 @implementation TTGitHubAPI
@@ -116,7 +115,7 @@
 				issueWithoutExternalCounterpart.externalSystemUID = nil;
 			}
 			
-			[((TTAppDelegate*)[[UIApplication sharedApplication] delegate]) saveContext];	//TODO: error handling
+			[[TTCoreDataManager defaultManager] saveContext];	//TODO: error handling
 			
 			dispatch_async(dispatch_get_main_queue(), ^(){	//make sure to perform the callback on the main thread (otherwise no UI interaction!)
 				if(self.delegate && [self.delegate respondsToSelector:@selector(syncedIssuesOfProject:)]) {

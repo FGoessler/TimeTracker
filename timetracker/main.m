@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 Florian Goessler. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 #import "TTAppDelegate.h"
 
 int main(int argc, char *argv[])

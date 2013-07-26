@@ -18,6 +18,8 @@
 
 	#import "NSString+TTExtensions.h"
 
+	#import "TTCoreDataManager.h"
+
 	#import "TTLogEntry+TTExtension.h"
 	#import "TTIssue+TTExtension.h"
 	#import "TTProject+TTExtension.h"

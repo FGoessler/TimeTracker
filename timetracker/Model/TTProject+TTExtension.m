@@ -6,17 +6,11 @@
 //  Copyright (c) 2013 Florian Goessler. All rights reserved.
 //
 
-#import "TTProject+TTExtension.h"
-#import "TTAppDelegate.h"
-#import "TTIssue+TTExtension.h"
-#import "TTLogEntry+TTExtension.h"
-
 
 @implementation TTProject (TTExtension)
 
 +(TTProject*)createNewProjectWithName:(NSString*)name {
-	TTAppDelegate *appDelegate =   [[UIApplication sharedApplication] delegate];
-	NSManagedObjectContext *context = appDelegate.managedObjectContext;
+	NSManagedObjectContext *context = [TTCoreDataManager defaultManager].managedObjectContext;
 	
 	//create new project
     TTProject *newProject = [NSEntityDescription insertNewObjectForEntityForName:MOBJ_TTProject inManagedObjectContext:context];
@@ -30,7 +24,7 @@
 	[newProject addChildIssuesObject:defaultIssue];
 	[newProject addChildIssuesObject:defaultIssue];
 	
-	[appDelegate saveContext];
+	[[TTCoreDataManager defaultManager] saveContext];
 	
 	return newProject;
 }
@@ -58,7 +52,32 @@
 	newIssue.externalSystemUID = uid;
 	newIssue.parentProject = self;
 	
-	return [self.managedObjectContext save:err];
+	return [[TTCoreDataManager defaultManager] saveContext];
+}
+
+- (TTProject *)clone {
+	NSManagedObjectContext *context = [TTCoreDataManager defaultManager].managedObjectContext;
+
+	//create new project
+	TTProject *newProject = [NSEntityDescription insertNewObjectForEntityForName:MOBJ_TTProject inManagedObjectContext:context];
+	newProject.name = [self.name stringByAppendingString:@" (Cloned)"];
+
+	//clone all issues
+	for(TTIssue *issue in self.childIssues) {
+		[newProject addChildIssuesObject:[issue clone]];
+	}
+
+	//set the default issue
+	for(TTIssue *issue in newProject.childIssues) {
+		if([issue.name isEqualToString:self.defaultIssue.name]) {
+			newProject.defaultIssue = issue;
+			break;
+		}
+	}
+
+	[[TTCoreDataManager defaultManager] saveContext];
+
+	return newProject;
 }
 
 @end

@@ -28,9 +28,9 @@
         <relationship name="parentSystemLink" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TTExternalSystemLink" inverseName="childProjects" inverseEntity="TTExternalSystemLink" syncable="YES"/>
     </entity>
     <elements>
-        <element name="TTExternalSystemLink" positionX="52" positionY="-366" width="128" height="105"/>
-        <element name="TTIssue" positionX="349" positionY="-72" width="128" height="118"/>
-        <element name="TTLogEntry" positionX="628" positionY="-66" width="128" height="120"/>
-        <element name="TTProject" positionX="45" positionY="-63" width="128" height="120"/>
+        <element name="TTExternalSystemLink" positionX="79" positionY="-366" width="128" height="105"/>
+        <element name="TTIssue" positionX="367" positionY="-72" width="128" height="118"/>
+        <element name="TTLogEntry" positionX="648" positionY="-72" width="128" height="120"/>
+        <element name="TTProject" positionX="88" positionY="-72" width="128" height="120"/>
     </elements>
 </model>
