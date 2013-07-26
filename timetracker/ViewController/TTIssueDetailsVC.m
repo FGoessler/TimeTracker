@@ -7,13 +7,15 @@
 //
 
 #import "TTIssueDetailsVC.h"
+#import "TTLogEntriesDataSource.h"
 
 @interface TTIssueDetailsVC ()
-@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
-@property (weak, nonatomic) IBOutlet UITextView *descriptionTextField;
-@property (weak, nonatomic) IBOutlet UILabel *syncStatusLbl;
-@property (weak, nonatomic) IBOutlet UILabel *timeSpentLbl;
+@property (weak, nonatomic) UITextField *nameTextField;
+@property (weak, nonatomic) UITextView *descriptionTextField;
+@property (weak, nonatomic) UILabel *syncStatusLbl;
+@property (weak, nonatomic) UILabel *timeSpentLbl;
 
+@property(nonatomic, strong) TTLogEntriesDataSource *logEntriesDataSource;
 @end
 
 @implementation TTIssueDetailsVC
@@ -64,16 +66,75 @@
 	[self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)viewWillAppear:(BOOL)animated {
-	self.nameTextField.text = self.issue.name;
-	self.descriptionTextField.text = self.issue.shortText;
-	self.timeSpentLbl.text = [NSString stringWithNSTimeInterval:[((NSNumber*)[self.issue valueForKeyPath:@"childLogEntries.@sum.timeInterval"]) doubleValue]];
+- (void)viewDidLoad {
+	[super viewDidLoad];
 	
-	if(self.issue.externalSystemUID != nil) {
-		self.syncStatusLbl.text = @"synced with external system";
-	} else {
-		self.syncStatusLbl.text = @"not synced";
+	self.logEntriesDataSource = [[TTLogEntriesDataSource alloc] initWithIssue:self.issue asDataSourceOfTableView:self.tableView];
+	[self.logEntriesDataSource restrictToSection:2 andSetSecondHandDataSource:self];
+}
+
+#pragma mark TableView
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+	return 3;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	switch(section){
+		case 0:
+			return 3;
+		case 1:
+			return 1;
+		default:
+			return 0;
 	}
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	if(indexPath.section == 1 && indexPath.row == 0) {
+		return 122.0;
+	} else {
+		return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+	}
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	switch(section) {
+		case 1:
+			return @"Description";
+		case 2:
+			return @"Time Logged";
+		default:
+			return nil;
+	}
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	UITableViewCell *cell;
+
+	if(indexPath.row == 0 && indexPath.section == 0) {
+		cell = [tableView dequeueReusableCellWithIdentifier:@"IssueNameCell"];
+		self.nameTextField = [[[cell.subviews objectAtIndex:0] subviews] objectAtIndex:0];
+		self.nameTextField.text = self.issue.name;
+	} else if(indexPath.row == 1 && indexPath.section == 0) {
+		cell = [tableView dequeueReusableCellWithIdentifier:@"CenteredTextCell"];
+		self.timeSpentLbl = [[[cell.subviews objectAtIndex:0] subviews] objectAtIndex:0];
+		self.timeSpentLbl.text = [NSString stringWithNSTimeInterval:[((NSNumber*)[self.issue valueForKeyPath:@"childLogEntries.@sum.timeInterval"]) doubleValue]];
+	} else if(indexPath.row == 2 && indexPath.section == 0) {
+		cell = [tableView dequeueReusableCellWithIdentifier:@"CenteredTextCell"];
+		self.syncStatusLbl = [[[cell.subviews objectAtIndex:0] subviews] objectAtIndex:0];
+		if(self.issue.externalSystemUID != nil) {
+			self.syncStatusLbl.text = @"synced with external system";
+		} else {
+			self.syncStatusLbl.text = @"not synced";
+		}
+	} else if(indexPath.row == 0 && indexPath.section == 1) {
+		cell = [tableView dequeueReusableCellWithIdentifier:@"LargeTextCell"];
+		self.descriptionTextField = [[[cell.subviews objectAtIndex:0] subviews] objectAtIndex:0];
+		self.descriptionTextField.text = self.issue.shortText;
+	}
+
+	return cell;
 }
 
 @end
