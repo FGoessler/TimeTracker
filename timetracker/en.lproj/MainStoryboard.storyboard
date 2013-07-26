@@ -746,6 +746,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="rJJ-wN-uWW" kind="modal" identifier="Show TTLogEntryDetailsVC from TTIssueDetailsVC" modalTransitionStyle="coverVertical" id="DqB-Em-jNj"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yjs-0s-KpK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -756,6 +759,7 @@
             <objects>
                 <navigationController id="rJJ-wN-uWW" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="3WK-pp-xfr"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="f2U-Tp-cUy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1289,6 +1293,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TTIssueDetailsVC.h"/>
             <relationships>
                 <relationship kind="action" name="cancelBtnClicked:"/>
+                <relationship kind="action" name="doneBtnClicked:"/>
             </relationships>
         </class>
         <class className="TTIssueListVC" superclassName="UIViewController">
@@ -1347,7 +1352,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="J7l-Ou-mqd"/>
-        <segue reference="ZFs-Gj-vZw"/>
-        <segue reference="3RO-2y-lf7"/>
+        <segue reference="ZWo-DI-uAx"/>
+        <segue reference="DqB-Em-jNj"/>
     </inferredMetricsTieBreakers>
 </document>

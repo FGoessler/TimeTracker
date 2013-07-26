@@ -63,6 +63,7 @@
 		17C927221787FD9000046B1C /* TTCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C927211787FD9000046B1C /* TTCoreDataManager.m */; };
 		17FC6191177E460300290FE7 /* TTProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5304C177E2B280004E485 /* TTProject.m */; };
 		AB01E6AC1779931F002F0E40 /* TTIssuesDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = AB01E6AB1779931F002F0E40 /* TTIssuesDataSource.m */; };
+		D2589289E201C9E2AE574BBD /* TTUIViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D2589202CB3AB2856338DF6F /* TTUIViewHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -280,6 +281,8 @@
 		17C927211787FD9000046B1C /* TTCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTCoreDataManager.m; sourceTree = "<group>"; };
 		AB01E6AA1779931F002F0E40 /* TTIssuesDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTIssuesDataSource.h; sourceTree = "<group>"; };
 		AB01E6AB1779931F002F0E40 /* TTIssuesDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTIssuesDataSource.m; sourceTree = "<group>"; };
+		D2589202CB3AB2856338DF6F /* TTUIViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTUIViewHelper.m; sourceTree = "<group>"; };
+		D2589645B3C8330CBE8EEBDA /* TTUIViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTUIViewHelper.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -598,6 +601,8 @@
 				17B53038177E18F20004E485 /* TTMessageOverlay.m */,
 				1710EC4C179EEE6700C136BD /* TTCloudHelper.h */,
 				1710EC4D179EEE6700C136BD /* TTCloudHelper.m */,
+				D2589202CB3AB2856338DF6F /* TTUIViewHelper.m */,
+				D2589645B3C8330CBE8EEBDA /* TTUIViewHelper.h */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -882,6 +887,7 @@
 				17B53039177E18F20004E485 /* TTMessageOverlay.m in Sources */,
 				1709EB58177F8CF900D15786 /* TTIssueListVC.m in Sources */,
 				17C927221787FD9000046B1C /* TTCoreDataManager.m in Sources */,
+				D2589289E201C9E2AE574BBD /* TTUIViewHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

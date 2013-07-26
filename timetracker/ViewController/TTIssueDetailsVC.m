@@ -8,6 +8,8 @@
 
 #import "TTIssueDetailsVC.h"
 #import "TTLogEntriesDataSource.h"
+#import "TTLogEntryDetailsVC.h"
+#import "TTUIViewHelper.h"
 
 @interface TTIssueDetailsVC ()
 @property (weak, nonatomic) UITextField *nameTextField;
@@ -75,6 +77,17 @@
 
 #pragma mark TableView
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	[self performSegueWithIdentifier:@"Show TTLogEntryDetailsVC from TTIssueDetailsVC" sender:self];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+	if([segue.identifier isEqualToString:@"Show TTLogEntryDetailsVC from TTIssueDetailsVC"]) {
+		TTLogEntryDetailsVC *destVC = (TTLogEntryDetailsVC*)[segue.destinationViewController topViewController];
+		destVC.logEntry = [self.logEntriesDataSource logEntryAtIndexPath:[self.tableView indexPathForSelectedRow]];
+	}
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	return 3;
 }
@@ -114,15 +127,15 @@
 
 	if(indexPath.row == 0 && indexPath.section == 0) {
 		cell = [tableView dequeueReusableCellWithIdentifier:@"IssueNameCell"];
-		self.nameTextField = [[[cell.subviews objectAtIndex:0] subviews] objectAtIndex:0];
+		self.nameTextField = (UITextField *) [TTUIViewHelper searchInSubviewsOfView:cell forUIViewClass:[UITextField class]];
 		self.nameTextField.text = self.issue.name;
 	} else if(indexPath.row == 1 && indexPath.section == 0) {
 		cell = [tableView dequeueReusableCellWithIdentifier:@"CenteredTextCell"];
-		self.timeSpentLbl = [[[cell.subviews objectAtIndex:0] subviews] objectAtIndex:0];
+		self.timeSpentLbl = (UILabel *) [TTUIViewHelper searchInSubviewsOfView:cell forUIViewClass:[UILabel class]];
 		self.timeSpentLbl.text = [NSString stringWithNSTimeInterval:[((NSNumber*)[self.issue valueForKeyPath:@"childLogEntries.@sum.timeInterval"]) doubleValue]];
 	} else if(indexPath.row == 2 && indexPath.section == 0) {
 		cell = [tableView dequeueReusableCellWithIdentifier:@"CenteredTextCell"];
-		self.syncStatusLbl = [[[cell.subviews objectAtIndex:0] subviews] objectAtIndex:0];
+		self.syncStatusLbl = (UILabel *) [TTUIViewHelper searchInSubviewsOfView:cell forUIViewClass:[UILabel class]];
 		if(self.issue.externalSystemUID != nil) {
 			self.syncStatusLbl.text = @"synced with external system";
 		} else {
@@ -130,7 +143,7 @@
 		}
 	} else if(indexPath.row == 0 && indexPath.section == 1) {
 		cell = [tableView dequeueReusableCellWithIdentifier:@"LargeTextCell"];
-		self.descriptionTextField = [[[cell.subviews objectAtIndex:0] subviews] objectAtIndex:0];
+		self.descriptionTextField = (UITextView *) [TTUIViewHelper searchInSubviewsOfView:cell forUIViewClass:[UITextView class]];
 		self.descriptionTextField.text = self.issue.shortText;
 	}
 
