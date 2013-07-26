@@ -8,6 +8,8 @@
 
 #import "TTIssue.h"
 
+@class TTProject;
+
 #define MOBJ_TTIssue @"TTIssue"
 
 #define TTLOG_ENTRY_STILL_ACTIVE 9001
@@ -21,4 +23,5 @@
 -(BOOL)startTracking:(NSError**)err;
 -(BOOL)stopTracking:(NSError**)err;
 
+- (TTIssue *)clone;
 @end

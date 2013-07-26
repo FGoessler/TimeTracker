@@ -59,4 +59,14 @@
 	return YES;
 }
 
+- (TTLogEntry *)clone {
+	TTLogEntry *newLogEntry = [NSEntityDescription insertNewObjectForEntityForName:MOBJ_TTLogEntry inManagedObjectContext:self.managedObjectContext];
+
+	newLogEntry.comment = self.comment;
+	newLogEntry.endDate = [self.endDate copy];
+	newLogEntry.startDate = [self.startDate copy];
+	newLogEntry.synced = @(false);
+
+	return newLogEntry;
+}
 @end

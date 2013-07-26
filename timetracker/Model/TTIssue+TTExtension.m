@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Florian Goessler. All rights reserved.
 //
 
+#import "TTProject.h"
+
 @implementation TTIssue (TTExtension)
 
 -(TTLogEntry*)latestLogEntry {
@@ -51,4 +53,16 @@
 	return [[TTCoreDataManager defaultManager] saveContext];
 }
 
+- (TTIssue *)clone {
+	TTIssue *newIssue = [NSEntityDescription insertNewObjectForEntityForName:MOBJ_TTIssue inManagedObjectContext:self.managedObjectContext];
+
+	newIssue.name = self.name;
+	newIssue.shortText = self.shortText;
+
+	for(TTLogEntry *logEntry in self.childLogEntries) {
+		[newIssue addChildLogEntriesObject:[logEntry clone]];
+	}
+
+	return newIssue;
+}
 @end

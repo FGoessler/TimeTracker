@@ -9,6 +9,7 @@
 #import "TTProjectSettingsVC.h"
 #import "TTLinksVC.h"
 #import "TTIssueListVC.h"
+#import "TTMessageOverlay.h"
 
 @interface TTProjectSettingsVC ()
 @property (weak, nonatomic) IBOutlet UITextField *projectNameTextField;
@@ -91,6 +92,11 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	if(indexPath.section == 1 && indexPath.row == 0) {
 		[self performSegueWithIdentifier:@"Show ChangeExternalLink" sender:self];
+	} else if(indexPath.section == 3 && indexPath.row == 0) {
+		[self.project clone];
+
+		[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+		[self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 	}
 }
 

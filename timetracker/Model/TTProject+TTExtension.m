@@ -55,4 +55,29 @@
 	return [[TTCoreDataManager defaultManager] saveContext];
 }
 
+- (TTProject *)clone {
+	NSManagedObjectContext *context = [TTCoreDataManager defaultManager].managedObjectContext;
+
+	//create new project
+	TTProject *newProject = [NSEntityDescription insertNewObjectForEntityForName:MOBJ_TTProject inManagedObjectContext:context];
+	newProject.name = [self.name stringByAppendingString:@" (Cloned)"];
+
+	//clone all issues
+	for(TTIssue *issue in self.childIssues) {
+		[newProject addChildIssuesObject:[issue clone]];
+	}
+
+	//set the default issue
+	for(TTIssue *issue in newProject.childIssues) {
+		if([issue.name isEqualToString:self.defaultIssue.name]) {
+			newProject.defaultIssue = issue;
+			break;
+		}
+	}
+
+	[[TTCoreDataManager defaultManager] saveContext];
+
+	return newProject;
+}
+
 @end

@@ -15,4 +15,6 @@
 
 @interface TTLogEntry (TTExtension)
 @property (readonly, nonatomic) NSTimeInterval timeInterval;
+
+- (TTLogEntry *)clone;
 @end
