@@ -69,6 +69,7 @@
 
 - (void) initCoreData
 {
+
 	NSURL *localURL = [TTCloudHelper localFileURL:LOCAL_FILE_NAME];
     NSURL *cloudURL = [TTCloudHelper ubiquityDataFileURL:CLOUD_FILE_NAME];
 	

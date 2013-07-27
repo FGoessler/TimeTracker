@@ -49,8 +49,8 @@
 	[self performSegueWithIdentifier:@"Show TTProjectSettingsVC" sender:self];		//show ProjectSettingsVC
 }
 
--(void)showICloudMessage:(NSNotification*)notification {
-	self.messageOverlay = [TTMessageOverlay showLoadingOverlayInViewController:self withMessage:@"Loading data from iCloud. Please wait!"];
+-(void)showICloudMessage {
+	self.messageOverlay = [TTMessageOverlay showLoadingOverlayInViewController:self withMessage:@"Initiating Data Store. Please wait!"];
 	[self.addBtn setEnabled:NO];
 	[self.externalLinksBtn setEnabled:NO];
 	
@@ -87,8 +87,9 @@
 	self.tableView.delegate = self;
 	self.dataSource = [[TTProjectsDataSource alloc] initAsDataSourceOfTableView:self.tableView];
 	
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showICloudMessage:) name:TT_ICLOUD_INITATION_NOTIFICATION object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideICloudMessage:) name:TT_MODEL_CHANGED_NOTIFICATION object:nil];
+	
+	[self showICloudMessage];
 }
 
 -(void)dealloc {
