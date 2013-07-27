@@ -49,6 +49,8 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+
 	self.typeSpinner.delegate = self;
 	self.typeSpinner.dataSource = self;
 	
