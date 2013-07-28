@@ -11,8 +11,6 @@
 		1707AD3D177CD5E8002537C0 /* TTExternalSystemLinksDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1707AD3C177CD5E8002537C0 /* TTExternalSystemLinksDataSource.m */; };
 		1709EB58177F8CF900D15786 /* TTIssueListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1709EB57177F8CF900D15786 /* TTIssueListVC.m */; };
 		1710EC4E179EEE6700C136BD /* TTCloudHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1710EC4D179EEE6700C136BD /* TTCloudHelper.m */; };
-		171A0AC317774F8300A3D721 /* TTProjectDataManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1732A195177641A1007BDFE5 /* TTProjectDataManagerTest.m */; };
-		171A0AC417774FA500A3D721 /* TTCoreDataTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 171A0ABD1776F0DE00A3D721 /* TTCoreDataTest.m */; };
 		171B37631778E44000832894 /* TTIssueDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 171B37621778E43F00832894 /* TTIssueDetailsVC.m */; };
 		1732A173177611B8007BDFE5 /* TTExternalSystemLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 1732A172177611B8007BDFE5 /* TTExternalSystemLink.m */; };
 		1732A176177611B8007BDFE5 /* TTLogEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 1732A175177611B8007BDFE5 /* TTLogEntry.m */; };
@@ -22,7 +20,6 @@
 		1732A189177613F1007BDFE5 /* TTLogEntry+TTExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1732A188177613F1007BDFE5 /* TTLogEntry+TTExtension.m */; };
 		1732A18C177613FF007BDFE5 /* TTExternalSystemLink+TTExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1732A18B177613FF007BDFE5 /* TTExternalSystemLink+TTExtension.m */; };
 		1732A19117762DEE007BDFE5 /* TTProjectsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1732A19017762DEE007BDFE5 /* TTProjectsDataSource.m */; };
-		1732A199177641B2007BDFE5 /* TTProjectsVCTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1732A198177641B2007BDFE5 /* TTProjectsVCTest.m */; };
 		173521EB17A5678000A22A6C /* timetracker_logo_57.png in Resources */ = {isa = PBXBuildFile; fileRef = 173521EA17A5678000A22A6C /* timetracker_logo_57.png */; };
 		173521FD17A5678500A22A6C /* timetracker_logo_114.png in Resources */ = {isa = PBXBuildFile; fileRef = 173521FC17A5678500A22A6C /* timetracker_logo_114.png */; };
 		173B3FF1177D820A009B60C6 /* TTExternalProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 173B3FF0177D820A009B60C6 /* TTExternalProject.m */; };
@@ -198,8 +195,6 @@
 		1709EB57177F8CF900D15786 /* TTIssueListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTIssueListVC.m; sourceTree = "<group>"; };
 		1710EC4C179EEE6700C136BD /* TTCloudHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTCloudHelper.h; sourceTree = "<group>"; };
 		1710EC4D179EEE6700C136BD /* TTCloudHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTCloudHelper.m; sourceTree = "<group>"; };
-		171A0ABC1776F0DE00A3D721 /* TTCoreDataTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTCoreDataTest.h; sourceTree = "<group>"; };
-		171A0ABD1776F0DE00A3D721 /* TTCoreDataTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTCoreDataTest.m; sourceTree = "<group>"; };
 		171B37611778E43F00832894 /* TTIssueDetailsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTIssueDetailsVC.h; sourceTree = "<group>"; };
 		171B37621778E43F00832894 /* TTIssueDetailsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTIssueDetailsVC.m; sourceTree = "<group>"; };
 		1732A171177611B8007BDFE5 /* TTExternalSystemLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTExternalSystemLink.h; sourceTree = "<group>"; };
@@ -218,10 +213,6 @@
 		1732A18B177613FF007BDFE5 /* TTExternalSystemLink+TTExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TTExternalSystemLink+TTExtension.m"; sourceTree = "<group>"; };
 		1732A18F17762DEE007BDFE5 /* TTProjectsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTProjectsDataSource.h; sourceTree = "<group>"; };
 		1732A19017762DEE007BDFE5 /* TTProjectsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTProjectsDataSource.m; sourceTree = "<group>"; };
-		1732A194177641A1007BDFE5 /* TTProjectDataManagerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTProjectDataManagerTest.h; sourceTree = "<group>"; };
-		1732A195177641A1007BDFE5 /* TTProjectDataManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTProjectDataManagerTest.m; sourceTree = "<group>"; };
-		1732A197177641B2007BDFE5 /* TTProjectsVCTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTProjectsVCTest.h; sourceTree = "<group>"; };
-		1732A198177641B2007BDFE5 /* TTProjectsVCTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTProjectsVCTest.m; sourceTree = "<group>"; };
 		173521EA17A5678000A22A6C /* timetracker_logo_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timetracker_logo_57.png; sourceTree = "<group>"; };
 		173521FC17A5678500A22A6C /* timetracker_logo_114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timetracker_logo_114.png; sourceTree = "<group>"; };
 		173B3FEF177D820A009B60C6 /* TTExternalProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTExternalProject.h; sourceTree = "<group>"; };
@@ -395,24 +386,6 @@
 			path = DataManager;
 			sourceTree = "<group>";
 		};
-		1732A19217764128007BDFE5 /* DataManagerTests */ = {
-			isa = PBXGroup;
-			children = (
-				1732A194177641A1007BDFE5 /* TTProjectDataManagerTest.h */,
-				1732A195177641A1007BDFE5 /* TTProjectDataManagerTest.m */,
-			);
-			path = DataManagerTests;
-			sourceTree = "<group>";
-		};
-		1732A1931776413B007BDFE5 /* ViewControllerTests */ = {
-			isa = PBXGroup;
-			children = (
-				1732A197177641B2007BDFE5 /* TTProjectsVCTest.h */,
-				1732A198177641B2007BDFE5 /* TTProjectsVCTest.m */,
-			);
-			path = ViewControllerTests;
-			sourceTree = "<group>";
-		};
 		173C97FF177C2C7B001BCB77 /* SystemLinks */ = {
 			isa = PBXGroup;
 			children = (
@@ -510,8 +483,6 @@
 		174DAB66177597AB006057C0 /* timetrackerTests */ = {
 			isa = PBXGroup;
 			children = (
-				1732A1931776413B007BDFE5 /* ViewControllerTests */,
-				1732A19217764128007BDFE5 /* DataManagerTests */,
 				174DAB67177597AB006057C0 /* Supporting Files */,
 			);
 			path = timetrackerTests;
@@ -522,8 +493,6 @@
 			children = (
 				174DAB68177597AB006057C0 /* timetrackerTests-Info.plist */,
 				174DAB69177597AB006057C0 /* InfoPlist.strings */,
-				171A0ABC1776F0DE00A3D721 /* TTCoreDataTest.h */,
-				171A0ABD1776F0DE00A3D721 /* TTCoreDataTest.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -903,9 +872,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				171A0AC417774FA500A3D721 /* TTCoreDataTest.m in Sources */,
-				171A0AC317774F8300A3D721 /* TTProjectDataManagerTest.m in Sources */,
-				1732A199177641B2007BDFE5 /* TTProjectsVCTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

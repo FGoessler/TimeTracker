@@ -9,23 +9,18 @@
 #import <Foundation/Foundation.h>
 
 #define TT_MODEL_CHANGED_NOTIFICATION @"TT_MODEL_CHANGED_NOTIFICATION"
-#define TT_ICLOUD_INITATION_NOTIFICATION @"TT_ICLOUD_INITATION"
 
 #define CLOUD_FILE_NAME @"de.floriangoessler.timetracker.f1234"
 #define LOCAL_FILE_NAME @"CoreDataLocalFile"
 
 typedef BOOL (^TTErrorHandler)(NSError*);
 
-@interface TTCoreDataManager : NSObject {
-	NSString *testThat;
-}
+@interface TTCoreDataManager : NSObject
 
 @property (nonatomic, strong) UIManagedDocument *document;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) NSFileCoordinator* coordinator;
 
-
-@property(nonatomic, copy) NSString *testThat;
 
 //Use this method to get a singleton instance of this manager
 +(TTCoreDataManager*)defaultManager;

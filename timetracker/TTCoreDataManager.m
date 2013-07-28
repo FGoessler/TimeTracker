@@ -12,8 +12,6 @@
 
 #pragma mark - Singleton
 
-@synthesize testThat;
-
 +(TTCoreDataManager *)defaultManager {
 	static TTCoreDataManager *sharedMyManager = nil;
     static dispatch_once_t onceToken;
