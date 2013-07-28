@@ -116,7 +116,11 @@
 		case 1:
 			return @"Description";
 		case 2:
-			return @"Time Logged";
+			if([self tableView:tableView numberOfRowsInSection:section] > 0) {
+				return @"Time Logged";
+			} else {
+				return nil;
+			}
 		default:
 			return nil;
 	}

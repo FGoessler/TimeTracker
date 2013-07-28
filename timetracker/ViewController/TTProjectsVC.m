@@ -50,7 +50,7 @@
 }
 
 -(void)showICloudMessage {
-	self.messageOverlay = [TTMessageOverlay showLoadingOverlayInViewController:self withMessage:@"Initiating Data Store. Please wait!"];
+	self.messageOverlay = [TTMessageOverlay showLoadingOverlayInViewController:self withMessage:@"Initiating Data Store."];
 	[self.addBtn setEnabled:NO];
 	[self.externalLinksBtn setEnabled:NO];
 	
