@@ -23,6 +23,8 @@
 		1732A18C177613FF007BDFE5 /* TTExternalSystemLink+TTExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1732A18B177613FF007BDFE5 /* TTExternalSystemLink+TTExtension.m */; };
 		1732A19117762DEE007BDFE5 /* TTProjectsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1732A19017762DEE007BDFE5 /* TTProjectsDataSource.m */; };
 		1732A199177641B2007BDFE5 /* TTProjectsVCTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1732A198177641B2007BDFE5 /* TTProjectsVCTest.m */; };
+		173521EB17A5678000A22A6C /* timetracker_logo_57.png in Resources */ = {isa = PBXBuildFile; fileRef = 173521EA17A5678000A22A6C /* timetracker_logo_57.png */; };
+		173521FD17A5678500A22A6C /* timetracker_logo_114.png in Resources */ = {isa = PBXBuildFile; fileRef = 173521FC17A5678500A22A6C /* timetracker_logo_114.png */; };
 		173B3FF1177D820A009B60C6 /* TTExternalProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 173B3FF0177D820A009B60C6 /* TTExternalProject.m */; };
 		173C9813177C2E88001BCB77 /* TTGitHubAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 173C9812177C2E88001BCB77 /* TTGitHubAPI.m */; };
 		174DAB34177597AB006057C0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 174DAB33177597AB006057C0 /* UIKit.framework */; };
@@ -220,6 +222,8 @@
 		1732A195177641A1007BDFE5 /* TTProjectDataManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTProjectDataManagerTest.m; sourceTree = "<group>"; };
 		1732A197177641B2007BDFE5 /* TTProjectsVCTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTProjectsVCTest.h; sourceTree = "<group>"; };
 		1732A198177641B2007BDFE5 /* TTProjectsVCTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTProjectsVCTest.m; sourceTree = "<group>"; };
+		173521EA17A5678000A22A6C /* timetracker_logo_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timetracker_logo_57.png; sourceTree = "<group>"; };
+		173521FC17A5678500A22A6C /* timetracker_logo_114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timetracker_logo_114.png; sourceTree = "<group>"; };
 		173B3FEF177D820A009B60C6 /* TTExternalProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTExternalProject.h; sourceTree = "<group>"; };
 		173B3FF0177D820A009B60C6 /* TTExternalProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTExternalProject.m; sourceTree = "<group>"; };
 		173B776917881C4C002E68BB /* timetracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = timetracker.entitlements; sourceTree = "<group>"; };
@@ -432,6 +436,8 @@
 		174DAB27177597AB006057C0 = {
 			isa = PBXGroup;
 			children = (
+				173521FC17A5678500A22A6C /* timetracker_logo_114.png */,
+				173521EA17A5678000A22A6C /* timetracker_logo_57.png */,
 				17808120177C1FD200395939 /* OctoKit.xcodeproj */,
 				174DAB3B177597AB006057C0 /* timetracker */,
 				174DAB66177597AB006057C0 /* timetrackerTests */,
@@ -822,6 +828,8 @@
 				174DAB4A177597AB006057C0 /* Default@2x.png in Resources */,
 				174DAB4C177597AB006057C0 /* Default-568h@2x.png in Resources */,
 				174DAB4F177597AB006057C0 /* MainStoryboard.storyboard in Resources */,
+				173521EB17A5678000A22A6C /* timetracker_logo_57.png in Resources */,
+				173521FD17A5678500A22A6C /* timetracker_logo_114.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
