@@ -30,6 +30,23 @@
     return string;
 }
 
++(BOOL)isICloudWishedByUser {
+	NSNumber *value = [[NSUserDefaults standardUserDefaults] valueForKey:@"TTUseICloudStatus"];
+	if(value != nil && [value boolValue] == true) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
++(BOOL)hasUserBeenAskedForICloudUsage {
+	return [[NSUserDefaults standardUserDefaults] valueForKey:@"TTUseICloudStatus"] == nil ? false : true;
+}
+
++(void)setUsersStoredICloudChoice:(NSNumber *)useICloud {
+	[[NSUserDefaults standardUserDefaults] setValue:useICloud forKey:@"TTUseICloudStatus"];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+}
 
 #pragma mark Local Documents
 + (NSString *) localDocumentsPath

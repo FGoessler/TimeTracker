@@ -12,6 +12,12 @@
 
 + (NSString *) documentState: (int) state;
 
++ (BOOL)isICloudWishedByUser;
+
++ (BOOL)hasUserBeenAskedForICloudUsage;
+
++ (void)setUsersStoredICloudChoice:(NSNumber *)useICloud;
+
 // URLs
 + (NSString *) localDocumentsPath;
 + (NSURL *) localDocumentsURL;

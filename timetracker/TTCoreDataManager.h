@@ -15,7 +15,7 @@
 
 typedef BOOL (^TTErrorHandler)(NSError*);
 
-@interface TTCoreDataManager : NSObject
+@interface TTCoreDataManager : NSObject <UIAlertViewDelegate>
 
 @property (nonatomic, strong) UIManagedDocument *document;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
