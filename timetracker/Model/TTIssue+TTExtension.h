@@ -16,12 +16,13 @@
 #define TTLOG_ENTRY_NOT_ACTIVE 9002
 
 @interface TTIssue (TTExtension)
-@property (readonly, nonatomic, strong) TTLogEntry *latestLogEntry;
+@property(readonly, nonatomic, strong) TTLogEntry *latestLogEntry;
 
--(TTLogEntry*)createNewUnsavedLogEntry;
+- (TTLogEntry *)createNewUnsavedLogEntry;
 
--(BOOL)startTracking:(NSError**)err;
--(BOOL)stopTracking:(NSError**)err;
+- (BOOL)startTracking:(NSError **)err;
+
+- (BOOL)stopTracking:(NSError **)err;
 
 - (TTIssue *)clone;
 @end

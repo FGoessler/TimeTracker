@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface TTExternalProject : NSObject
-@property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSString *externalSystemProjectId;
+@property(nonatomic, strong) NSString *name;
+@property(nonatomic, strong) NSString *externalSystemProjectId;
 @end

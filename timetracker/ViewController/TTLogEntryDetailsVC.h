@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface TTLogEntryDetailsVC : UITableViewController
-@property (nonatomic, strong) TTLogEntry *logEntry;
+@property(nonatomic, strong) TTLogEntry *logEntry;
 @end

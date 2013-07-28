@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface TTTrackingVC : UIViewController <UITableViewDelegate>
-@property (nonatomic, strong) TTProject* project;
-@property (nonatomic, strong) TTIssue* currentIssue;
+@property(nonatomic, strong) TTProject *project;
+@property(nonatomic, strong) TTIssue *currentIssue;
 
 @end

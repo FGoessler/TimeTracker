@@ -14,7 +14,9 @@
 #define TT_SYS_TYPE_GITHUB @"GitHub"
 
 @interface TTExternalSystemLink (TTExtension)
-+(NSSet*)getAllSystemLinkTypes;
-+(TTExternalSystemLink*)createNewExternalSystemLinkOfType:(NSString*)type;
-+(id<TTExternalSystemInterface>)externalSystemInterfaceForType:(NSString*)type;
++ (NSSet *)getAllSystemLinkTypes;
+
++ (TTExternalSystemLink *)createNewExternalSystemLinkOfType:(NSString *)type;
+
++ (id <TTExternalSystemInterface>)externalSystemInterfaceForType:(NSString *)type;
 @end

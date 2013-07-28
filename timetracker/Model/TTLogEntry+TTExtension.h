@@ -14,7 +14,7 @@
 #define TTLOG_ENTRY_INVALID_END_DATE 9012
 
 @interface TTLogEntry (TTExtension)
-@property (readonly, nonatomic) NSTimeInterval timeInterval;
+@property(readonly, nonatomic) NSTimeInterval timeInterval;
 
 - (TTLogEntry *)clone;
 @end

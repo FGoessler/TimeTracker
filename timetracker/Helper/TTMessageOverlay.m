@@ -50,16 +50,16 @@
 	[baseView addSubview:label];
 
 	[baseView addConstraint:[NSLayoutConstraint constraintWithItem:label attribute:NSLayoutAttributeCenterY
-																	relatedBy:NSLayoutRelationEqual
-																	   toItem:baseView attribute:NSLayoutAttributeCenterY
-																   multiplier:1.0 constant:0.0]];
+														 relatedBy:NSLayoutRelationEqual
+															toItem:baseView attribute:NSLayoutAttributeCenterY
+														multiplier:1.0 constant:0.0]];
 	[baseView addConstraint:[NSLayoutConstraint constraintWithItem:label attribute:NSLayoutAttributeHeight
-																	relatedBy:NSLayoutRelationGreaterThanOrEqual
-																	   toItem:nil attribute:NSLayoutAttributeNotAnAttribute
-																   multiplier:1.0 constant:50.0]];
+														 relatedBy:NSLayoutRelationGreaterThanOrEqual
+															toItem:nil attribute:NSLayoutAttributeNotAnAttribute
+														multiplier:1.0 constant:50.0]];
 
 	//add spinner
-	if(spinner) {
+	if (spinner) {
 		UIActivityIndicatorView *spinnerView = [UIActivityIndicatorView new];
 		[baseView addSubview:spinnerView];
 		spinnerView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -88,9 +88,9 @@
 															multiplier:1.0 constant:0.0]];
 
 		[baseView addConstraint:[NSLayoutConstraint constraintWithItem:label attribute:NSLayoutAttributeWidth
-																		relatedBy:NSLayoutRelationGreaterThanOrEqual
-																		   toItem:nil attribute:NSLayoutAttributeNotAnAttribute
-																	   multiplier:1.0 constant:280.0]];
+															 relatedBy:NSLayoutRelationGreaterThanOrEqual
+																toItem:nil attribute:NSLayoutAttributeNotAnAttribute
+															multiplier:1.0 constant:280.0]];
 	}
 
 

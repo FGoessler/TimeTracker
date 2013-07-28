@@ -13,10 +13,10 @@
 
 @interface TTLogEntry : NSManagedObject
 
-@property (nonatomic, retain) NSString * comment;
-@property (nonatomic, retain) NSDate * endDate;
-@property (nonatomic, retain) NSDate * startDate;
-@property (nonatomic, retain) NSNumber * synced;
-@property (nonatomic, retain) TTIssue *parentIssue;
+@property(nonatomic, retain) NSString *comment;
+@property(nonatomic, retain) NSDate *endDate;
+@property(nonatomic, retain) NSDate *startDate;
+@property(nonatomic, retain) NSNumber *synced;
+@property(nonatomic, retain) TTIssue *parentIssue;
 
 @end

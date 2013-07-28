@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface TTExternalSystemLinkDetailsVC : UITableViewController
-@property (nonatomic, strong) TTExternalSystemLink* externalSystemLink;
+@property(nonatomic, strong) TTExternalSystemLink *externalSystemLink;
 @end

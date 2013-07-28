@@ -9,12 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @interface TTLogEntriesDataSource : NSObject <UITableViewDataSource>
-@property (nonatomic, strong) TTIssue *issue;
+@property(nonatomic, strong) TTIssue *issue;
 
 //Initializes this object as a DataSource for a TableView. The TableView will be updated when the data changes.
--(id)initWithIssue:(TTIssue*)issue asDataSourceOfTableView:(UITableView*)tableView;
+- (id)initWithIssue:(TTIssue *)issue asDataSourceOfTableView:(UITableView *)tableView;
 
 - (void)restrictToSection:(NSInteger)section andSetSecondHandDataSource:(id <UITableViewDataSource>)dataSource;
 
--(TTLogEntry*)logEntryAtIndexPath:(NSIndexPath*)indexPath;
+- (TTLogEntry *)logEntryAtIndexPath:(NSIndexPath *)indexPath;
 @end

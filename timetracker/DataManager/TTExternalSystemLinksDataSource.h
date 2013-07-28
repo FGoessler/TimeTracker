@@ -11,10 +11,10 @@
 @interface TTExternalSystemLinksDataSource : NSObject <UITableViewDataSource>
 
 //Returns the system link, which is displayed at the given IndexPath.
--(TTExternalSystemLink*)systemLinkAtIndexPath:(NSIndexPath*)indexPath;
+- (TTExternalSystemLink *)systemLinkAtIndexPath:(NSIndexPath *)indexPath;
 
 
 //Initializes this object as a DataSource for a TableView. The TableView will be updated when the data changes.
--(id)initAsDataSourceOfTableView:(UITableView*)tableView;
+- (id)initAsDataSourceOfTableView:(UITableView *)tableView;
 
 @end

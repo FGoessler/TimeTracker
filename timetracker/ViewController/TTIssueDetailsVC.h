@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface TTIssueDetailsVC : UITableViewController
-@property (nonatomic, strong) TTIssue *issue;
+@property(nonatomic, strong) TTIssue *issue;
 @end

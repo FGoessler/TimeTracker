@@ -11,9 +11,9 @@
 #import "TTIssueDetailsVC.h"
 
 @interface TTChangeIssueVC () <UITableViewDelegate>
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) TTIssuesDataSource *dataSource;
-@property (strong, nonatomic) TTIssue *selectedIssue;
+@property(weak, nonatomic) IBOutlet UITableView *tableView;
+@property(strong, nonatomic) TTIssuesDataSource *dataSource;
+@property(strong, nonatomic) TTIssue *selectedIssue;
 @end
 
 @implementation TTChangeIssueVC
@@ -24,31 +24,32 @@
 	alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
 	[alertView show];
 }
+
 - (IBAction)cancelBtnClicked:(id)sender {
 	[self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-	if(buttonIndex != 1) return;	//do nothing if cancel button clicked
-	
+	if (buttonIndex != 1) return;    //do nothing if cancel button clicked
+
 	[self.parentVC.project addIssueWithName:[alertView textFieldAtIndex:0].text andError:nil];
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	TTIssue *issue = [self.dataSource issueAtIndexPath:indexPath];
 	self.parentVC.currentIssue = issue;
-	
+
 	[self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
 	self.selectedIssue = [self.dataSource issueAtIndexPath:indexPath];
-	[self performSegueWithIdentifier:@"Show TTIssueDetailsVC2" sender:self];		//show TTIssueDetailsVC
+	[self performSegueWithIdentifier:@"Show TTIssueDetailsVC2" sender:self];        //show TTIssueDetailsVC
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-	if([segue.identifier isEqualToString:@"Show TTIssueDetailsVC2"]) {
-		TTIssueDetailsVC *destVC = (TTIssueDetailsVC*)[segue.destinationViewController topViewController];
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+	if ([segue.identifier isEqualToString:@"Show TTIssueDetailsVC2"]) {
+		TTIssueDetailsVC *destVC = (TTIssueDetailsVC *) [segue.destinationViewController topViewController];
 		//pass the selected issue to the TTIssueDetailsVC
 		destVC.issue = self.selectedIssue;
 	}
@@ -56,18 +57,17 @@
 
 #pragma mark View Controller lifecycle
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
+- (void)viewDidLoad {
+	[super viewDidLoad];
 
 	//setup tableView
 	self.tableView.delegate = self;
 	self.dataSource = [[TTIssuesDataSource alloc] initWithProject:self.parentVC.project asDataSourceOfTableView:self.tableView];
-	
+
 	//sync issues with external project if it's configured
-	if(self.parentVC.project.externalSystemUID != nil && self.parentVC.project.parentSystemLink != nil) {
+	if (self.parentVC.project.externalSystemUID != nil && self.parentVC.project.parentSystemLink != nil) {
 		dispatch_queue_t syncQueue = dispatch_queue_create("de.timetracker.issuesync", 0);
-		dispatch_async(syncQueue, ^{	//do this on a seperate thread!
+		dispatch_async(syncQueue, ^{    //do this on a seperate thread!
 			[[TTExternalSystemLink externalSystemInterfaceForType:self.parentVC.project.parentSystemLink.type] syncIssuesOfProject:self.parentVC.project];
 		});
 	}

@@ -4,18 +4,17 @@
 //
 
 
-#import "TTIssueDetailsVC.h"
 #import "TTUIViewHelper.h"
 
 
 @implementation TTUIViewHelper {
 
 }
-+(UIView*)searchInSubviewsOfView:(UIView*)view forUIViewClass:(Class)class {
++ (UIView *)searchInSubviewsOfView:(UIView *)view forUIViewClass:(Class)class {
 	NSMutableArray *subviews = view.subviews.mutableCopy;
-	while(subviews.count > 0) {
+	while (subviews.count > 0) {
 		UIView *currentView = subviews.lastObject;
-		if([currentView isKindOfClass:class]) {
+		if ([currentView isKindOfClass:class]) {
 			return currentView;
 		} else {
 			[subviews addObjectsFromArray:currentView.subviews];

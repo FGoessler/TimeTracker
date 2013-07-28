@@ -10,7 +10,7 @@
 
 @interface TTCloudHelper : NSObject
 
-+ (NSString *) documentState: (int) state;
++ (NSString *)documentState:(int)state;
 
 + (BOOL)isICloudWishedByUser;
 
@@ -19,16 +19,20 @@
 + (void)setUsersStoredICloudChoice:(NSNumber *)useICloud;
 
 // URLs
-+ (NSString *) localDocumentsPath;
-+ (NSURL *) localDocumentsURL;
-+ (NSURL *) ubiquityDataURLForContainer: (NSString *) container;
-+ (NSURL *) ubiquityDataURL;
++ (NSString *)localDocumentsPath;
+
++ (NSURL *)localDocumentsURL;
+
++ (NSURL *)ubiquityDataURLForContainer:(NSString *)container;
+
++ (NSURL *)ubiquityDataURL;
 
 // Files URLs
-+ (NSURL *) localFileURL: (NSString *) filename;
-+ (NSURL *) ubiquityDataFileURL: (NSString *) filename;
++ (NSURL *)localFileURL:(NSString *)filename;
+
++ (NSURL *)ubiquityDataFileURL:(NSString *)filename;
 
 // Testing Files
-+ (BOOL) isLocal: (NSString *) filename;
++ (BOOL)isLocal:(NSString *)filename;
 
 @end

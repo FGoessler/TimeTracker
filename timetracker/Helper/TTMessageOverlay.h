@@ -10,14 +10,14 @@
 
 @interface TTMessageOverlay : NSObject
 
-+(TTMessageOverlay*)showLoadingOverlayInViewController:(UIViewController*)viewController;
++ (TTMessageOverlay *)showLoadingOverlayInViewController:(UIViewController *)viewController;
 
-+(TTMessageOverlay*)showLoadingOverlayInViewController:(UIViewController*)viewController withMessage:(NSString*)message;
++ (TTMessageOverlay *)showLoadingOverlayInViewController:(UIViewController *)viewController withMessage:(NSString *)message;
 
-+(TTMessageOverlay*)showMessageOverlayInViewController:(UIViewController*)viewController withMessage:(NSString*)message forTime:(NSTimeInterval)timeInterval;
++ (TTMessageOverlay *)showMessageOverlayInViewController:(UIViewController *)viewController withMessage:(NSString *)message forTime:(NSTimeInterval)timeInterval;
 
-@property (nonatomic, strong) NSString *message;
+@property(nonatomic, strong) NSString *message;
 
--(void)hide;
+- (void)hide;
 
 @end
