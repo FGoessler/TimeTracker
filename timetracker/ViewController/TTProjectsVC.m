@@ -53,7 +53,8 @@
 	self.messageOverlay = [TTMessageOverlay showLoadingOverlayInViewController:self withMessage:@"Initiating Data Store."];
 	[self.addBtn setEnabled:NO];
 	[self.externalLinksBtn setEnabled:NO];
-	
+
+	[self.tableView reloadData];
 }
 -(void)hideICloudMessage:(NSNotification*)notification {
 	if(self.messageOverlay) {

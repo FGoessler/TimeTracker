@@ -7,6 +7,7 @@
 //
 
 #import "TTCloudHelper.h"
+#import "TTProjectsVC.h"
 
 @implementation TTCoreDataManager
 
@@ -153,6 +154,36 @@
 		name: UIDocumentStateChangedNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(documentContentsDidUpdate:)
 		name:NSPersistentStoreDidImportUbiquitousContentChangesNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iCloudUserChanged:)
+		name:NSUbiquityIdentityDidChangeNotification object:nil];
+}
+
+//When notified about a iCloud user change - remove any existing CoreData stuff and go back to the initial view controller
+- (void)iCloudUserChanged:(NSNotification *)notification {
+	NSLog(@"iCloud user changed...");
+
+	[self.document closeWithCompletionHandler:^(BOOL success) {
+		NSError *err;
+		[[NSFileManager defaultManager] removeItemAtURL:self.document.fileURL error:&err];
+
+		if(err) {
+			NSLog(@"error removing file at %@ \n %@", self.document.fileURL, err);
+		}
+
+		[[NSNotificationCenter defaultCenter] removeObserver:self];
+
+		self.document = nil;
+		self.managedObjectContext = nil;
+		self.coordinator = nil;
+
+		[self initCoreData];
+
+		UINavigationController *rootVC = (UINavigationController *) [UIApplication sharedApplication].delegate.window.rootViewController;
+		[rootVC dismissViewControllerAnimated:NO completion:nil];
+		[rootVC popToRootViewControllerAnimated:NO];
+
+		[((TTProjectsVC *) rootVC.topViewController) showICloudMessage];
+	}];
 }
 
 
