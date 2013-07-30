@@ -13,11 +13,13 @@
 @interface TTProject (TTExtension)
 
 //Creates a new TTProject object with the given name and saves with the default ManagedObjectContext.
-+(TTProject*)createNewProjectWithName:(NSString*)name;
++ (TTProject *)createNewProjectWithName:(NSString *)name;
 
-@property (nonatomic, strong, readonly) TTIssue* currentIssue;
+@property(nonatomic, strong, readonly) TTIssue *currentIssue;
 
--(BOOL)addIssueWithName:(NSString *)name andError:(NSError**)err;
--(BOOL)addIssueWithName:(NSString *)name shortText:(NSString *)text externalUID:(NSString *)uid andErrorIndicator:(NSError**)err;
+- (BOOL)addIssueWithName:(NSString *)name andError:(NSError **)err;
 
+- (BOOL)addIssueWithName:(NSString *)name shortText:(NSString *)text externalUID:(NSString *)uid andErrorIndicator:(NSError **)err;
+
+- (TTProject *)clone;
 @end

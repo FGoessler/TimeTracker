@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface TTIssueListVC : UIViewController
-@property (nonatomic, strong) TTProject *project;
+@property(nonatomic, strong) TTProject *project;
 @end

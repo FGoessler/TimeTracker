@@ -7,62 +7,124 @@
 //
 
 #import "TTMessageOverlay.h"
+#import "TTUIViewHelper.h"
 
 @interface TTMessageOverlay ()
-@property (nonatomic, strong) UILabel *messageLabel;
+@property(nonatomic, strong) UIView *messageContainer;
+@property(nonatomic, strong) UILabel *messageLabel;
 @end
+
 @implementation TTMessageOverlay
 
-+(UILabel*)createMessageLabelInVC:(UIViewController*)viewController {
-	UILabel *label = [UILabel new];
-	[label setTextAlignment:NSTextAlignmentCenter];
-	[label setBackgroundColor:[UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:0.2]];
-	label.translatesAutoresizingMaskIntoConstraints = NO;
-	
-	[viewController.view addSubview:label];
-	
-	[viewController.view addConstraint:[NSLayoutConstraint constraintWithItem:label attribute:NSLayoutAttributeCenterX
++ (UIView *)createMessageViewInVC:(UIViewController *)viewController withSpinner:(BOOL)spinner {
+	UIView *baseView = [UIView new];
+	[baseView.layer setCornerRadius:20.0];
+	[baseView setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.8]];
+	baseView.translatesAutoresizingMaskIntoConstraints = NO;
+
+	[viewController.view addSubview:baseView];
+
+	[viewController.view addConstraint:[NSLayoutConstraint constraintWithItem:baseView attribute:NSLayoutAttributeCenterX
 																	relatedBy:NSLayoutRelationEqual
 																	   toItem:viewController.view attribute:NSLayoutAttributeCenterX
 																   multiplier:1.0 constant:0.0]];
-	[viewController.view addConstraint:[NSLayoutConstraint constraintWithItem:label attribute:NSLayoutAttributeCenterY
+	[viewController.view addConstraint:[NSLayoutConstraint constraintWithItem:baseView attribute:NSLayoutAttributeCenterY
 																	relatedBy:NSLayoutRelationEqual
 																	   toItem:viewController.view attribute:NSLayoutAttributeCenterY
 																   multiplier:1.0 constant:0.0]];
-	[viewController.view addConstraint:[NSLayoutConstraint constraintWithItem:label attribute:NSLayoutAttributeHeight
+	[viewController.view addConstraint:[NSLayoutConstraint constraintWithItem:baseView attribute:NSLayoutAttributeHeight
 																	relatedBy:NSLayoutRelationGreaterThanOrEqual
 																	   toItem:nil attribute:NSLayoutAttributeNotAnAttribute
 																   multiplier:1.0 constant:50.0]];
-	[viewController.view addConstraint:[NSLayoutConstraint constraintWithItem:label attribute:NSLayoutAttributeWidth
+	[viewController.view addConstraint:[NSLayoutConstraint constraintWithItem:baseView attribute:NSLayoutAttributeWidth
 																	relatedBy:NSLayoutRelationGreaterThanOrEqual
 																	   toItem:nil attribute:NSLayoutAttributeNotAnAttribute
 																   multiplier:1.0 constant:280.0]];
-	
-	return label;
+
+	//add label
+	UILabel *label = [UILabel new];
+	[label setTextAlignment:NSTextAlignmentCenter];
+	[label setTextColor:[UIColor whiteColor]];
+	[label setBackgroundColor:[UIColor clearColor]];
+	label.translatesAutoresizingMaskIntoConstraints = NO;
+	[baseView addSubview:label];
+
+	[baseView addConstraint:[NSLayoutConstraint constraintWithItem:label attribute:NSLayoutAttributeCenterY
+														 relatedBy:NSLayoutRelationEqual
+															toItem:baseView attribute:NSLayoutAttributeCenterY
+														multiplier:1.0 constant:0.0]];
+	[baseView addConstraint:[NSLayoutConstraint constraintWithItem:label attribute:NSLayoutAttributeHeight
+														 relatedBy:NSLayoutRelationGreaterThanOrEqual
+															toItem:nil attribute:NSLayoutAttributeNotAnAttribute
+														multiplier:1.0 constant:50.0]];
+
+	//add spinner
+	if (spinner) {
+		UIActivityIndicatorView *spinnerView = [UIActivityIndicatorView new];
+		[baseView addSubview:spinnerView];
+		spinnerView.translatesAutoresizingMaskIntoConstraints = NO;
+		[spinnerView startAnimating];
+
+		[baseView addConstraint:[NSLayoutConstraint constraintWithItem:spinnerView attribute:NSLayoutAttributeCenterY
+															 relatedBy:NSLayoutRelationEqual
+																toItem:baseView attribute:NSLayoutAttributeCenterY
+															multiplier:1.0 constant:0.0]];
+		[baseView addConstraint:[NSLayoutConstraint constraintWithItem:spinnerView attribute:NSLayoutAttributeLeading
+															 relatedBy:NSLayoutRelationEqual
+																toItem:baseView attribute:NSLayoutAttributeLeading
+															multiplier:1.0 constant:10.0]];
+		[baseView addConstraint:[NSLayoutConstraint constraintWithItem:spinnerView attribute:NSLayoutAttributeLeading
+															 relatedBy:NSLayoutRelationEqual
+																toItem:label attribute:NSLayoutAttributeLeading
+															multiplier:1.0 constant:10.0]];
+		[baseView addConstraint:[NSLayoutConstraint constraintWithItem:label attribute:NSLayoutAttributeTrailing
+															 relatedBy:NSLayoutRelationEqual
+																toItem:baseView attribute:NSLayoutAttributeTrailing
+															multiplier:1.0 constant:10.0]];
+	} else {
+		[baseView addConstraint:[NSLayoutConstraint constraintWithItem:label attribute:NSLayoutAttributeCenterX
+															 relatedBy:NSLayoutRelationEqual
+																toItem:baseView attribute:NSLayoutAttributeCenterX
+															multiplier:1.0 constant:0.0]];
+
+		[baseView addConstraint:[NSLayoutConstraint constraintWithItem:label attribute:NSLayoutAttributeWidth
+															 relatedBy:NSLayoutRelationGreaterThanOrEqual
+																toItem:nil attribute:NSLayoutAttributeNotAnAttribute
+															multiplier:1.0 constant:280.0]];
+	}
+
+
+	return baseView;
 }
 
-+(TTMessageOverlay*)showLoadingOverlayInViewController:(UIViewController*)viewController {
++ (TTMessageOverlay *)showLoadingOverlayInViewController:(UIViewController *)viewController {
+	return [TTMessageOverlay showLoadingOverlayInViewController:viewController withMessage:@"Loading data..."];
+}
+
++ (TTMessageOverlay *)showLoadingOverlayInViewController:(UIViewController *)viewController withMessage:(NSString *)message {
 	TTMessageOverlay *newOverlay = [[TTMessageOverlay alloc] init];
-	
-	newOverlay.messageLabel = [TTMessageOverlay createMessageLabelInVC:viewController];
-	newOverlay.messageLabel.text = @"Loading data...";
-	
+
+	newOverlay.messageContainer = [TTMessageOverlay createMessageViewInVC:viewController withSpinner:YES ];
+	newOverlay.messageLabel = (UILabel *) [TTUIViewHelper searchInSubviewsOfView:newOverlay.messageContainer forUIViewClass:[UILabel class]];
+	newOverlay.messageLabel.text = message;
+
 	return newOverlay;
 }
 
-+(TTMessageOverlay*)showMessageOverlayInViewController:(UIViewController*)viewController withMessage:(NSString*)message forTime:(NSTimeInterval)timeInterval {
++ (TTMessageOverlay *)showMessageOverlayInViewController:(UIViewController *)viewController withMessage:(NSString *)message forTime:(NSTimeInterval)timeInterval {
 	TTMessageOverlay *newOverlay = [[TTMessageOverlay alloc] init];
-	
-	newOverlay.messageLabel = [TTMessageOverlay createMessageLabelInVC:viewController];
+
+	newOverlay.messageContainer = [TTMessageOverlay createMessageViewInVC:viewController withSpinner:NO ];
+	newOverlay.messageLabel = (UILabel *) [TTUIViewHelper searchInSubviewsOfView:newOverlay.messageContainer forUIViewClass:[UILabel class]];
 	newOverlay.messageLabel.text = message;
 
 	[NSTimer timerWithTimeInterval:timeInterval target:self selector:@selector(hide) userInfo:nil repeats:NO];
-	
+
 	return newOverlay;
 }
 
--(void)hide {
-	[self.messageLabel removeFromSuperview];
+- (void)hide {
+	[self.messageContainer removeFromSuperview];
 }
 
 @end

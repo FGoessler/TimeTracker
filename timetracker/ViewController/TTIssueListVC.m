@@ -11,8 +11,8 @@
 #import "TTIssueDetailsVC.h"
 
 @interface TTIssueListVC () <UITableViewDelegate>
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) TTIssuesDataSource *dataSource;
+@property(weak, nonatomic) IBOutlet UITableView *tableView;
+@property(strong, nonatomic) TTIssuesDataSource *dataSource;
 @end
 
 @implementation TTIssueListVC
@@ -25,14 +25,14 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-	if(buttonIndex != 1) return;	//do nothing if cancel button clicked
-	
+	if (buttonIndex != 1) return;    //do nothing if cancel button clicked
+
 	[self.project addIssueWithName:[alertView textFieldAtIndex:0].text andError:nil];
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-	if([segue.identifier isEqualToString:@"Show TTIssueDetailsVC3"]) {
-		TTIssueDetailsVC *destVC = (TTIssueDetailsVC*)[segue.destinationViewController topViewController];
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+	if ([segue.identifier isEqualToString:@"Show TTIssueDetailsVC3"]) {
+		TTIssueDetailsVC *destVC = (TTIssueDetailsVC *) [segue.destinationViewController topViewController];
 		//pass the selected issue to the TTIssueDetailsVC
 		destVC.issue = [self.dataSource issueAtIndexPath:[self.tableView indexPathForSelectedRow]];
 	}
@@ -40,10 +40,9 @@
 
 #pragma mark View Controller lifecycle
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	
+- (void)viewDidLoad {
+	[super viewDidLoad];
+
 	//setup tableView
 	self.tableView.delegate = self;
 	self.dataSource = [[TTIssuesDataSource alloc] initWithProject:self.project asDataSourceOfTableView:self.tableView];

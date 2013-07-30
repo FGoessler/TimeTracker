@@ -10,4 +10,5 @@
 
 @interface TTProjectsVC : UIViewController
 
+- (void)showICloudMessage;
 @end

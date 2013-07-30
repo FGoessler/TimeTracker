@@ -11,7 +11,7 @@
 typedef void (^TTRowSelectedHandler)(UITableView *tableView, NSIndexPath *selectedIndexPath, TTExternalProject *selectedProject);
 
 @interface TTExternalSystemProjectsListVC : UIViewController
-@property (nonatomic, strong) TTExternalSystemLink *externalSystemLink;
+@property(nonatomic, strong) TTExternalSystemLink *externalSystemLink;
 
--(void)setHandlerForRowSelecting:(TTRowSelectedHandler)handler;
+- (void)setHandlerForRowSelecting:(TTRowSelectedHandler)handler;
 @end

@@ -17,13 +17,17 @@
 
 @protocol TTExternalSystemInterface <NSObject>
 
--(void)validateLoginForSystemLink:(TTExternalSystemLink*)systemLink;
--(void)loadProjectListForSystemLink:(TTExternalSystemLink*)systemLink;
--(void)syncIssuesOfProject:(TTProject*)project;
--(void)syncTimelogEntriesOfIssues:(TTIssue*)issue;
+- (void)validateLoginForSystemLink:(TTExternalSystemLink *)systemLink;
 
--(void)setDelegate:(id<TTexternalSystemInterfaceDelegate>)delegate;
--(id<TTexternalSystemInterfaceDelegate>)getDelegate;
+- (void)loadProjectListForSystemLink:(TTExternalSystemLink *)systemLink;
+
+- (void)syncIssuesOfProject:(TTProject *)project;
+
+- (void)syncTimelogEntriesOfIssues:(TTIssue *)issue;
+
+- (void)setDelegate:(id <TTexternalSystemInterfaceDelegate>)delegate;
+
+- (id <TTexternalSystemInterfaceDelegate>)getDelegate;
 
 @end
 
@@ -31,16 +35,20 @@
 
 @optional
 
--(void)loginFailed;
--(void)loginValid;
+- (void)loginFailed;
 
--(void)loadedProjectList:(NSArray*)projectList forSystemLink:(TTExternalSystemLink*)systemLink;
--(void)loadProjectListFailed:(TTExternalSystemLink*)systemLink;
+- (void)loginValid;
 
--(void)syncedIssuesOfProject:(TTProject*)project;
--(void)syncingIssuesOfProjectFailed:(TTProject*)project;
+- (void)loadedProjectList:(NSArray *)projectList forSystemLink:(TTExternalSystemLink *)systemLink;
 
--(void)syncedTimelogEntriesOfIssue:(TTIssue*)issue;
--(void)syncingTimelogEntriesOfIssueFailed:(TTIssue*)issue;
+- (void)loadProjectListFailed:(TTExternalSystemLink *)systemLink;
+
+- (void)syncedIssuesOfProject:(TTProject *)project;
+
+- (void)syncingIssuesOfProjectFailed:(TTProject *)project;
+
+- (void)syncedTimelogEntriesOfIssue:(TTIssue *)issue;
+
+- (void)syncingTimelogEntriesOfIssueFailed:(TTIssue *)issue;
 
 @end

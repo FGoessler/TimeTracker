@@ -10,5 +10,5 @@
 #import "TTExternalSystemInterface.h"
 
 @interface TTGitHubAPI : NSObject <TTExternalSystemInterface>
-@property (nonatomic, weak) id<TTexternalSystemInterfaceDelegate> delegate;
+@property(nonatomic, weak) id <TTexternalSystemInterfaceDelegate> delegate;
 @end

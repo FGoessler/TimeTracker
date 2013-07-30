@@ -6,10 +6,6 @@
 //  Copyright (c) 2013 Florian Goessler. All rights reserved.
 //
 
-#import "TTIssue.h"
-#import "TTLogEntry.h"
-#import "TTProject.h"
-
 
 @implementation TTIssue
 

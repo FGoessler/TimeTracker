@@ -10,6 +10,6 @@
 #import "TTTrackingVC.h"
 
 @interface TTChangeIssueVC : UIViewController
-@property (nonatomic, strong) TTTrackingVC* parentVC;
+@property(nonatomic, strong) TTTrackingVC *parentVC;
 
 @end

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface TTLinksVC : UIViewController
-@property (nonatomic, strong) TTProject *projectToSelectLinkFor;
+@property(nonatomic, strong) TTProject *projectToSelectLinkFor;
 @end
